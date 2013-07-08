@@ -1,0 +1,31 @@
+Transaction Example:
+----------------------------
+
+mysql_query("SET AUTOCOMMIT=0");
+mysql_query("START TRANSACTION");
+
+$a1 = mysql_query("INSERT INTO rarara (l_id) VALUES('1')");
+$a2 = mysql_query("INSERT INTO rarara (l_id) VALUES('2')");
+
+if ($a1 and $a2) {
+    mysql_query("COMMIT");
+} else {        
+    mysql_query("ROLLBACK");
+}
+
+
+
+
+Coupling:
+------------------
+
+Tight Coupling
+--------------------------
+Tight coupling is when a group of classes are highly dependent on one another.
+This scenario arises when a class assumes too many responsibilities, or when one concern is spread over many classes rather than having its own class.
+Loose coupling is achieved by means of a design that promotes single-responsibility and separation of concerns.
+
+
+Loose Coupling
+--------------------------
+A loosely-coupled class can be consumed and tested independently of other (concrete) classes.

@@ -1,0 +1,1017 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#"><head><title>
+Difference Between Loose Coupling and Tight Coupling
+</title> <title>Difference Between Loose Coupling and Tight Coupling</title> <meta name="Keywords" content="Coupling, Loose Coupling, Tight Coupling"> <meta name="DESCRIPTION" content="The pros and cons Loose Coupling and Tight Coupling."> <meta name="Search.TopicType" content="kbArticle"> <meta name="Search.PublishDate" content="19 Dec 2012 12:00:00 GMT"> <meta name="Search.RevisedDate" content="21 Dec 2012 07:39:40 GMT"> <meta name="Search.UserRating" content="0%"> <meta name="CODE_LANGUAGE" content="C#"> <meta name="MS.LOCALE" content="en-US"> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta name="Author" content="Yusuf Karatoprak"> <link rel="stylesheet" type="text/css" href="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/csharp_29062013.css"><link rel="Shortcut Icon" href="http://www.c-sharpcorner.com/Images/McnIcon.ico"><meta http-equiv="Page-Exit" content="progid:DXImageTransform.Microsoft.Fade(duration=.3)"><meta property="fb:app_id" content="440531902678919"> <script src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/all.js" id="facebook-jssdk"></script><script src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/jquery.js" type="text/javascript"></script> <script src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/jquery_003.js" type="text/javascript"></script> <script src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/jquery_002.js" type="text/javascript"></script> <script type="text/javascript" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/plusone.js" async="true"></script> <script type="text/javascript" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/in.js" async="true"></script> <script type="text/javascript" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/widgets.htm" async="true"></script> <script type="text/javascript">
+var $j = jQuery.noConflict();
+$j(document).ready(function() {
+$j('a.show-dropdown').mouseover(function() {
+//get the height position of the current object
+var elementHeight = $j(this).height();
+var offsetWidth = 10;
+var offsetHeight = 10;
+//Get the tool tip container width adn height
+var toolTipWidth = $j("#dropDown").width();
+var toolTipHeight = $j("#dropDown").height();
+//Get the HTML document width and height
+var documentWidth = $j(document).width();
+var documentHeight = $j(document).height();
+//Set top and bottom position of the tool tip
+var top = $j(this).offset().top;
+if (top + toolTipHeight > documentHeight) {
+top = documentHeight - toolTipHeight - offsetHeight - (2 * elementHeight);
+}
+var left = $j(this).offset().left + offsetWidth;
+if (left + toolTipWidth > documentWidth) {
+left = documentWidth - toolTipWidth - (2 * offsetWidth);
+}
+$j('#dropDown').show();
+});
+$j('a.show-dropdown').mouseout(function() {
+$j("#dropDown").hide();
+});
+$j('#dropDown').mouseover(function() {
+$j('#dropDown').show();
+});
+$j('#dropDown').mouseout(function() {
+$j('#dropDown').hide();
+});
+});
+</script> <link href="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/WebResource.css" type="text/css" rel="stylesheet"><script src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/nonSecureAnonymousFramework"></script><style type="text/css">* html #li_ui_li_gen_1373001582502_0 a#li_ui_li_gen_1373001582502_0-link{height:1% !important;}#li_ui_li_gen_1373001582502_0{position:relative !important;overflow:visible !important;display:block !important;}#li_ui_li_gen_1373001582502_0 a#li_ui_li_gen_1373001582502_0-link{border:0 !important;height:20px !important;text-decoration:none !important;padding:0 !important;margin:0 !important;display:inline-block !important;}#li_ui_li_gen_1373001582502_0 a#li_ui_li_gen_1373001582502_0-link:link, #li_ui_li_gen_1373001582502_0 a#li_ui_li_gen_1373001582502_0-link:visited, #li_ui_li_gen_1373001582502_0 a#li_ui_li_gen_1373001582502_0-link:hover, #li_ui_li_gen_1373001582502_0 a#li_ui_li_gen_1373001582502_0-link:active{border:0 !important;text-decoration:none !important;}#li_ui_li_gen_1373001582502_0 a#li_ui_li_gen_1373001582502_0-link:after{content:"." !important;display:block !important;clear:both !important;visibility:hidden !important;line-height:0 !important;height:0 !important;}#li_ui_li_gen_1373001582502_0 #li_ui_li_gen_1373001582502_0-logo{background:url(http://static.licdn.com/scds/common/u/img/sprite/sprite_connect_v13.png) 0px -276px no-repeat !important;cursor:pointer !important;border:0 !important;text-indent:-9999em !important;overflow:hidden !important;padding:0 !important;margin:0 !important;position:absolute !important;left:0px !important;top:0px !important;display:block !important;width:20px !important;height:20px !important;float:right !important;}#li_ui_li_gen_1373001582502_0.hovered #li_ui_li_gen_1373001582502_0-logo{background-position:-20px -276px !important;}#li_ui_li_gen_1373001582502_0.clicked #li_ui_li_gen_1373001582502_0-logo, #li_ui_li_gen_1373001582502_0.down #li_ui_li_gen_1373001582502_0-logo{background-position:-40px -276px !important;}.IN-shadowed #li_ui_li_gen_1373001582502_0 #li_ui_li_gen_1373001582502_0-logo{}#li_ui_li_gen_1373001582502_0 #li_ui_li_gen_1373001582502_0-title{color:#333 !important;cursor:pointer !important;display:block !important;white-space:nowrap !important;float:left !important;margin-left:1px !important;vertical-align:top !important;overflow:hidden !important;text-align:center !important;height:18px !important;padding:0 4px 0 23px !important;border:1px solid #000 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;border-left:0 !important;text-shadow:#FFFFFF -1px 1px 0 !important;line-height:20px !important;border-radius:0 !important;-moz-border-radius:0 !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-moz-border-radius-topright:2px !important;-moz-border-radius-bottomright:2px !important;background-color:#ECECEC !important;background-image:-moz-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}#li_ui_li_gen_1373001582502_0.hovered #li_ui_li_gen_1373001582502_0-title{border:1px solid #000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;border-left:0 !important;background-color:#EDEDED !important;background-image:-moz-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}#li_ui_li_gen_1373001582502_0.clicked #li_ui_li_gen_1373001582502_0-title, #li_ui_li_gen_1373001582502_0.down #li_ui_li_gen_1373001582502_0-title{color:#666 !important;border:1px solid #000 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;border-left:0 !important;background-color:#DEDEDE !important;background-image:-moz-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.IN-shadowed #li_ui_li_gen_1373001582502_0 #li_ui_li_gen_1373001582502_0-title{}.IN-shadowed #li_ui_li_gen_1373001582502_0.hovered #li_ui_li_gen_1373001582502_0-title{}.IN-shadowed #li_ui_li_gen_1373001582502_0.clicked #li_ui_li_gen_1373001582502_0-title, .IN-shadowed #li_ui_li_gen_1373001582502_0.down #li_ui_li_gen_1373001582502_0-title{}#li_ui_li_gen_1373001582502_0 #li_ui_li_gen_1373001582502_0-title-text, #li_ui_li_gen_1373001582502_0 #li_ui_li_gen_1373001582502_0-title-text *{color:#333 !important;font-size:11px !important;font-family:Arial, sans-serif !important;font-weight:bold !important;font-style:normal !important;display:inline-block !important;background:transparent none !important;vertical-align:baseline !important;height:18px !important;line-height:20px !important;float:none !important;}#li_ui_li_gen_1373001582502_0 #li_ui_li_gen_1373001582502_0-title-text strong{font-weight:bold !important;}#li_ui_li_gen_1373001582502_0 #li_ui_li_gen_1373001582502_0-title-text em{font-style:italic !important;}#li_ui_li_gen_1373001582502_0.hovered #li_ui_li_gen_1373001582502_0-title-text, #li_ui_li_gen_1373001582502_0.hovered #li_ui_li_gen_1373001582502_0-title-text *{color:#000 !important;}#li_ui_li_gen_1373001582502_0.clicked #li_ui_li_gen_1373001582502_0-title-text, #li_ui_li_gen_1373001582502_0.down #li_ui_li_gen_1373001582502_0-title-text, #li_ui_li_gen_1373001582502_0.clicked #li_ui_li_gen_1373001582502_0-title-text *, #li_ui_li_gen_1373001582502_0.down #li_ui_li_gen_1373001582502_0-title-text *{color:#666 !important;}#li_ui_li_gen_1373001582502_0 #li_ui_li_gen_1373001582502_0-title #li_ui_li_gen_1373001582502_0-mark{display:inline-block !important;width:0px !important;overflow:hidden !important;}.success #li_ui_li_gen_1373001582502_0 #li_ui_li_gen_1373001582502_0-title{color:#333 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;background-color:#ECECEC !important;background-image:-moz-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}.success #li_ui_li_gen_1373001582502_0 #li_ui_li_gen_1373001582502_0-title-text, .success #li_ui_li_gen_1373001582502_0 #li_ui_li_gen_1373001582502_0-title-text *{color:#333 !important;}.IN-shadowed .success #li_ui_li_gen_1373001582502_0 #li_ui_li_gen_1373001582502_0-title{}.success #li_ui_li_gen_1373001582502_0.hovered #li_ui_li_gen_1373001582502_0-title{color:#000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;background-color:#EDEDED !important;background-image:-moz-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}.success #li_ui_li_gen_1373001582502_0.hovered #li_ui_li_gen_1373001582502_0-title-text, .success #li_ui_li_gen_1373001582502_0.hovered #li_ui_li_gen_1373001582502_0-title-text *{color:#000 !important;}.success #li_ui_li_gen_1373001582502_0.clicked #li_ui_li_gen_1373001582502_0-title, .success #li_ui_li_gen_1373001582502_0.down #li_ui_li_gen_1373001582502_0-title{color:#666 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;background-color:#DEDEDE !important;background-image:-moz-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.success #li_ui_li_gen_1373001582502_0.clicked #li_ui_li_gen_1373001582502_0-title-text, .success #li_ui_li_gen_1373001582502_0.down #li_ui_li_gen_1373001582502_0-title-text, .success #li_ui_li_gen_1373001582502_0.clicked #li_ui_li_gen_1373001582502_0-title-text *, .success #li_ui_li_gen_1373001582502_0.down #li_ui_li_gen_1373001582502_0-title-text *{color:#666 !important;}.IN-shadowed .success #li_ui_li_gen_1373001582502_0.clicked #li_ui_li_gen_1373001582502_0-title, .IN-shadowed .success #li_ui_li_gen_1373001582502_0.down #li_ui_li_gen_1373001582502_0-title{}#li_ui_li_gen_1373001582513_1-container.IN-right {display:inline-block !important;float:left !important;overflow:visible !important;position:relative !important;height:18px !important;padding-left:2px !important;line-height:1px !important;cursor:pointer !important;}#li_ui_li_gen_1373001582513_1.IN-right {display:block !important;float:left !important;height:18px !important;margin-right:4px !important;padding-right:4px !important;background:url(http://static.licdn.com/scds/common/u/img/sprite/sprite_connect_v13.png) right -100px no-repeat !important;}#li_ui_li_gen_1373001582513_1-inner.IN-right {display:block !important;float:left !important;padding-left:8px !important;text-align:center !important;background:url(http://static.licdn.com/scds/common/u/img/sprite/sprite_connect_v13.png) 0px -60px no-repeat !important;}#li_ui_li_gen_1373001582513_1-content.IN-right {display:inline !important;font-size:11px !important;color:#04558B !important;font-weight:bold !important;font-family:Arial, sans-serif !important;line-height:18px !important;padding:0 5px 0 5px !important;}#li_ui_li_gen_1373001582513_1-container.IN-hovered #li_ui_li_gen_1373001582513_1.IN-right, #li_ui_li_gen_1373001582513_1-container.IN-clicked #li_ui_li_gen_1373001582513_1.IN-right, #li_ui_li_gen_1373001582513_1-container.IN-down #li_ui_li_gen_1373001582513_1.IN-right {background-position-y:-120px !important;}#li_ui_li_gen_1373001582513_1-container.IN-hovered #li_ui_li_gen_1373001582513_1-inner.IN-right, #li_ui_li_gen_1373001582513_1-container.IN-clicked #li_ui_li_gen_1373001582513_1-inner.IN-right, #li_ui_li_gen_1373001582513_1-container.IN-down #li_ui_li_gen_1373001582513_1-inner.IN-right {background-position-y:-80px !important;}#li_ui_li_gen_1373001582513_1-container.IN-empty {display:none !important;}#li_ui_li_gen_1373001582513_1-container.IN-hidden #li_ui_li_gen_1373001582513_1 {display:none !important;}</style><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}
+.fb_invisible{display:none}
+.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}
+.fb_reset > div{overflow:hidden}
+.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}
+.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}
+.fb_dialog_content{background:#fff;color:#333}
+.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px;top:8px\9;right:7px\9}
+.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}
+.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}
+.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}
+.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}
+.fb_dialog_loader{background-color:#f2f2f2;border:1px solid #606060;font-size:24px;padding:20px}
+.fb_dialog_top_left,
+.fb_dialog_top_right,
+.fb_dialog_bottom_left,
+.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}
+/* @noflip */
+.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}
+/* @noflip */
+.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}
+/* @noflip */
+.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}
+/* @noflip */
+.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right,
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right{width:10px;height:100%}
+.fb_dialog_vert_left{margin-left:-10px}
+.fb_dialog_vert_right{right:0;margin-right:-10px}
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{width:100%;height:10px}
+.fb_dialog_horiz_top{margin-top:-10px}
+.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}
+.fb_dialog_iframe{line-height:0}
+.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3b5998;color:#fff;font-size:14px;font-weight:bold;margin:0}
+.fb_dialog_content .dialog_title > span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif)
+no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}
+body.fb_hidden{-webkit-transform:none;height:100%;margin:0;left:-10000px;overflow:visible;position:absolute;top:-10000px;width:100%
+}
+.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif)
+white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}
+.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}
+#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}
+#fb-root #fb_dialog_ipad_overlay.hidden{display:none}
+.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}
+.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0 0, 0 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}
+.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%
+}
+.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px
+}
+.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px
+}
+.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0 0, 0 100%, from(#4966A6),
+color-stop(0.5, #355492), to(#2A4887));border:1px solid #29447e;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset,
+rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}
+.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}
+.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}
+.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}
+.fb_dialog_content .dialog_footer{background:#f2f2f2;border:1px solid #555;border-top-color:#ccc;height:40px}
+#fb_dialog_loader_close{float:left}
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{display:inline-block;position:relative}
+.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}
+.fb_iframe_widget iframe{position:absolute}
+.fb_iframe_widget_lift{z-index:1}
+.fb_hide_iframes iframe{position:relative;left:-10000px}
+.fb_iframe_widget_loader{position:relative;display:inline-block}
+.fb_iframe_widget_fluid{display:inline}
+.fb_iframe_widget_fluid span{width:100%}
+.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}
+.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
+.fb_connect_bar_container div,
+.fb_connect_bar_container span,
+.fb_connect_bar_container a,
+.fb_connect_bar_container img,
+.fb_connect_bar_container strong{background:none;border-spacing:0;border:0;direction:ltr;font-style:normal;font-variant:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal;vertical-align:baseline}
+.fb_connect_bar_container{position:fixed;left:0 !important;right:0 !important;height:42px !important;padding:0 25px !important;margin:0 !important;vertical-align:middle !important;border-bottom:1px solid #333 !important;background:#3b5998 !important;z-index:99999999 !important;overflow:hidden !important}
+.fb_connect_bar_container_ie6{position:absolute;top:expression(document.compatMode=="CSS1Compat"? document.documentElement.scrollTop+"px":body.scrollTop+"px")}
+.fb_connect_bar{position:relative;margin:auto;height:100%;width:100%;padding:6px 0 0 0 !important;background:none;color:#fff !important;font-family:"lucida grande", tahoma, verdana, arial, sans-serif !important;font-size:13px !important;font-style:normal !important;font-variant:normal !important;font-weight:normal !important;letter-spacing:normal !important;line-height:1 !important;text-decoration:none !important;text-indent:0 !important;text-shadow:none !important;text-transform:none !important;white-space:normal !important;word-spacing:normal !important}
+.fb_connect_bar a:hover{color:#fff}
+.fb_connect_bar .fb_profile img{height:30px;width:30px;vertical-align:middle;margin:0 6px 5px 0}
+.fb_connect_bar div a,
+.fb_connect_bar span,
+.fb_connect_bar span a{color:#bac6da;font-size:11px;text-decoration:none}
+.fb_connect_bar .fb_buttons{float:right;margin-top:7px}
+.fb_edge_widget_with_comment{position:relative;*z-index:1000}
+.fb_edge_widget_with_comment span.fb_edge_comment_widget{position:absolute}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget{z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget .FB_Loader{left:0;top:1px;margin-top:6px;margin-left:0;background-position:50% 50%;background-color:#fff;height:150px;width:394px;border:1px #666 solid;border-bottom:2px solid #283e6c;z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.dark .FB_Loader{background-color:#000;border-bottom:2px solid #ccc}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.siderender
+.FB_Loader{margin-top:0}
+.fbpluginrecommendationsbarleft,
+.fbpluginrecommendationsbarright{position:fixed !important;bottom:0;z-index:999}
+/* @noflip */
+.fbpluginrecommendationsbarleft{left:10px}
+/* @noflip */
+.fbpluginrecommendationsbarright{right:10px}</style></head> <body id="MasterBody"> <div class=" fb_reset" id="fb-root"> <div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/xd_arbiter.htm" style="border: medium none;" tab-index="-1" title="Facebook Cross Domain Communication Frame" aria-hidden="true" id="fb_xdm_frame_http" allowtransparency="true" name="fb_xdm_frame_http" frameborder="0" scrolling="no"></iframe><iframe src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/xd_arbiter.xht" style="border: medium none;" tab-index="-1" title="Facebook Cross Domain Communication Frame" aria-hidden="true" id="fb_xdm_frame_https" allowtransparency="true" name="fb_xdm_frame_https" frameborder="0" scrolling="no"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ping.xht" style="display: none;" allowtransparency="true" name="f398ed89c528e68" frameborder="0" scrolling="no"></iframe></div></div></div> <script>
+(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=440531902678919";
+fjs.parentNode.insertBefore(js, fjs);
+} (document, 'script', 'facebook-jssdk'));
+</script> <form name="aspnetForm" method="post" action="Default.aspx" onsubmit="javascript:return WebForm_OnSubmit();" id="aspnetForm"> <div> <input name="__LASTFOCUS" id="__LASTFOCUS" value="" type="hidden"> <input name="__EVENTTARGET" id="__EVENTTARGET" value="" type="hidden"> <input name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" type="hidden"> <input name="ctl00_PollForHome1_TabContainerSection_ClientState" id="ctl00_PollForHome1_TabContainerSection_ClientState" value="{&quot;ActiveTabIndex&quot;:0,&quot;TabState&quot;:[true,true,true]}" type="hidden"> <input name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTY1NDU2MTA1Mg9kFgJmDw8WDB4IQXV0aG9ySUQFD3l1c3Vma2FyYXRvcHJhax4NQ3VycmVudFJhdGluZwUBMB4GU3RhdHVzBQEyHgtIYXNGZWVkYmFja2geCUFydGljbGVJRAUkOTBlNzQ1YmItMjc0Mi00ZWE1LWI4YzctY2QyNTJlMmM0ZmMwHg9NaW5vckNhdGVnb3J5SWQFAjYyZBYCAgEPZBYsAgEPZBYGAgIPZBYCAgMPFgIeC18hSXRlbUNvdW50AgQWCGYPZBYCZg8VAm9odHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tL1VwbG9hZEZpbGUvMTgxMDMxL0MtU2hhcnAtY29ybmVyLWNoYW5kaWdhcmgtY2hhcHRlci1tZWV0LWp1bmUtMjktMjAxMy1vZmZpY2lhbC1yZS8/QyMgQ29ybmVyIENoYW5kaWdhcmggQ2hhcHRlciBNZWV0LCBKdW5lLTI5LCAyMDEzIE9mZmljaWFsIFJlY2FwZAIBD2QWAmYPFQJRaHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS9uZXdzLzI5MTkvQy1TaGFycC1jb3JuZXItcTItMjAxMy1tdnBzLWFubm91bmNlZC5hc3B4IUMjIENvcm5lciBRMiwgMjAxMyBNVlBzIEFubm91bmNlZGQCAg9kFgJmDxUCSmh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vRXZlbnRzLzI3L3NvZnR3YXJlLWFyY2hpdGVjdC1kZW15c3RpZmllZC5hc3B4UERlbGhpIENoYXB0ZXIgTWVldCBKdWx5IDIwOiBKb2luIHVzIGFuZCBsZWFybiBob3cgdG8gYmVjb21lIGEgU29mdHdhcmUgQXJjaGl0ZWN0ZAIDD2QWAmYPFQJjaHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS9VcGxvYWRGaWxlLzc4ZDE4Mi9sZWFybi13aW5kb3dzLXByZXNlbnRhdGlvbi1mb3VuZGF0aW9uLXdwZi13aXRoLWNtdWcvJ0MjIENvcm5lciBNdW1iYWkgQ2hhcHRlcjogV1BGIEhhbmRzIE9uIGQCBA9kFgpmDxYCHgdWaXNpYmxlZ2QCAg8PFgQeC05hdmlnYXRlVXJsBUtodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tL1VzZXJSZWdpc3RyYXRpb24vVXNlclJlZ2lzdHJhdGlvbi5hc3B4P2NoZWNrPXIfB2dkZAIIDw8WAh8HaGRkAgkPFgIeBGhyZWYFHGh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb21kAgoPZBYCAgEPDxYCHgtfIURhdGFCb3VuZGdkZAIGD2QWAmYPZBYCAgEPPCsACQEADxYEHghEYXRhS2V5cxYAHwYCSGQWkAFmD2QWAmYPFQIvaHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS8xLzIzNy9uZXQtNC01LmFzcHgILk5FVCA0LjVkAgEPZBYCZg8VAjVodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvNTcvbmV0LWFzc2VtYmxpZXMuYXNweA8uTkVUIEFzc2VtYmxpZXNkAgIPZBYCZg8VAjpodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvMTMxL2Fkby1uZXQtaW4tQy1TaGFycC5hc3B4DUFETy5ORVQgaW4gQyNkAgMPZBYCZg8VAjdodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvMTc2L2FqYXgtaW4tQy1TaGFycC5hc3B4CkFKQVggaW4gQyNkAgQPZBYCZg8VAjtodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvMjQ3L2FuZHJvaWQtcHJvZ3JhbW1pbmcuYXNweBNBbmRyb2lkIFByb2dyYW1taW5nZAIFD2QWAmYPFQI4aHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS8xLzE3Mi9hcnRpY2xlcy1DLVNoYXJwLmFzcHgLQXJ0aWNsZXMgQyNkAgYPZBYCZg8VAkJodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvNzUvQXNwLU5ldC1jb250cm9scy1pbi1DLVNoYXJwLmFzcHgWQVNQLk5FVCBDb250cm9scyBpbiBDI2QCBw9kFgJmDxUCQGh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS8yMjYvQXNwLU5ldC1tdmMtd2l0aC1DLVNoYXJwLmFzcHgTQVNQLk5FVCBNVkMgd2l0aCBDI2QCCA9kFgJmDxUCO2h0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS8yMjQvQXNwLU5ldC1wcm9ncmFtbWluZy5hc3B4E0FTUC5ORVQgUHJvZ3JhbW1pbmdkAgkPZBYCZg8VAjZodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvMjA1L2JpenRhbGstc2VydmVyLmFzcHgOQml6VGFsayBTZXJ2ZXJkAgoPZBYCZg8VAjhodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvMTQ0L0MtU2hhcnAtbGFuZ3VhZ2UuYXNweAtDIyBMYW5ndWFnZWQCCw9kFgJmDxUCOWh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS8xNjgvQy1TaGFycC10dXRvcmlhbHMuYXNweAxDIyBUdXRvcmlhbHNkAgwPZBYCZg8VAjFodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvMjgyL2MtY3BwLW1mYy5hc3B4C0MsIEMrKywgTUZDZAIND2QWAmYPFQI1aHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS8xLzIzOC9jYXJlZXItYWR2aWNlLmFzcHgNQ2FyZWVyIEFkdmljZWQCDg9kFgJmDxUCMGh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS8yODAvY2hhcHRlcnMuYXNweAhDaGFwdGVyc2QCDw9kFgJmDxUCPGh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS82OC9jb2RpbmctYmVzdC1wcmFjdGljZXMuYXNweBVDb2RpbmcgQmVzdCBQcmFjdGljZXNkAhAPZBYCZg8VAjdodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvMTcwL2N1cnJlbnQtYWZmYWlycy5hc3B4D0N1cnJlbnQgQWZmYWlyc2QCEQ9kFgJmDxUCNWh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS8yMjAvZGF0YWJhc2VzLWRiYS5hc3B4D0RhdGFiYXNlcyAmIERCQWQCEg9kFgJmDxUCOmh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS82Mi9kZXNpZ24tYXJjaGl0ZWN0dXJlLmFzcHgVRGVzaWduICYgQXJjaGl0ZWN0dXJlZAITD2QWAmYPFQI5aHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS8xLzIzNC9leHByZXNzaW9uLXN0dWRpby5hc3B4EUV4cHJlc3Npb24gU3R1ZGlvZAIUD2QWAmYPFQI3aHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS8xLzI5NC9ncmFwaGljcy1kZXNpZ24uYXNweA9HcmFwaGljcyBEZXNpZ25kAhUPZBYCZg8VAjBodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvMTQzL2hvdy1kby1pLmFzcHgJSG93IGRvIEkgZAIWD2QWAmYPFQIuaHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS8xLzI0NC9odG1sLTUuYXNweAZIVE1MIDVkAhcPZBYCZg8VAjNodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvNjYvaW50ZXJuZXQtd2ViLmFzcHgOSW50ZXJuZXQgJiBXZWJkAhgPZBYCZg8VAjJodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvMjM1L2lwaG9uZWlwYWQuYXNweAtpUGhvbmUvaVBhZGQCGQ9kFgJmDxUCLGh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS8yNTgvamF2YS5hc3B4BEphdmFkAhoPZBYCZg8VAjRodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvMTQ4L2phdmEtYW5kLW5ldC5hc3B4DUphdmEgYW5kIC5ORVRkAhsPZBYCZg8VAjZodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvMjMzL2phdmFzY3JpcHQtY3NzLmFzcHgPSmF2YVNjcmlwdCwgQ1NTZAIcD2QWAmYPFQIuaHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS8xLzIzNi9qcXVlcnkuYXNweAZKUXVlcnlkAh0PZBYCZg8VAitodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvMjYwL2pzcC5hc3B4A0pTUGQCHg9kFgJmDxUCMmh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS8yNzgvbGVhZGVyc2hpcC5hc3B4CkxlYWRlcnNoaXBkAh8PZBYCZg8VAjFodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvMTg2L2xlYXJuLW5ldC5hc3B4CkxlYXJuIC5ORVRkAiAPZBYCZg8VAjhodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvMjc0L2xpZ2h0c3dpdGNoLTIwMTIuYXNweBBMaWdodFN3aXRjaCAyMDEyZAIhD2QWAmYPFQIsaHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS8xLzE4MC9saW5xLmFzcHgETElOUWQCIg9kFgJmDxUCNmh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS82Ny9tb2JpbGUtZW1iZWRkZWQuYXNweBFNb2JpbGUgJiBFbWJlZGRlZGQCIw9kFgJmDxUCMGh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS8yOTUvbmV0YmVhbnMuYXNweAhOZXRCZWFuc2QCJA9kFgJmDxUCM2h0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS8yODgvb2ZmaWNlLTIwMTMuYXNweAtPZmZpY2UgMjAxM2QCJQ9kFgJmDxUCLmh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS8yMDgvb29wb29kLmFzcHgHT09QL09PRGQCJg9kFgJmDxUCOWh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS8yMjIvb3BlcmF0aW5nLXN5c3RlbXMuYXNweBFPcGVyYXRpbmcgU3lzdGVtc2QCJw9kFgJmDxUCK2h0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS8yNzkvcGhwLmFzcHgDUEhQZAIoD2QWAmYPFQIwaHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS8xLzI4My9wcm9kdWN0cy5hc3B4CFByb2R1Y3RzZAIpD2QWAmYPFQI6aHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS8xLzE5OC9wcm9qZWN0LW1hbmFnZW1lbnQuYXNweBJQcm9qZWN0IE1hbmFnZW1lbnRkAioPZBYCZg8VAjlodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvMTk2L3JvYm90aWNzLWhhcmR3YXJlLmFzcHgTUm9ib3RpY3MgJiBIYXJkd2FyZWQCKw9kFgJmDxUCNmh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS83MS9zZWN1cml0eS1pbi1uZXQuYXNweBBTZWN1cml0eSBpbiAuTkVUZAIsD2QWAmYPFQI3aHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS8xLzE4My9zaGFyZXBvaW50LTIwMTAuYXNweA9TaGFyZVBvaW50IDIwMTBkAi0PZBYCZg8VAjdodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvMjg5L3NoYXJlcG9pbnQtMjAxMy5hc3B4D1NoYXJlUG9pbnQgMjAxM2QCLg9kFgJmDxUCQGh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS8yMTAvc2lsdmVybGlnaHQtd2l0aC1DLVNoYXJwLmFzcHgTU2lsdmVybGlnaHQgd2l0aCBDI2QCLw9kFgJmDxUCNWh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS8xNTgvc21hcnQtZGV2aWNlcy5hc3B4DVNtYXJ0IERldmljZXNkAjAPZBYCZg8VAitodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvMjE2L3NxbC5hc3B4A1NRTGQCMQ9kFgJmDxUCMmh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS8xODcvc3FsLXNlcnZlci5hc3B4ClNRTCBTZXJ2ZXJkAjIPZBYCZg8VAjdodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvMjk3L3NxbC1zZXJ2ZXItMjAxNC5hc3B4D1NRTCBTZXJ2ZXIgMjAxNGQCMw9kFgJmDxUCL2h0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS8xNzQvdGVzdGluZy5hc3B4B1Rlc3RpbmdkAjQPZBYCZg8VAjJodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvMjkxL3R5cGVzY3JpcHQuYXNweApUeXBlU2NyaXB0ZAI1D2QWAmYPFQI0aHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS8xLzkvdmlzdWFsLUMtU2hhcnAuYXNweAlWaXN1YWwgQyNkAjYPZBYCZg8VAjlodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvMTM5L3Zpc3VhbC1zdHVkaW8tbmV0LmFzcHgSVmlzdWFsIFN0dWRpbyAuTkVUZAI3D2QWAmYPFQI6aHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS8xLzEzNi92aXN1YWwtc3R1ZGlvLTIwMTAuYXNweBJWaXN1YWwgU3R1ZGlvIDIwMTBkAjgPZBYCZg8VAjpodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvMjgxL3Zpc3VhbC1zdHVkaW8tMjAxMi5hc3B4ElZpc3VhbCBTdHVkaW8gMjAxMmQCOQ9kFgJmDxUCOmh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS8yOTYvdmlzdWFsLXN0dWRpby0yMDEzLmFzcHgSVmlzdWFsIFN0dWRpbyAyMDEzZAI6D2QWAmYPFQI4aHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS8xLzE5Mi93Y2Ytd2l0aC1DLVNoYXJwLmFzcHgLV0NGIHdpdGggQyNkAjsPZBYCZg8VAjdodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvMTU0L3dlYi1kZXZlbG9wbWVudC5hc3B4D1dlYiBEZXZlbG9wbWVudGQCPA9kFgJmDxUCP2h0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS8xMzMvd2ViLXNlcnZpY2VzLWluLUMtU2hhcnAuYXNweBJXZWIgU2VydmljZXMgaW4gQyNkAj0PZBYCZg8VAjFodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvMjc1L3dpbmRvd3MtOC5hc3B4CVdpbmRvd3MgOGQCPg9kFgJmDxUCNWh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS8yMzIvd2luZG93cy1henVyZS5hc3B4DVdpbmRvd3MgQXp1cmVkAj8PZBYCZg8VAj9odHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvNzcvd2luZG93cy1jb250cm9scy1DLVNoYXJwLmFzcHgTV2luZG93cyBDb250cm9scyBDI2QCQA9kFgJmDxUCPGh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS83Ni93aW5kb3dzLWZvcm1zLUMtU2hhcnAuYXNweBFXaW5kb3dzIEZvcm1zIEMjIGQCQQ9kFgJmDxUCN2h0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS8yNDUvd2luZG93cy1waG9uZS04LmFzcHgPV2luZG93cyBQaG9uZSA4ZAJCD2QWAmYPFQI7aHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS8xLzI5Mi93aW5kb3dzLXNlcnZlci0yMDEyLmFzcHgTV2luZG93cyBTZXJ2ZXIgMjAxMmQCQw9kFgJmDxUCOmh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vMS8xMzgvd2luZG93cy1zdG9yZS1hcHBzLmFzcHgSV2luZG93cyBTdG9yZSBBcHBzZAJED2QWAmYPFQJGaHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS8xLzE5My93b3JrZmxvdy1mb3VuZGF0aW9uLWluLUMtU2hhcnAuYXNweBlXb3JrZmxvdyBGb3VuZGF0aW9uIGluIEMjZAJFD2QWAmYPFQIraHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS8xLzE5MS93cGYuYXNweANXUEZkAkYPZBYCZg8VAixodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tLzEvMTkwL3hhbWwuYXNweARYQU1MZAJHD2QWAmYPFQIqaHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS8xLzc5L3htbC5hc3B4A1hNTGQCAg9kFgICAQ8WAh8GAgoWFGYPZBYCZg8VAmlodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tL1VwbG9hZEZpbGUvMjlkN2UwL2xvY2F0ZS1tb2JpbGUtbnVtYmVyLW9mLWluZGlhLXVzaW5nLWphdmFzY3JpcHQtaW4tQXNwLU5ldC8wTG9jYXRlIE1vYmlsZSBOdW1iZXIgVXNpbmcgSmF2YVNjcmlwdCBpbiBBU1AuTmV0ZAIBD2QWAmYPFQJRaHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS9VcGxvYWRGaWxlL2U4ODFmYi9sZWFybi1vb3AtaW50ZXJmYWNlLXVzaW5nLUMtU2hhcnAvHExlYXJuIE9PUCBJbnRlcmZhY2UgVXNpbmcgQyNkAgIPZBYCZg8VAl5odHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tL1VwbG9hZEZpbGUvZmQwMTcyL3dvcmtpbmctb2YtdXJsLWFuZC11cmxjb25uZWN0aW9uLWNsYXNzLWluLWphdmEvMEhvdyB0aGUgVVJMIGFuZCBVUkxDb25uZWN0aW9uIENsYXNzZXMgV29yayBJIC4uLmQCAw9kFgJmDxUCY2h0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vVXBsb2FkRmlsZS9jZDdjMmUvaG93LXRvLWFkZC1hbi1hbGlhcy1jbmFtZS1yZXNvdXJjZS1yZWNvcmQtdG8tYS16b25lLzBIb3cgdG8gQWRkIGFuIEFsaWFzIChDTkFNRSkgUmVzb3VyY2UgUmVjb3JkICAuLi5kAgQPZBYCZg8VAlJodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tL1VwbG9hZEZpbGUveXVzdWZrYXJhdG9wcmFrL2pzYWN0aW9uLXdpdGgtdDQtdGVtcGxhdGUvGUpzQWN0aW9uIHdpdGggVDQgVGVtcGxhdGVkAgUPZBYCZg8VAmxodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tL1VwbG9hZEZpbGUvY2I4OGIyL2xvZ2dpbmctdXNpbmctbG9nNG5ldC1pbi1jb21wYWN0LWZyYW1ld29yay0yLTAtaW4tdmlzdWFsLXN0dS8wTG9nZ2luZyBVc2luZyBMb2c0bmV0IGluIENvbXBhY3QgRnJhbWV3b3JrIDIgLi4uZAIGD2QWAmYPFQJjaHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS9VcGxvYWRGaWxlL2FmZW5zdGVyL2hvdy10by1maW5kLWEtZG9jdG9yLW5lYXIteW91ci1ob21lLWluLXNxbC1zZXJ2ZXIvMEhvdyBUbyBGaW5kIEEgRG9jdG9yIE5lYXIgWW91ciBIb21lIGluIFNRTCBTIC4uLmQCBw9kFgJmDxUCYmh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vVXBsb2FkRmlsZS92ZW5kZXR0YW1pdC9yaGluby1tb2NrcmVwb3NpdG9yeS1jb25jcmV0ZS12cy1zdGF0aWMtdXNhZ2UvLVJoaW5vIE1vY2tSZXBvc2l0b3J5IENvbmNyZXRlIHZzIFN0YXRpYyBVc2FnZWQCCA9kFgJmDxUCWWh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vVXBsb2FkRmlsZS8xZTUxNTYvaG93LXRvLXNldC1pbWFnZS1pbi1hLWltYWdlLXZpZXctb24tY2xpY2svMEhvdyB0byBTZXQgSW1hZ2UgaW4gYSBJbWFnZSBWaWV3IG9uIENsaWNrIGluIC4uLmQCCQ9kFgJmDxUCUWh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vVXBsb2FkRmlsZS9jNjNlYzUveG1sLXBhcnNlci1mdW5jdGlvbi1pbi1waHAtcGFydC0zLyJYTUwgUGFyc2VyIEZ1bmN0aW9uIGluIFBIUDogUGFydCAzZAIEDxYCHwkFSmh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vYXV0aG9ycy95dXN1ZmthcmF0b3ByYWsveXVzdWYta2FyYXRvcHJhay5hc3B4FgICAQ8PFgQeCEltYWdlVXJsBUdodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tL1VwbG9hZEZpbGUvQXV0aG9ySW1hZ2UveXVzdWZrYXJhdG9wcmFrLnBuZx4HVG9vbFRpcAUQWXVzdWYgS2FyYXRvcHJha2RkAgUPFgIfB2cWBAIBD2QWAgIBDw8WAh4EVGV4dAUDMzIyZGQCAw8WAh4JaW5uZXJodG1sBYABPGEgY2xhc3M9IkxpbmtOb3JtYWxTdHlsZU9yYW5nZSIgaHJlZj1odHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tL0F1dGhvcnMvQXV0aG9yUmFua2luZy5hc3B4P0F1dGhvcklkPXl1c3Vma2FyYXRvcHJhayA+IDE2NzwvYT5kAgYPDxYCHw4FNERpZmZlcmVuY2UgQmV0d2VlbiBMb29zZSBDb3VwbGluZyBhbmQgVGlnaHQgQ291cGxpbmdkZAIHDxYEHwkFSmh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vYXV0aG9ycy95dXN1ZmthcmF0b3ByYWsveXVzdWYta2FyYXRvcHJhay5hc3B4Hw8FEFl1c3VmIEthcmF0b3ByYWtkAgkPFgQfCQU6aHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS8xLzYyL2Rlc2lnbi1hcmNoaXRlY3R1cmUuYXNweB8PBRlEZXNpZ24gJmFtcDsgQXJjaGl0ZWN0dXJlZAIKDw8WAh8OBRFEZWNlbWJlciAxOSwgMjAxMmRkAgsPFgIfDwW1AjxhIGNsYXNzPSdMaW5rTm9ybWFsR3JheUxpZ2h0JyBocmVmPSdodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tL3RhZ3MvQ291cGxpbmcnPkNvdXBsaW5nPC9hPiwgPGEgY2xhc3M9J0xpbmtOb3JtYWxHcmF5TGlnaHQnIGhyZWY9J2h0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vdGFncy9Mb29zZS1Db3VwbGluZyc+IExvb3NlIENvdXBsaW5nPC9hPiwgPGEgY2xhc3M9J0xpbmtOb3JtYWxHcmF5TGlnaHQnIGhyZWY9J2h0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vdGFncy9UaWdodC1Db3VwbGluZyc+IFRpZ2h0IENvdXBsaW5nPC9hPmQCDA8WAh8PBTRUaGUgcHJvcyBhbmQgY29ucyBMb29zZSBDb3VwbGluZyBhbmQgVGlnaHQgQ291cGxpbmcuZAINDxYCHw8FBDgxNjJkAhMPZBYCZg9kFgICAw8PFgIfDgUBMGRkAhoPDxYCHw0FDkRpbmVzaCBCZW5pd2FsZGQCGw9kFgICAQ8PFgQfDAUaL2ltYWdlcy9jc2hhcnAvc2lnbmFsMi5wbmcfDQUMSW50ZXJtZWRpYXRlZGQCHA8WAh4Fc3R5bGUFL21hcmdpbi10b3A6MTBweDttYXJnaW4tYm90dG9tOjBweDtkaXNwbGF5Om5vbmU7FgICAQ8WAh8HaGQCHg9kFgICAw9kFgICAQ8WAh8GAgEWAmYPZBYKAgEPFgIfB2gWBAIBDw8WBB4PQ29tbWFuZEFyZ3VtZW50BQM5MjAeC0NvbW1hbmROYW1lBSQ5MGU3NDViYi0yNzQyLTRlYTUtYjhjNy1jZDI1MmUyYzRmYzBkZAIDDw8WAh8RBQM5MjAWAh4Hb25jbGljawU6aWYoICEgY29uZmlybSggJ0FyZSB5b3Ugc3VyZSB0byBkZWxldGU/ICcpKSByZXR1cm4gZmFsc2U7IGQCAw8PFgQfDgUQWXVzdWYgS2FyYXRvcHJhax8IBUpodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tL2F1dGhvcnMveXVzdWZrYXJhdG9wcmFrL3l1c3VmLWthcmF0b3ByYWsuYXNweGRkAgUPDxYCHw4FDERlYyAxOSwgMjAxMmRkAgcPZBYCAgMPDxYEHxEFgAEvVXBsb2FkRmlsZS95dXN1ZmthcmF0b3ByYWsvZGlmZmVyZW5jZS1iZXR3ZWVuLWxvb3NlLWNvdXBsaW5nLWFuZC10aWdodC1jb3VwbGluZy9Eb3dubG9hZHMvTG9vc2VDb3VwbGluZy5UaWdodENvdXBsaW5nU291cmNlLnppcB8OBSVMb29zZUNvdXBsaW5nLlRpZ2h0Q291cGxpbmdTb3VyY2UuemlwZGQCCA8VAQBkAh8PZBYCAgEPFgQfCQWbAWh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vQWRSZWRpcmVjdG9yLmFzcHg/QWRJZD04MiZ0YXJnZXQ9aHR0cDovL3d3dy5uZXZyb24uY29tL0NhbXBhaWduP2tleT1DU2hhcnBDb3JuZXJfMTNfNl9EaWFncmFtXzc1eDkwJnVybD1odHRwOi8vd3d3Lm5ldnJvbi5jb20vHw8FQy5ORVQgRGlhZ3JhbW1pbmcgZnJhbWV3b3JrIGRlc2lnbmVkIGZvciBjcmVhdGluZyBhZHZhbmNlZCBzb2x1dGlvbnNkAiAPZBYCZg9kFgQCAQ9kFgYCAQ8WAh8JBT5odHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tL2F1dGhvcnMvMDg1YjM1L2pvbmFzLWdhdWZmaW4uYXNweBYCAgEPDxYEHwwFP2h0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vVXBsb2FkRmlsZS9BdXRob3JJbWFnZS8wODViMzUuanBlZx8NBQ1Kb25hcyBHYXVmZmluZGQCBQ8PFgQfCAVbaHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS9VcGxvYWRGaWxlLzA4NWIzNS93cml0aW5nLWRlY291cGxlZC1hbmQtc2NhbGFibGUtYXBwbGljYXRpb25zLx8OBStXcml0aW5nIERlY291cGxlZCBhbmQgU2NhbGFibGUgQXBwbGljYXRpb25zZGQCBw8WAh8PBZ4FPHNwYW4gc3R5bGU9Y29sb3I6QmxhY2s7IGZvbnQtd2VpZ2h0OmJvbGQ7PlRhZ3M6IDwvc3Bhbj48YSBjbGFzcz0nTGlua05vcm1hbEdyYXlMaWdodCcgaHJlZj0naHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS90YWdzL0NzaGFycCc+QyM8L2E+LCA8YSBjbGFzcz0nTGlua05vcm1hbEdyYXlMaWdodCcgaHJlZj0naHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS90YWdzL2Nxcyc+Y3FzPC9hPiwgPGEgY2xhc3M9J0xpbmtOb3JtYWxHcmF5TGlnaHQnIGhyZWY9J2h0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vdGFncy9kZGQnPmRkZDwvYT4sIDxhIGNsYXNzPSdMaW5rTm9ybWFsR3JheUxpZ2h0JyBocmVmPSdodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tL3RhZ3MvRGVjb3VwbGVkLUFwcGxpY2F0aW9ucyc+RGVjb3VwbGVkIEFwcGxpY2F0aW9uczwvYT4sIDxhIGNsYXNzPSdMaW5rTm9ybWFsR3JheUxpZ2h0JyBocmVmPSdodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tL3RhZ3MvZG9tYWluZHJpdmVuZGVzaWduJz5kb21haW5kcml2ZW5kZXNpZ248L2E+LCA8YSBjbGFzcz0nTGlua05vcm1hbEdyYXlMaWdodCcgaHJlZj0naHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS90YWdzL1NjYWxhYmxlLUFwcGxpY2F0aW9ucyc+U2NhbGFibGUgQXBwbGljYXRpb25zPC9hPmQCAw9kFgYCAQ8PFgQfCAVtaHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS9VcGxvYWRGaWxlLzg0Yzg1Yi9sb2dnaW5nLWFwcGxpY2F0aW9uLWJsb2NrLWVudGVycHJpc2UtbGlicmFyeS01LTAtd2l0aC1DLVNoYXJwLx8OBTpMb2dnaW5nIEFwcGxpY2F0aW9uIEJsb2NrIChFbnRlcnByaXNlIExpYnJhcnkgNS4wKSBXaXRoIEMjZGQCAw8WAh8PBfADPHNwYW4gc3R5bGU9Y29sb3I6QmxhY2s7IGZvbnQtd2VpZ2h0OmJvbGQ7PlRhZ3M6IDwvc3Bhbj48YSBjbGFzcz0nTGlua05vcm1hbEdyYXlMaWdodCcgaHJlZj0naHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS90YWdzLy5ORVQtbGlicmFyeSc+Lk5FVCBsaWJyYXJ5PC9hPiwgPGEgY2xhc3M9J0xpbmtOb3JtYWxHcmF5TGlnaHQnIGhyZWY9J2h0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vdGFncy9Dc2hhcnAnPkMjPC9hPiwgPGEgY2xhc3M9J0xpbmtOb3JtYWxHcmF5TGlnaHQnIGhyZWY9J2h0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vdGFncy9FbnRlcnByaXNlLUxpYnJhcnktNS4wJz5FbnRlcnByaXNlIExpYnJhcnkgNS4wPC9hPiwgPGEgY2xhc3M9J0xpbmtOb3JtYWxHcmF5TGlnaHQnIGhyZWY9J2h0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vdGFncy9Mb2dnaW5nLUFwcGxpY2F0aW9uLUJsb2NrJz5Mb2dnaW5nIEFwcGxpY2F0aW9uIEJsb2NrPC9hPmQCBQ8WAh8JBUNodHRwOi8vd3d3LmMtc2hhcnBjb3JuZXIuY29tL2F1dGhvcnMvODRjODViL3ZpZHlhLXZyYXQtYWdhcndhbC5hc3B4FgICAQ8PFgQfDAU+aHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS9VcGxvYWRGaWxlL0F1dGhvckltYWdlLzg0Yzg1Yi5qcGcfDQUSVmlkeWEgVnJhdCBBZ2Fyd2FsZGQCIg8PFgYeCUNvbnRlbnRJZAUkOTBlNzQ1YmItMjc0Mi00ZWE1LWI4YzctY2QyNTJlMmM0ZmMwHg1Db250ZW50VXNlcklkBQ95dXN1ZmthcmF0b3ByYWseDENvbnRlbnRUaXRsZQU0RGlmZmVyZW5jZSBCZXR3ZWVuIExvb3NlIENvdXBsaW5nIGFuZCBUaWdodCBDb3VwbGluZ2QWAmYPZBYCAgEPFgIfB2hkAiMPZBYGAgEPDxYCHwgFiwFodHRwOi8vd3d3LmluZnJhZ2lzdGljcy5jb20vaWdudGlldWlncmlkLWRvd25sb2FkLz91dG1fc291cmNlPWMtc2hhcnBjb3JuZXIuY29tJnV0bV9tZWRpdW09Y3BjJnV0bV9jb250ZW50PVRleHRBZHdJbWFnZSZ1dG1fY2FtcGFpZ249anF1ZXJ5ZBYCZg8PFgIfDAVDaHR0cDovL3d3dy5jLXNoYXJwY29ybmVyLmNvbS9VcGxvYWRGaWxlL1Nwb25zZXJzSW1hZ2VzLzAxMDEyMEFNLmpwZ2RkAgMPDxYEHw4FDEluZnJhZ2lzdGljcx8IBYsBaHR0cDovL3d3dy5pbmZyYWdpc3RpY3MuY29tL2lnbnRpZXVpZ3JpZC1kb3dubG9hZC8/dXRtX3NvdXJjZT1jLXNoYXJwY29ybmVyLmNvbSZ1dG1fbWVkaXVtPWNwYyZ1dG1fY29udGVudD1UZXh0QWR3SW1hZ2UmdXRtX2NhbXBhaWduPWpxdWVyeWRkAgUPFgIfDwXEAUluZnJhZ2lzdGljcyBpcyBleHBlcnRzIGluIHRlY2hub2xvZ3kgYW5kIGRlc2lnbiwgYW5kIHBhc3Npb25hdGUgYWJvdXQgaGVscGluZyB5b3UgYnVpbGQgaGlnaGx5IHBlcmZvcm1hbnQgYW5kIHN0eWxpc2ggYXBwbGljYXRpb25zIHRoYXQgc29sdmUgcHJvYmxlbXMsIGRlbGl2ZXIgaW5zcGlyYXRpb24sIGFuZCBtYXhpbWl6ZSByZXN1bHRzLiBkAiQPZBYCAgEPZBYGZg9kFgICAQ8PFgIfCmdkZAIID2QWAgIBDxYCHw4FvBU8YSBocmVmPSIvdGFncy9hZGFwdGVyIiBjbGFzcz0iSGVhZGVyVGFnQ2xvdWQiIHN0eWxlPSJmb250LXNpemU6c21hbGw7Y29sb3I6I0E5QTlBOTsiPmFkYXB0ZXI8L2E+IDxhIGhyZWY9Ii90YWdzL0FkYXB0ZXItUGF0dGVybiIgY2xhc3M9IkhlYWRlclRhZ0Nsb3VkIiBzdHlsZT0iZm9udC1zaXplOnNtYWxsO2NvbG9yOiNEM0QzRDM7Ij5BZGFwdGVyIFBhdHRlcm48L2E+IDxhIGhyZWY9Ii90YWdzL2J1c2luZXNzLWxvZ2ljLWxheWVyIiBjbGFzcz0iSGVhZGVyVGFnQ2xvdWQiIHN0eWxlPSJmb250LXNpemU6bWVkaXVtO2NvbG9yOiM2OTY5Njk7Ij5idXNpbmVzcyBsb2dpYyBsYXllcjwvYT4gPGEgaHJlZj0iL3RhZ3MvY29uY3JldGUtY2xhc3NlcyIgY2xhc3M9IkhlYWRlclRhZ0Nsb3VkIiBzdHlsZT0iZm9udC1zaXplOnNtYWxsO2NvbG9yOiNBOUE5QTk7Ij5jb25jcmV0ZSBjbGFzc2VzPC9hPiA8YSBocmVmPSIvdGFncy9DcmVhdGlvbmFsLVBhdHRlcm4iIGNsYXNzPSJIZWFkZXJUYWdDbG91ZCIgc3R5bGU9ImZvbnQtc2l6ZTpzbWFsbDtjb2xvcjpHcmF5OyI+Q3JlYXRpb25hbCBQYXR0ZXJuPC9hPiA8YSBocmVmPSIvdGFncy9DcmVhdGlvbmFsLVBhdHRlcm5zIiBjbGFzcz0iSGVhZGVyVGFnQ2xvdWQiIHN0eWxlPSJmb250LXNpemU6c21hbGw7Y29sb3I6R3JheTsiPkNyZWF0aW9uYWwgUGF0dGVybnM8L2E+IDxhIGhyZWY9Ii90YWdzL2N1c3RvbS1maWxlLXR5cGVzIiBjbGFzcz0iSGVhZGVyVGFnQ2xvdWQiIHN0eWxlPSJmb250LXNpemU6c21hbGw7Y29sb3I6IzgwODA4MDsiPmN1c3RvbSBmaWxlIHR5cGVzPC9hPiA8YSBocmVmPSIvdGFncy9kZWNvcmF0b3IiIGNsYXNzPSJIZWFkZXJUYWdDbG91ZCIgc3R5bGU9ImZvbnQtc2l6ZTpzbWFsbDtjb2xvcjojQTlBOUE5OyI+ZGVjb3JhdG9yPC9hPiA8YSBocmVmPSIvdGFncy9kZXNlcmlhbGl6YXRpb24iIGNsYXNzPSJIZWFkZXJUYWdDbG91ZCIgc3R5bGU9ImZvbnQtc2l6ZTpzbWFsbDtjb2xvcjojQTlBOUE5OyI+ZGVzZXJpYWxpemF0aW9uPC9hPiA8YSBocmVmPSIvdGFncy9kZXNpZ24tcGF0dGVybnMiIGNsYXNzPSJIZWFkZXJUYWdDbG91ZCIgc3R5bGU9ImZvbnQtc2l6ZTp4eC1sYXJnZTtjb2xvcjojQTlBOUE5OyI+ZGVzaWduIHBhdHRlcm5zPC9hPiA8YSBocmVmPSIvdGFncy9GYWN0b3J5LWNsYXNzIiBjbGFzcz0iSGVhZGVyVGFnQ2xvdWQiIHN0eWxlPSJmb250LXNpemU6c21hbGw7Y29sb3I6IzY5Njk2OTsiPkZhY3RvcnkgY2xhc3M8L2E+IDxhIGhyZWY9Ii90YWdzL2ZhY3RvcnktZGVzaWduLXBhdHRlcm4iIGNsYXNzPSJIZWFkZXJUYWdDbG91ZCIgc3R5bGU9ImZvbnQtc2l6ZTpzbWFsbDtjb2xvcjojRDNEM0QzOyI+ZmFjdG9yeSBkZXNpZ24gcGF0dGVybjwvYT4gPGEgaHJlZj0iL3RhZ3MvZ29mIiBjbGFzcz0iSGVhZGVyVGFnQ2xvdWQiIHN0eWxlPSJmb250LXNpemU6c21hbGw7Y29sb3I6R3JheTsiPmdvZjwvYT4gPGEgaHJlZj0iL3RhZ3MvSUVudW1lcmF0b3IiIGNsYXNzPSJIZWFkZXJUYWdDbG91ZCIgc3R5bGU9ImZvbnQtc2l6ZTpsYXJnZTtjb2xvcjojRDNEM0QzOyI+SUVudW1lcmF0b3I8L2E+IDxhIGhyZWY9Ii90YWdzL0lPQyIgY2xhc3M9IkhlYWRlclRhZ0Nsb3VkIiBzdHlsZT0iZm9udC1zaXplOm1lZGl1bTtjb2xvcjojRDNEM0QzOyI+SU9DPC9hPiA8YSBocmVmPSIvdGFncy9NVlAiIGNsYXNzPSJIZWFkZXJUYWdDbG91ZCIgc3R5bGU9ImZvbnQtc2l6ZTpsYXJnZTtjb2xvcjpHcmF5OyI+TVZQPC9hPiA8YSBocmVmPSIvdGFncy9PYnNlcnZlciIgY2xhc3M9IkhlYWRlclRhZ0Nsb3VkIiBzdHlsZT0iZm9udC1zaXplOnNtYWxsO2NvbG9yOiNEM0QzRDM7Ij5PYnNlcnZlcjwvYT4gPGEgaHJlZj0iL3RhZ3MvT2JzZXJ2ZXItUGF0dGVybiIgY2xhc3M9IkhlYWRlclRhZ0Nsb3VkIiBzdHlsZT0iZm9udC1zaXplOm1lZGl1bTtjb2xvcjpHcmF5OyI+T2JzZXJ2ZXIgUGF0dGVybjwvYT4gPGEgaHJlZj0iL3RhZ3MvUGF0dGVybiIgY2xhc3M9IkhlYWRlclRhZ0Nsb3VkIiBzdHlsZT0iZm9udC1zaXplOm1lZGl1bTtjb2xvcjojQTlBOUE5OyI+UGF0dGVybjwvYT4gPGEgaHJlZj0iL3RhZ3MvcHJvcGVydHktZ3JpZC1jb250cm9sIiBjbGFzcz0iSGVhZGVyVGFnQ2xvdWQiIHN0eWxlPSJmb250LXNpemU6bGFyZ2U7Y29sb3I6I0E5QTlBOTsiPnByb3BlcnR5IGdyaWQgY29udHJvbDwvYT4gPGEgaHJlZj0iL3RhZ3MvUHJvdG90eXBlLVBhdHRlcm4iIGNsYXNzPSJIZWFkZXJUYWdDbG91ZCIgc3R5bGU9ImZvbnQtc2l6ZTpzbWFsbDtjb2xvcjpHcmF5OyI+UHJvdG90eXBlIFBhdHRlcm48L2E+IDxhIGhyZWY9Ii90YWdzL1Byb3h5LVBhdHRlcm4iIGNsYXNzPSJIZWFkZXJUYWdDbG91ZCIgc3R5bGU9ImZvbnQtc2l6ZTpzbWFsbDtjb2xvcjpHcmF5OyI+UHJveHkgUGF0dGVybjwvYT4gPGEgaHJlZj0iL3RhZ3MvU2luZ2xldG9uLVBhdHRlcm4iIGNsYXNzPSJIZWFkZXJUYWdDbG91ZCIgc3R5bGU9ImZvbnQtc2l6ZTptZWRpdW07Y29sb3I6I0E5QTlBOTsiPlNpbmdsZXRvbiBQYXR0ZXJuPC9hPiA8YSBocmVmPSIvdGFncy9Vbml0LXRlc3RpbmciIGNsYXNzPSJIZWFkZXJUYWdDbG91ZCIgc3R5bGU9ImZvbnQtc2l6ZTpsYXJnZTtjb2xvcjpHcmF5OyI+VW5pdCB0ZXN0aW5nPC9hPiA8YSBocmVmPSIvdGFncy9XcmFwcGVyLVBhdHRlcm4iIGNsYXNzPSJIZWFkZXJUYWdDbG91ZCIgc3R5bGU9ImZvbnQtc2l6ZTpsYXJnZTtjb2xvcjojNjk2OTY5OyI+V3JhcHBlciBQYXR0ZXJuPC9hPiBkAgwPZBYCAgEPDxYCHwpnZGQCJQ8PFgQeBlBvbGxJZAUDMzYwHgRkU2V0Mt0XAAEAAAD/////AQAAAAAAAAAMAgAAAE5TeXN0ZW0uRGF0YSwgVmVyc2lvbj0yLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAABNTeXN0ZW0uRGF0YS5EYXRhU2V0AwAAABdEYXRhU2V0LlJlbW90aW5nVmVyc2lvbglYbWxTY2hlbWELWG1sRGlmZkdyYW0DAQEOU3lzdGVtLlZlcnNpb24CAAAACQMAAAAGBAAAAJoMPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+DQo8eHM6c2NoZW1hIGlkPSJOZXdEYXRhU2V0IiB4bWxucz0iIiB4bWxuczp4cz0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOm1zZGF0YT0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp4bWwtbXNkYXRhIj4NCiAgPHhzOmVsZW1lbnQgbmFtZT0iTmV3RGF0YVNldCIgbXNkYXRhOklzRGF0YVNldD0idHJ1ZSIgbXNkYXRhOlVzZUN1cnJlbnRMb2NhbGU9InRydWUiPg0KICAgIDx4czpjb21wbGV4VHlwZT4NCiAgICAgIDx4czpjaG9pY2UgbWluT2NjdXJzPSIwIiBtYXhPY2N1cnM9InVuYm91bmRlZCI+DQogICAgICAgIDx4czplbGVtZW50IG5hbWU9IlRhYmxlIj4NCiAgICAgICAgICA8eHM6Y29tcGxleFR5cGU+DQogICAgICAgICAgICA8eHM6c2VxdWVuY2U+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9IlBvbGxRdWVzdGlvbiIgdHlwZT0ieHM6c3RyaW5nIiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgIDwveHM6c2VxdWVuY2U+DQogICAgICAgICAgPC94czpjb21wbGV4VHlwZT4NCiAgICAgICAgPC94czplbGVtZW50Pg0KICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJUYWJsZTEiPg0KICAgICAgICAgIDx4czpjb21wbGV4VHlwZT4NCiAgICAgICAgICAgIDx4czpzZXF1ZW5jZT4NCiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iUG9sbE9wdGlvbklkIiB0eXBlPSJ4czppbnQiIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJvcHRpb250ZXh0IiB0eXBlPSJ4czpzdHJpbmciIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgICA8eHM6ZWxlbWVudCBuYW1lPSJ0b3RhbG9wdGlvbnZvdGVzIiB0eXBlPSJ4czpsb25nIiBtc2RhdGE6dGFyZ2V0TmFtZXNwYWNlPSIiIG1pbk9jY3Vycz0iMCIgLz4NCiAgICAgICAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0icGVyY2VudG9wdGlvbiIgdHlwZT0ieHM6ZGVjaW1hbCIgbXNkYXRhOnRhcmdldE5hbWVzcGFjZT0iIiBtaW5PY2N1cnM9IjAiIC8+DQogICAgICAgICAgICA8L3hzOnNlcXVlbmNlPg0KICAgICAgICAgIDwveHM6Y29tcGxleFR5cGU+DQogICAgICAgIDwveHM6ZWxlbWVudD4NCiAgICAgICAgPHhzOmVsZW1lbnQgbmFtZT0iVGFibGUyIj4NCiAgICAgICAgICA8eHM6Y29tcGxleFR5cGU+DQogICAgICAgICAgICA8eHM6c2VxdWVuY2U+DQogICAgICAgICAgICAgIDx4czplbGVtZW50IG5hbWU9InRvdGFsdm90ZXMiIHR5cGU9InhzOmxvbmciIG1zZGF0YTp0YXJnZXROYW1lc3BhY2U9IiIgbWluT2NjdXJzPSIwIiAvPg0KICAgICAgICAgICAgPC94czpzZXF1ZW5jZT4NCiAgICAgICAgICA8L3hzOmNvbXBsZXhUeXBlPg0KICAgICAgICA8L3hzOmVsZW1lbnQ+DQogICAgICA8L3hzOmNob2ljZT4NCiAgICA8L3hzOmNvbXBsZXhUeXBlPg0KICA8L3hzOmVsZW1lbnQ+DQo8L3hzOnNjaGVtYT4GBQAAAJoJPGRpZmZncjpkaWZmZ3JhbSB4bWxuczptc2RhdGE9InVybjpzY2hlbWFzLW1pY3Jvc29mdC1jb206eG1sLW1zZGF0YSIgeG1sbnM6ZGlmZmdyPSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOnhtbC1kaWZmZ3JhbS12MSI+PE5ld0RhdGFTZXQ+PFRhYmxlIGRpZmZncjppZD0iVGFibGUxIiBtc2RhdGE6cm93T3JkZXI9IjAiPjxQb2xsUXVlc3Rpb24+SG93IGRvIHlvdSBmaW5kIHNwZWVkIG9mIEMjIENvcm5lciB3aGVuIHZpc2l0aW5nIHRoZSBzaXRlPzwvUG9sbFF1ZXN0aW9uPjwvVGFibGU+PFRhYmxlMSBkaWZmZ3I6aWQ9IlRhYmxlMTEiIG1zZGF0YTpyb3dPcmRlcj0iMCI+PFBvbGxPcHRpb25JZD4xNTE2PC9Qb2xsT3B0aW9uSWQ+PG9wdGlvbnRleHQ+VmVyeSBGYXN0PC9vcHRpb250ZXh0Pjx0b3RhbG9wdGlvbnZvdGVzPjYwPC90b3RhbG9wdGlvbnZvdGVzPjxwZXJjZW50b3B0aW9uPjI2Ljc5PC9wZXJjZW50b3B0aW9uPjwvVGFibGUxPjxUYWJsZTEgZGlmZmdyOmlkPSJUYWJsZTEyIiBtc2RhdGE6cm93T3JkZXI9IjEiPjxQb2xsT3B0aW9uSWQ+MTUxNzwvUG9sbE9wdGlvbklkPjxvcHRpb250ZXh0Pk9LPC9vcHRpb250ZXh0Pjx0b3RhbG9wdGlvbnZvdGVzPjEyOTwvdG90YWxvcHRpb252b3Rlcz48cGVyY2VudG9wdGlvbj41Ny41OTwvcGVyY2VudG9wdGlvbj48L1RhYmxlMT48VGFibGUxIGRpZmZncjppZD0iVGFibGUxMyIgbXNkYXRhOnJvd09yZGVyPSIyIj48UG9sbE9wdGlvbklkPjE1MTg8L1BvbGxPcHRpb25JZD48b3B0aW9udGV4dD5TbG93PC9vcHRpb250ZXh0Pjx0b3RhbG9wdGlvbnZvdGVzPjIwPC90b3RhbG9wdGlvbnZvdGVzPjxwZXJjZW50b3B0aW9uPjguOTM8L3BlcmNlbnRvcHRpb24+PC9UYWJsZTE+PFRhYmxlMSBkaWZmZ3I6aWQ9IlRhYmxlMTQiIG1zZGF0YTpyb3dPcmRlcj0iMyI+PFBvbGxPcHRpb25JZD4xNTE5PC9Qb2xsT3B0aW9uSWQ+PG9wdGlvbnRleHQ+VmVyeSBTbG93PC9vcHRpb250ZXh0Pjx0b3RhbG9wdGlvbnZvdGVzPjE1PC90b3RhbG9wdGlvbnZvdGVzPjxwZXJjZW50b3B0aW9uPjYuNzA8L3BlcmNlbnRvcHRpb24+PC9UYWJsZTE+PFRhYmxlMiBkaWZmZ3I6aWQ9IlRhYmxlMjEiIG1zZGF0YTpyb3dPcmRlcj0iMCI+PHRvdGFsdm90ZXM+MjI0PC90b3RhbHZvdGVzPjwvVGFibGUyPjwvTmV3RGF0YVNldD48L2RpZmZncjpkaWZmZ3JhbT4EAwAAAA5TeXN0ZW0uVmVyc2lvbgQAAAAGX01ham9yBl9NaW5vcgZfQnVpbGQJX1JldmlzaW9uAAAAAAgICAgCAAAAAAAAAP//////////C2QWAmYPZBYCZg9kFgICAQ9kFgRmD2QWAmYPZBYCAgEPZBYKAgEPZBYCZg9kFgICAQ8PFgQfDgUSU3BlZWQgb2YgQyMgQ29ybmVyHwgFOmh0dHA6Ly93d3cuYy1zaGFycGNvcm5lci5jb20vUG9sbHMvRGVmYXVsdC5hc3B4P3BvbGxpZD0zNjBkZAIDD2QWAmYPZBYCAgEPDxYCHw4FOkhvdyBkbyB5b3UgZmluZCBzcGVlZCBvZiBDIyBDb3JuZXIgd2hlbiB2aXNpdGluZyB0aGUgc2l0ZT9kZAIFD2QWAmYPZBYCAgEPEA8WBh4NRGF0YVRleHRGaWVsZAUKT3B0aW9uVGV4dB4ORGF0YVZhbHVlRmllbGQFDFBvbGxPcHRpb25JZB8KZ2QQFQQJVmVyeSBGYXN0Ak9LBFNsb3cJVmVyeSBTbG93FQQEMTUxNgQxNTE3BDE1MTgEMTUxORQrAwRnZ2dnZGQCBg9kFgICAQ9kFgICAQ8PFgIfEQUDMzYwZGQCCA9kFgJmD2QWAgIBDw8WAh4HRW5hYmxlZGhkZAIBD2QWAmYPZBYCZg8PFgIfDgU6SG93IGRvIHlvdSBmaW5kIHNwZWVkIG9mIEMjIENvcm5lciB3aGVuIHZpc2l0aW5nIHRoZSBzaXRlP2RkGAIFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYKBSRjdGwwMCRUcmVuZGluZ05vdzEkc2VhcmNoSW1hZ2VCdXR0b24FFmN0bDAwJEltYWdlQnV0dG9uRW1haWwFIWN0bDAwJEltYWdlQnV0dG9uQWRkVG9NeUJvb2ttYXJrcwUVY3RsMDAkSW1hZ2VCdXR0b25MaWtlBRpjdGwwMCRJbWFnZUJ1dHRvbk1vZGVyYXRvcgUZY3RsMDAkSW1hZ2VCdXR0b25QcmV2aW91cwUVY3RsMDAkSW1hZ2VCdXR0b25OZXh0BSZjdGwwMCRQb2xsRm9ySG9tZTEkVGFiQ29udGFpbmVyU2VjdGlvbgVNY3RsMDAkUG9sbEZvckhvbWUxJFRhYkNvbnRhaW5lclNlY3Rpb24kVGFiUGFuZWxJblByb2dyZXNzJGltYWdlQnV0dG9uUHJldmlvdXMFSWN0bDAwJFBvbGxGb3JIb21lMSRUYWJDb250YWluZXJTZWN0aW9uJFRhYlBhbmVsSW5Qcm9ncmVzcyRpbWFnZUJ1dHRvbk5leHQFJmN0bDAwJFBvbGxGb3JIb21lMSRUYWJDb250YWluZXJTZWN0aW9uDw9kZmTQRlhUnGwZrsmtiDjM7o3CrhzyXg==" type="hidden"> </div> <script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+theForm.__EVENTTARGET.value = eventTarget;
+theForm.__EVENTARGUMENT.value = eventArgument;
+theForm.submit();
+}
+}
+//]]> </script> <script src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/WebResource.js" type="text/javascript"></script> <script src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ScriptResource_003.js" type="text/javascript"></script> <script src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ScriptResource.js" type="text/javascript"></script> <script src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ScriptResource_004.js" type="text/javascript"></script> <script src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/MindcrackerJScript.js" type="text/javascript"></script> <script src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ScriptResource_006.axd" type="text/javascript"></script> <script src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ScriptResource_005.axd" type="text/javascript"></script> <script src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ScriptResource_002.js" type="text/javascript"></script> <script src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ScriptResource.axd" type="text/javascript"></script> <script src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ScriptResource_002.axd" type="text/javascript"></script> <script src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ScriptResource_003.axd" type="text/javascript"></script> <script src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ScriptResource_007.axd" type="text/javascript"></script> <script src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ScriptResource_004.axd" type="text/javascript"></script> <script src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/WebResource_002.js" type="text/javascript"></script> <script type="text/javascript">
+//<![CDATA[
+function WebForm_OnSubmit() {
+null;if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+return true;
+}
+//]]> </script> <div class="master"> <div id="floatdiv" style="position: absolute; right: 0px; top: 165px;"> </div> <a name="Top"></a> <div class="header"> <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$HeaderNewDesign1$ScriptManager1', document.getElementById('aspnetForm'));
+Sys.WebForms.PageRequestManager.getInstance()._updateControls(['tctl00$updatePanel1','tctl00$updatePanelArticleSlider','tctl00$Comments1$UpdatePanelEmail','tctl00$RightBar$ArticleDetailRightBar1$PremiumSponsorsTextAd1$UpdatePanelSponsorWithImage','tctl00$PollForHome1$Updatepanel1'], ['ctl00$ImageButtonLike'], [], 90);
+//]]> </script> <script type="text/javascript" language="javascript">
+//This script is used to hide error(s) when a postback occurs during partial postback.
+Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
+function EndRequestHandler(sender, args) {
+if (args.get_error() != undefined) {
+args.set_errorHandled(true);
+}
+}
+</script> <script src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ticker.js" type="text/javascript"></script> <script type="text/javascript">
+$j(function() {
+$j('#js-news').ticker();
+});    
+</script> <style>
+.ticker
+{
+width: 710px;
+height: 30px;
+display: block;
+position: relative;
+overflow: hidden;
+}
+.ticker-title
+{
+padding-top: 9px;
+color: #900;
+font-weight: bold;
+text-transform: uppercase;
+}
+.ticker-content
+{
+margin: 0;
+padding-top: 9px;
+position: absolute;
+color: #1f527b;
+overflow: hidden;
+white-space: nowrap;
+line-height: 1.2em;
+}
+.ticker-content a:hover
+{
+text-decoration: none;
+color: #0d3059;
+}
+.ticker-swipe
+{
+padding-top: 9px;
+position: absolute;
+top: 0;
+background-color: #f60;
+display: block;
+width: 800px;
+height: 23px;
+}
+.ticker-swipe span
+{
+margin-left: 1px;
+border-bottom: 1px solid #fff;
+height: 14px;
+width: 7px;
+display: block;
+}
+.js-hidden
+{
+display: none;
+}
+.ticker-controls
+{
+padding: 8px 0 0 0;
+list-style-type: none;
+float: left;
+}
+.left .ticker-controls, .left .ticker-content, .left .ticker-title, .left .ticker
+{
+float: left;
+}
+</style> <div class="InFocusNews" id="InFocus"> <div class="page" style="position: relative;"> <h2>
+In Focus</h2> <div class="rightNew" style="display: inline;"> <div class="ticker-wrapper has-js left" id="ticker-wrapper-1373001582389"><div id="ticker-1373001582389" class="ticker"><div style="" id="ticker-title-1373001582389" class="ticker-title"><span></span></div><p style="display: block; opacity: 1; left: 20px;" id="ticker-content-1373001582389" class="ticker-content"><a href="http://www.c-sharpcorner.com/news/2919/C-Sharp-corner-q2-2013-mvps-announced.aspx" style="color: White;">
+C# Corner Q2, 2013 MVPs Announced</a></p><div style="left: 20px; margin-left: 244px; display: none;" id="ticker-swipe-1373001582389" class="ticker-swipe"><span style="display: block;"><!-- --></span></div></div><ul id="ticker-controls-1373001582389" class="ticker-controls"><li id="play-pause-1373001582389" class="jnt-play-pause controls"><a href=""><!-- --></a></li><li id="prev-1373001582389" class="jnt-prev controls"><a href=""><!-- --></a></li><li id="next-1373001582389" class="jnt-next controls"><a href=""><!-- --></a></li></ul></div> </div> </div> </div> <script src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/urchin.js" type="text/javascript"> </script> <script type="text/javascript">
+_uacct = "UA-535360-1";
+urchinTracker();
+$j(document).ready(function() {
+var flag;
+var textBoxClientId = '#ctl00_HeaderNewDesign1_Login1_TextBoxUserId';
+var value = $j(textBoxClientId).val();
+$j(textBoxClientId).click(function() {
+if (value == "Invalid ID / Password")
+$j(textBoxClientId).val('');
+});
+//login popup js start here//
+$j('#ctl00_HeaderNewDesign1_Login1_loginBtn').click(function() {
+flag = 1;
+$j('#ctl00_HeaderNewDesign1_Login1_LoginSpan').slideToggle("slow");
+$j('#ctl00_HeaderNewDesign1_Login1_TextBoxUserId').focus();
+$j('.loginPopup').css('position', 'absolute');
+});
+$j('#ctl00_HeaderNewDesign1_Login1_settingBtn').mouseover(function() {
+$j('.loginPopup').css('position', 'relative');
+$j('#ctl00_HeaderNewDesign1_Login1_LogoutSpan').show();
+});
+$j('#loginPopupContainer').mouseover(function() {
+$j('#ctl00_HeaderNewDesign1_Login1_LogoutSpan').show();
+});
+$j('#ctl00_HeaderNewDesign1_Login1_settingBtn').mouseout(function() {
+$j('#ctl00_HeaderNewDesign1_Login1_LogoutSpan').hide();
+});
+$j('#loginPopupContainer').mouseout(function() {
+$j('#ctl00_HeaderNewDesign1_Login1_LogoutSpan').hide();
+});
+$j('.loginPopup').click(function() {
+flag = 1;
+});
+$j(document).click(function() {
+if (flag != 1) {
+$j('#ctl00_HeaderNewDesign1_Login1_LoginSpan').hide();
+$j('#ctl00_HeaderNewDesign1_Login1_LogoutSpan').hide();
+}
+flag = 0;
+});
+//login popup js end here//
+});
+</script> <div class="page" style="position: relative; z-index: 9999999;"> <div class="loginControl"> <a href="http://www.c-sharpcorner.com/Controls/#" id="ctl00_HeaderNewDesign1_Login1_loginBtn" class="icons login" onclick="return false;" title="Login">&nbsp;</a> <a id="ctl00_HeaderNewDesign1_Login1_HyperLinkRegister" title="Sign Up" class="icons signUp" href="http://www.c-sharpcorner.com/UserRegistration/UserRegistration.aspx?check=r"></a> <div style="margin: 8px 15px 0px 0px; float: right; color: white; font-size: 14px;"> <div class="image"> </div> <a id="ctl00_HeaderNewDesign1_Login1_LinkButtonUserName" class="loginWhiteLink" href="javascript:__doPostBack('ctl00$HeaderNewDesign1$Login1$LinkButtonUserName','')"></a> </div> </div> <div id="ctl00_HeaderNewDesign1_Login1_LoginSpan" class="loginPopup" onkeypress="javascript:return WebForm_FireDefaultButton(event, 'ctl00_HeaderNewDesign1_Login1_ImageButtonLogin')" style="display: none;"> <center> <span id="ctl00_HeaderNewDesign1_Login1_LabelErrorMessage" style="color:Red;padding-bottom: 5px;"></span></center> <span class="arrow">&nbsp;</span> <div class="row"> <label class="lableText">
+Email :</label> <input value="Enter User ID or Email" name="ctl00$HeaderNewDesign1$Login1$TextBoxUserId" id="ctl00_HeaderNewDesign1_Login1_TextBoxUserId" class="inputBox" style="width: 150px;" type="text"> <span id="ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorUserId" style="color:Red;display:none;">*</span> <input name="ctl00$HeaderNewDesign1$Login1$TBWEUserID_ClientState" id="ctl00_HeaderNewDesign1_Login1_TBWEUserID_ClientState" type="hidden"> </div> <div class="row"> <label class="lableText">
+Password :
+</label> <input name="ctl00$HeaderNewDesign1$Login1$TextBoxPassword" id="ctl00_HeaderNewDesign1_Login1_TextBoxPassword" class="inputBox" autocomplete="off" style="width: 150px;" type="password"> <span id="ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorPassword" style="color:Red;display:none;">*</span> <input name="ctl00$HeaderNewDesign1$Login1$TBWEPassword_ClientState" id="ctl00_HeaderNewDesign1_Login1_TBWEPassword_ClientState" type="hidden"> </div> <div class="row"> <label class="lableText">
+&nbsp;</label> <label class="lableText" style="width: auto"> <input checked="checked" name="a" type="checkbox">Remember me?</label> </div> <div class="row"> <label class="lableText">
+&nbsp;</label> <input name="ctl00$HeaderNewDesign1$Login1$ImageButtonLogin" value="Login" onclick='javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("ctl00$HeaderNewDesign1$Login1$ImageButtonLogin", "", true, "LeftLogin", "", false, false))' id="ctl00_HeaderNewDesign1_Login1_ImageButtonLogin" title="Login" type="submit"> <a href="http://www.c-sharpcorner.com/UserRegistration/UserRegistration.aspx?check=f" class="LinkRed">Forgot password</a> </div> </div> <div style="position: absolute; right: 0px; padding-top: 16px; top: -16px;" id="loginPopupContainer"> </div> </div> <div class="logoHeader"> <div class="page"> <a href="http://www.c-sharpcorner.com/" id="ctl00_HeaderNewDesign1_Login1_LogoLink"> <span id="ctl00_HeaderNewDesign1_Login1_LogoImage" class="logo"></span> </a> <div style="width: 450px; height: 60px; margin: 7px 0px 0px 40px; float: left;"> <a id="ctl00_HeaderNewDesign1_Login1_AdHeader1_AdRotatorHeader" href="http://www.c-sharpcorner.com/AdRedirector.aspx?BannerId=703&amp;target=http://www.nevron.com/Campaign?key=CSharpCorner_13_6_Chart_450x60&amp;url=http://www.nevron.com/" target="_blank"><img src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/Chart_450x60.png" alt="Nevron Chart" style="border-width:0px;"></a> </div> <div id="ctl00_HeaderNewDesign1_Login1_ContributionLinks"> <div class="contributeList"> <a href="#" class="contributeOnHeader">Contribute</a> <ul> <li> <a id="ctl00_HeaderNewDesign1_Login1_PostArticle" href="javascript:__doPostBack('ctl00$HeaderNewDesign1$Login1$PostArticle','')">An Article</a></li> <li> <a id="ctl00_HeaderNewDesign1_Login1_PostBlog" href="javascript:__doPostBack('ctl00$HeaderNewDesign1$Login1$PostBlog','')">A Blog</a></li> <li> <a id="ctl00_HeaderNewDesign1_Login1_PostNews" href="javascript:__doPostBack('ctl00$HeaderNewDesign1$Login1$PostNews','')">A News</a></li> <li> <a id="ctl00_HeaderNewDesign1_Login1_PostVideo" href="javascript:__doPostBack('ctl00$HeaderNewDesign1$Login1$PostVideo','')">A Video</a></li> <li> <a id="ctl00_HeaderNewDesign1_Login1_PostResource" href="javascript:__doPostBack('ctl00$HeaderNewDesign1$Login1$PostResource','')">A Link</a></li> <li> <a id="ctl00_HeaderNewDesign1_Login1_PostInterview" href="javascript:__doPostBack('ctl00$HeaderNewDesign1$Login1$PostInterview','')">An Interview Question</a></li> </ul> </div> <a id="ctl00_HeaderNewDesign1_Login1_PostForum" class="askQuestionOnHeader" href="javascript:__doPostBack('ctl00$HeaderNewDesign1$Login1$PostForum','')">Ask a Question</a> </div> </div> </div> <div id="ctl00_HeaderNewDesign1_HeaderMenu" class="menuStripBlue"> <div class="page" style="position: relative;"> <div class="menu"> <ul> <li style="background: none;"><a href="http://www.c-sharpcorner.com/" class="csharpHome" title="C# Corner Home">&nbsp;</a></li> <li><a href="javascript:void(0);" class="show-dropdown menuLinkBlue">TECHNOLOGIES </a> <div class="dropDownMenu" id="dropDown"> <div id="ctl00_HeaderNewDesign1_divTechnology" style="overflow:hidden; margin-bottom:10px;"> <span id="ctl00_HeaderNewDesign1_DataListTechnologyTop"><span> <a href="http://www.c-sharpcorner.com/1/237/net-4-5.aspx">
+.NET 4.5
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/68/coding-best-practices.aspx">
+Coding Best Practices
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/278/leadership.aspx">
+Leadership
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/183/sharepoint-2010.aspx">
+SharePoint 2010
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/192/wcf-with-C-Sharp.aspx">
+WCF with C#
+</a> </span><br><span> <a href="http://www.c-sharpcorner.com/1/57/net-assemblies.aspx">
+.NET Assemblies
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/170/current-affairs.aspx">
+Current Affairs
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/186/learn-net.aspx">
+Learn .NET
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/289/sharepoint-2013.aspx">
+SharePoint 2013
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/154/web-development.aspx">
+Web Development
+</a> </span><br><span> <a href="http://www.c-sharpcorner.com/1/131/ado-net-in-C-Sharp.aspx">
+ADO.NET in C#
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/220/databases-dba.aspx">
+Databases &amp; DBA
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/274/lightswitch-2012.aspx">
+LightSwitch 2012
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/210/silverlight-with-C-Sharp.aspx">
+Silverlight with C#
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/133/web-services-in-C-Sharp.aspx">
+Web Services in C#
+</a> </span><br><span> <a href="http://www.c-sharpcorner.com/1/176/ajax-in-C-Sharp.aspx">
+AJAX in C#
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/62/design-architecture.aspx">
+Design &amp; Architecture
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/180/linq.aspx">
+LINQ
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/158/smart-devices.aspx">
+Smart Devices
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/275/windows-8.aspx">
+Windows 8
+</a> </span><br><span> <a href="http://www.c-sharpcorner.com/1/247/android-programming.aspx">
+Android Programming
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/234/expression-studio.aspx">
+Expression Studio
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/67/mobile-embedded.aspx">
+Mobile &amp; Embedded
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/216/sql.aspx">
+SQL
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/232/windows-azure.aspx">
+Windows Azure
+</a> </span><br><span> <a href="http://www.c-sharpcorner.com/1/172/articles-C-Sharp.aspx">
+Articles C#
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/294/graphics-design.aspx">
+Graphics Design
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/295/netbeans.aspx">
+NetBeans
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/187/sql-server.aspx">
+SQL Server
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/77/windows-controls-C-Sharp.aspx">
+Windows Controls C#
+</a> </span><br><span> <a href="http://www.c-sharpcorner.com/1/75/Asp-Net-controls-in-C-Sharp.aspx">
+ASP.NET Controls in C#
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/143/how-do-i.aspx">
+How do I 
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/288/office-2013.aspx">
+Office 2013
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/297/sql-server-2014.aspx">
+SQL Server 2014
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/76/windows-forms-C-Sharp.aspx">
+Windows Forms C# 
+</a> </span><br><span> <a href="http://www.c-sharpcorner.com/1/226/Asp-Net-mvc-with-C-Sharp.aspx">
+ASP.NET MVC with C#
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/244/html-5.aspx">
+HTML 5
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/208/oopood.aspx">
+OOP/OOD
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/174/testing.aspx">
+Testing
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/245/windows-phone-8.aspx">
+Windows Phone 8
+</a> </span><br><span> <a href="http://www.c-sharpcorner.com/1/224/Asp-Net-programming.aspx">
+ASP.NET Programming
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/66/internet-web.aspx">
+Internet &amp; Web
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/222/operating-systems.aspx">
+Operating Systems
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/291/typescript.aspx">
+TypeScript
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/292/windows-server-2012.aspx">
+Windows Server 2012
+</a> </span><br><span> <a href="http://www.c-sharpcorner.com/1/205/biztalk-server.aspx">
+BizTalk Server
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/235/iphoneipad.aspx">
+iPhone/iPad
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/279/php.aspx">
+PHP
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/9/visual-C-Sharp.aspx">
+Visual C#
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/138/windows-store-apps.aspx">
+Windows Store Apps
+</a> </span><br><span> <a href="http://www.c-sharpcorner.com/1/144/C-Sharp-language.aspx">
+C# Language
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/258/java.aspx">
+Java
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/283/products.aspx">
+Products
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/139/visual-studio-net.aspx">
+Visual Studio .NET
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/193/workflow-foundation-in-C-Sharp.aspx">
+Workflow Foundation in C#
+</a> </span><br><span> <a href="http://www.c-sharpcorner.com/1/168/C-Sharp-tutorials.aspx">
+C# Tutorials
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/148/java-and-net.aspx">
+Java and .NET
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/198/project-management.aspx">
+Project Management
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/136/visual-studio-2010.aspx">
+Visual Studio 2010
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/191/wpf.aspx">
+WPF
+</a> </span><br><span> <a href="http://www.c-sharpcorner.com/1/282/c-cpp-mfc.aspx">
+C, C++, MFC
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/233/javascript-css.aspx">
+JavaScript, CSS
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/196/robotics-hardware.aspx">
+Robotics &amp; Hardware
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/281/visual-studio-2012.aspx">
+Visual Studio 2012
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/190/xaml.aspx">
+XAML
+</a> </span><br><span> <a href="http://www.c-sharpcorner.com/1/238/career-advice.aspx">
+Career Advice
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/236/jquery.aspx">
+JQuery
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/71/security-in-net.aspx">
+Security in .NET
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/296/visual-studio-2013.aspx">
+Visual Studio 2013
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/79/xml.aspx">
+XML
+</a> </span><br><span> <a href="http://www.c-sharpcorner.com/1/280/chapters.aspx">
+Chapters
+</a> </span><span> <a href="http://www.c-sharpcorner.com/1/260/jsp.aspx">
+JSP
+</a> </span></span> </div> <div style="position: absolute; bottom: 0px; left: 0px;"> <a href="http://www.c-sharpcorner.com/ContactUs.aspx?type=7" class="LinkNormalBlue" style="color: #ff6600; background: none; text-transform: none; float: left;">Request
+a new Category</a><span style="float: left; padding-top: 8px;">|</span><a href="http://www.c-sharpcorner.com/Category/" class="LinkNormalBlue viewAll" style="color: #36c; background: none; text-transform: none;
+float: left;">View All</a> </div> </div> </li> <li><a href="http://www.c-sharpcorner.com/Forums/" class="menuLinkBlue" title="Ask a Question">ANSWERS</a></li> <li><a href="http://www.c-sharpcorner.com/Blogs/" class="menuLinkBlue" title="Share a Blog">
+BLOGS</a></li> <li><a href="http://www.c-sharpcorner.com/Videos/" title="Share a Video" class="menuLinkBlue">VIDEOS</a></li><li><a href="http://www.c-sharpcorner.com/interviews/" class="menuLinkBlue" title="Ask an Interview Question">INTERVIEWS</a></li><li><a href="http://www.c-sharpcorner.com/ebooks/" class="menuLinkBlue" title="Share a Book">
+BOOKS</a></li> <li><a href="http://www.c-sharpcorner.com/resources/" class="menuLinkBlue" title="Share a Link">LINKS</a></li> <li><a href="http://www.c-sharpcorner.com/news/" class="menuLinkBlue" title="Submit a News">
+NEWS</a></li> <li><a href="http://www.c-sharpcorner.com/Chapters/" class="menuLinkBlue" title="Attend an Event">CHAPTERS</a></li> <li><a href="http://www.c-sharpcorner.com/CareerAdvice/" class="menuLinkBlue" title="Get career advice">CAREER ADVICE</a></li> </ul> </div> </div> </div> <div id="ctl00_HeaderNewDesign1_UpdateProgress1" style="display: none; left: 1289px; top: 0px; position: fixed;"> <img id="ctl00_HeaderNewDesign1_ImageLoading" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/Loading.GIF" style="border-width:0px;"> </div> </div> <div class="page"> <div class="clear"> </div> <div class="main"> <div class="leftCntr"> <span style="position: relative; float: left; margin:0px; width: 450px;
+height: 30px; border: 1px solid #d5d5d5; display: inline-block;"><span style="background-image: url(/Images/csharp/TrendingNow.png);
+background-repeat: no-repeat; width: 138px; height: 30px; display: inline-block;"> <span> <div id="example1_wrap"> <div class="bx_wrap"><a href="" class="prev"><img src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/leftArrow.png"></a><a href="" class="next"><img src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/rightArrow.png"></a><div style="position: relative; width: 275px; overflow: hidden;" class="bx_container"><ul style="width: 999999px; position: relative; left: -275px;" id="example1"><li style="float: left; list-style: none outside none; margin-right: 0px;"><a href="http://www.c-sharpcorner.com/UploadFile/c63ec5/xml-parser-function-in-php-part-3/" class="LinkNormalStyle" style="color: Gray;">
+XML Parser Function in PHP: Part 3</a></li><li style="float: left; list-style: none outside none; margin-right: 0px;"><a href="http://www.c-sharpcorner.com/UploadFile/29d7e0/locate-mobile-number-of-india-using-javascript-in-Asp-Net/" class="LinkNormalStyle" style="color: Gray;">
+Locate Mobile Number Using JavaScript in ASP.Net</a></li><li style="float: left; list-style: none outside none; margin-right: 0px;"><a href="http://www.c-sharpcorner.com/UploadFile/e881fb/learn-oop-interface-using-C-Sharp/" class="LinkNormalStyle" style="color: Gray;">
+Learn OOP Interface Using C#</a></li></ul></div></div> </div> </span></span></span> <div id="ctl00_TrendingNow1_Panal1" onkeypress="javascript:return WebForm_FireDefaultButton(event, 'ctl00_TrendingNow1_searchImageButton')"> <span style="width: 5px;"></span><span style="width: 215px;
+height: 30px; border: 1px solid #d5d5d5; display: inline-block; position: relative;
+float: right; margin:  0px;"> <span style="display: inline; position: relative;
+float: left;"> <input value="C# Corner Search" name="ctl00$TrendingNow1$searchTextBox" id="ctl00_TrendingNow1_searchTextBox" class="searchTextBox" style="font-family:Calibri;" type="text"></span> <span style="display: inline; position: relative; float: right;"> <input name="ctl00$TrendingNow1$searchImageButton" id="ctl00_TrendingNow1_searchImageButton" class="SearchButton" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/SearchButton.png" style="border-width:0px;" type="image"></span> </span> <input name="ctl00$TrendingNow1$TBWESearch_ClientState" id="ctl00_TrendingNow1_TBWESearch_ClientState" type="hidden"> </div> <div class="article"> <div class="HeadingAr" id="div1"> <span id="ctl00_spanArticle">ARTICLE</span></div> <div class="clear"> </div> <div class="image"> <a href="http://www.c-sharpcorner.com/authors/yusufkaratoprak/yusuf-karatoprak.aspx" id="ctl00_AnchorAuthorImage"> <img id="ctl00_imgAuthor" title="Yusuf Karatoprak" class="image90" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/yusufkaratoprak.png" style="border-width:0px;"></a> <div id="ctl00_divRankPoints" style="text-align: center;
+width: 91px;"> <span class="rankDotBlue"></span><span id="ctl00_spanRanks" title="Ranked"> <a id="ctl00_LabelRank" class="LinkNormalStyleOrange" href="http://www.c-sharpcorner.com/Members/rank/">322</a> </span><span class="rankDot"></span><span id="ctl00_AuthorPoints" title="Points"><a class="LinkNormalStyleOrange" href="http://www.c-sharpcorner.com/Authors/AuthorRanking.aspx?AuthorId=yusufkaratoprak"> 167</a></span> </div> </div> <div class="detail"> <div class="grayText"> <h1> <span id="ctl00_LabelArticleTitle" class="BlogsWelcomeHeading">Difference Between Loose Coupling and Tight Coupling</span></h1> </div> <div class="LinkNormalGrayLight">
+Posted by <span><a href="http://www.c-sharpcorner.com/authors/yusufkaratoprak/yusuf-karatoprak.aspx" id="ctl00_AuthorLink" class="LinkBlack">Yusuf Karatoprak</a> </span> <label>
+in</label> <span class="LinkRed"><a href="http://www.c-sharpcorner.com/Articles/" id="ctl00_AnchorArticles" class="LinkRed">Articles</a> </span>| <span class="LinkNormalBlue"> <a href="http://www.c-sharpcorner.com/1/62/design-architecture.aspx" id="ctl00_AnchorCategory" class="LinkNormalBlue">Design &amp; Architecture</a> </span> <label>
+on</label> <span id="ctl00_LabelDate">December 19, 2012</span> </div> <div class="LinkNormalGrayLight" style="margin-bottom: 5px;"> <span style="color: Black;">Tags:</span> <span id="ctl00_spanTags"><a class="LinkNormalGrayLight" href="http://www.c-sharpcorner.com/tags/Coupling">Coupling</a>, <a class="LinkNormalGrayLight" href="http://www.c-sharpcorner.com/tags/Loose-Coupling"> Loose Coupling</a>, <a class="LinkNormalGrayLight" href="http://www.c-sharpcorner.com/tags/Tight-Coupling"> Tight Coupling</a></span> </div> <div style="position: relative; margin: 2px 0px 2px 0px; width: 100%; float: left;
+border-bottom: solid 1px #d7d7d7;"> </div> <div id="ctl00_DivDescription" class="normalGray" style="padding: 5px 0 0;">The pros and cons Loose Coupling and Tight Coupling.</div> </div> <div class="tweetIcon" style="padding-bottom: 10px;"> <ul> <li><a href="http://twitter.com/share" url="www.c-sharpcorner.com" class="twitter-share-button" data-count="horizontal" data-via="CsharpCorner" tweeta-via="CsharpCorner">Tweet</a></li> <li> <span class="IN-widget" style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;"><span style="padding: 0px ! important; margin: 0px ! important; text-indent: 0px ! important; display: inline-block ! important; vertical-align: baseline ! important; font-size: 1px ! important;"><span id="li_ui_li_gen_1373001582502_0"><a id="li_ui_li_gen_1373001582502_0-link" href="javascript:void(0);"><span id="li_ui_li_gen_1373001582502_0-logo">in</span><span id="li_ui_li_gen_1373001582502_0-title"><span id="li_ui_li_gen_1373001582502_0-mark"></span><span id="li_ui_li_gen_1373001582502_0-title-text">Share</span></span></a></span></span><span style="padding: 0px ! important; margin: 0px ! important; text-indent: 0px ! important; display: inline-block ! important; vertical-align: baseline ! important; font-size: 1px ! important;"><span id="li_ui_li_gen_1373001582513_1-container" class="IN-right"><span id="li_ui_li_gen_1373001582513_1" class="IN-right"><span id="li_ui_li_gen_1373001582513_1-inner" class="IN-right"><span id="li_ui_li_gen_1373001582513_1-content" class="IN-right">1</span></span></span></span></span></span><script type="in/share+init" data-counter="right"></script> </li> <li> <g:plusone size="medium" count="true" href=""> </g:plusone> </li> <li> <div fb-xfbml-state="rendered" class="fb-like fb_edge_widget_with_comment fb_iframe_widget" data-send="false" data-layout="button_count" data-width="120" data-show-faces="false" data-font="tahoma" data-href="http://www.c-sharpcorner.com/UploadFile/yusufkaratoprak/difference-between-loose-coupling-and-tight-coupling/Default.aspx"><span style="height: 20px; width: 71px;"><iframe src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/like.htm" class="fb_ltr" title="Like this content on Facebook." style="border: medium none; overflow: hidden; height: 20px; width: 71px;" name="f3de00e79876c5e" id="f31af214c49838" scrolling="no"></iframe></span></div> </li> <li> <img src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/view.gif" alt=""><span class="ponit"><span id="ctl00_spanArticleViews">8162</span></span> </li> <li><a href="#ReadAndPostComment"> <img src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/comment.gif" alt=""><span class="ponit"> <span id="spanComments">12</span></span></a></li> </ul> </div> </div> <div class="clear"> </div> <div> </div> <div class="contentHeaderArticle"> <ul style="width: 70%"> <li> <input name="ctl00$ImageButtonEmail" id="ctl00_ImageButtonEmail" title="Email this article to friend" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/mailIcon.gif" style="border-width:0px;" type="image"> </li> <li> <input name="ctl00$ImageButtonAddToMyBookmarks" id="ctl00_ImageButtonAddToMyBookmarks" title="Bookmark this article" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/bookmark.png" style="border-width:0px;" type="image"> </li> <li><a href="javascript:void(GetPrintVersion())"> <img src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/print.gif" alt="Printable Version" title="Printable Version"></a></li> <li><a href="http://www.c-sharpcorner.com/Articles/ArticleListing.aspx?AuthorID=yusufkaratoprak" id="ctl00_AuthorsOtherArticles"> <img src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/userIcon.gif" alt="Author's other article" title="Author's other article"></a></li> <li><a href="http://www.c-sharpcorner.com/Articles/Default.aspx?ArticleId=90e745bb-2742-4ea5-b8c7-cd252e2c4fc0" id="ctl00_AnchorSimilarArticles"> <img src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/copyIcon.gif" alt="View Similar Articles" title="View Similar Articles"></a> </li> <li> <div id="ctl00_updatePanel1"> <input name="ctl00$ImageButtonLike" id="ctl00_ImageButtonLike" title="Like this article" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/like.png" style="border-width:0px;" type="image"><span style="position: relative;
+bottom: 4px; left: 3px;"><span id="ctl00_articlelabelLike" style="color:#424242;font-weight:bold;">0</span> <span id="ctl00_labelmsg" style="color:#424242;font-weight:bold;"></span></span> </div> </li> <li> </li> <li> </li> <li> </li> <li> <input name="ctl00$ImageButtonModerator" id="ctl00_ImageButtonModerator" title="Article History" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/article_History.png" style="border-width:0px;" type="image"></li> <li> </li> <li> </li> <li> </li> </ul> <div id="ctl00_AuthorRank" class="AuthorRank" style="width: 135px; text-align: left;">
+Reader Level:
+<img id="ctl00_ImageReaderLevel" title="Intermediate" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/signal2.png" style="border-width:0px;"> </div> </div> <div class="clear"> </div> <div id="ctl00_downloadFiles" class="ratingTilte" style="margin-top:10px;margin-bottom:0px;display:none;">
+&nbsp;
+</div> <div id="div2" class="PaddingLeft5"><p align="justify"></p><p class="MsoNormal"><font face="Segoe UI"><span style="line-height: 115%; font-size: 10pt;" lang="YO">I
+ have read many articles about loose coupling and tight coupling. I have
+ realized that some programmers have been discussing the differences 
+between loose coupling and tight coupling.&nbsp; </span><span style="line-height: 115%; font-size: 10pt;">I</span><span style="line-height: 115%; font-size: 10pt;" lang="YO"> want to</span><span style="line-height: 115%; font-size: 10pt;"> talk about</span><span style="line-height: 115%; font-size: 10pt;" lang="YO"> the situation</span><span style="line-height: 115%; font-size: 10pt;"> from my point of view.</span></font></p> <p class="MsoNormal"><b><span style="line-height: 115%; font-family: Segoe UI;" lang="YO"><font size="2">Short Introduction Loose</font></span><font size="2"><span style="line-height: 115%; font-family: Segoe UI;"> and</span><span style="line-height: 115%; font-family: Segoe UI;" lang="YO"> Tight Coupling</span></font></b></p> <p class="MsoNormal"><font face="Segoe UI" size="2"><span lang="YO">Loose
+ Coupling means reducing dependencies of a class that use a different 
+class directly. In tight coupling, classes and objects are dependent on 
+one another. In general, tight coupling is usually bad b</span></font><span style="font-family: &quot;Segoe UI&quot;; font-size: small;">ecause it reduces flexibility and re-usability of code and it makes changes much more difficult and impedes testability etc.</span></p> <p class="Subsection"><b><font face="Segoe UI" size="2"><span lang="YO">Tight Coupling</span></font></b></p> <p class="Body"><font face="Segoe UI"><span lang="YO"><font size="2">A
+ Tightly Coupled Object is an object that needs to know quite a bit 
+about other objects and are usually highly dependent on each other's 
+interfaces. Changing one object in a tightly coupled application often 
+requires changes to a number of other objects. In a small application we
+ can easily identify the changes and there is less chance to miss 
+anything. But in large applications these inter-dependencies are not 
+always known by every programmer or there is a chance of overlooking 
+changes. But each set of loosely coupled objects are not dependent on 
+each other.&nbsp;</font></span></font><span style="font-family: Segoe UI;"><font size="2">(Stackoverfow-Jom George)</font></span></p> <p class="Section"><b><font face="Segoe UI" size="2"><span lang="YO">Code<br><br></span></font></b><span style="color: blue; font-family: Segoe UI;" lang="YO"><font size="2">namespace</font></span><br><span style="font-family: Segoe UI;" lang="YO"><font size="2">TightCoupling<br>{<br>&nbsp;&nbsp;&nbsp; <span style="color: blue;">public</span> <span style="color: blue;">class</span> </font><span style="color: rgb(43, 145, 175);"><font size="2">Remote<br></font></span><font size="2">&nbsp;&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: blue;">private</span>&nbsp; <span style="color: rgb(43, 145, 175);">Television</span> Tv&nbsp; { <span style="color: blue;">get</span>; <span style="color: blue;">set</span>;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: blue;">protected</span> Remote()<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tv = <span style="color: blue;">new</span> <span style="color: rgb(43, 145, 175);">Television</span>();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</font></span></p> <p style="margin-bottom: 0pt;" class="MsoNormal"><span style="font-family: Segoe UI;" lang="YO"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: blue;">static</span> Remote()<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _remoteController = <span style="color: blue;">new</span> <span style="color: rgb(43, 145, 175);">Remote</span>();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: blue;">static</span> <span style="color: rgb(43, 145, 175);">Remote</span> _remoteController;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: blue;">public</span> <span style="color: blue;">static</span> <span style="color: rgb(43, 145, 175);">Remote</span> Control<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><span style="color: blue;"><font size="2">get<br></font></span><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: blue;">return</span> _remoteController;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</font></span></p> <p style="margin-bottom: 0pt;" class="MsoNormal"><span style="font-family: Segoe UI;" lang="YO"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: blue;">public</span> <span style="color: blue;">void</span> RunTv()<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tv.Start();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp; }<br>}</font></span></p><font face="Segoe UI" size="2"><br></font><b><font face="Segoe UI" size="2"><span lang="YO">Difficulties</span></font></b> <p class="Body"><font face="Segoe UI" size="2"><span lang="YO">Tight
+ Coupling creates some difficulties. Here, the task of the control 
+object, the object needs to be able to television, the television remote
+ control is dependent on the other phrase. So, what's the harm of the <font size="2">following</font> dependencies:</span></font></p> <ul> <li> <p style="text-indent: -18pt; margin-left: 36pt;" class="Body"><font face="Segoe UI" size="2"><span lang="YO">TV without a remote control does not work.</span></font></p></li> <li> <p style="text-indent: -18pt; margin-left: 36pt;" class="Body"><font face="Segoe UI" size="2"><span lang="YO">TV changes the control directly affected by this change.</span></font></p></li> <li> <p style="text-indent: -18pt; margin-left: 36pt;" class="Body"><font face="Segoe UI" size="2"><span lang="YO">The Control can only control the TV, cannot control other devices.</span></font></p></li></ul> <p class="Subsection"><b><font face="Segoe UI" size="2"><span lang="YO">Loose Coupling</span></font></b></p> <p class="Body"><font face="Segoe UI" size="2"><span lang="EN-US">Loose coupling is a design goal that seeks to reduce the <font size="2">inter-dependencies</font>
+ between components of a system with the goal of reducing the risk that 
+changes in one component will require changes in any other component. 
+Loose coupling is a much more generic concept intended to increase the 
+flexibility of a system, make it more maintainable, and makes the entire
+ framework more "stable".</span></font></p> <p class="Section"><font face="Segoe UI" size="2"><span lang="YO"><b>Code<br></b><br></span></font><span style="color: blue; font-family: Segoe UI;"><font size="2">public</font></span><span style="font-family: Segoe UI;"><font size="2"> <span style="color: blue;">interface</span> </font><span style="color: rgb(43, 145, 175);"><font size="2">IRemote<br></font></span><font size="2">&nbsp;&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: blue;">void</span> Run();<br>&nbsp;&nbsp;&nbsp; }<br></font></span><span style="color: blue; font-family: Segoe UI;"><font size="2">public</font></span><span style="font-family: Segoe UI;"><font size="2"> <span style="color: blue;">class</span> <span style="color: rgb(43, 145, 175);">Television</span> : </font><span style="color: rgb(43, 145, 175);"><font size="2">IRemote<br></font></span><font size="2">&nbsp;&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: blue;">protected</span> Television()<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {</font></span></p> <p style="margin-bottom: 0pt;" class="MsoNormal"><span style="font-family: Segoe UI;"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</font></span></p> <p style="margin-bottom: 0pt;" class="MsoNormal"><span style="font-family: Segoe UI;"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: blue;">static</span> Television()<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _television = <span style="color: blue;">new</span> <span style="color: rgb(43, 145, 175);">Television</span>();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: blue;">private</span> <span style="color: blue;">static</span> <span style="color: rgb(43, 145, 175);">Television</span> _television;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: blue;">public</span> <span style="color: blue;">static</span> <span style="color: rgb(43, 145, 175);">Television</span> Instance<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><span style="color: blue;"><font size="2">get<br></font></span><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: blue;">return</span> _television;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</font></span></p> <p style="margin-bottom: 0pt;" class="MsoNormal"><span style="font-family: Segoe UI;"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: blue;">public</span> <span style="color: blue;">void</span> Run()<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: rgb(43, 145, 175);">Console</span>.WriteLine(<span style="color: rgb(163, 21, 21);">"Television is started!"</span>);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp; }</font></span></p> <p class="Section"><font face="Segoe UI" size="2"><span lang="YO">We
+ need a managing class that will produce an instance. The instance is 
+generated from the implemented class. The Management Class constructor 
+needs an interface which implements to any Class.</span></font></p> <p class="Section"><b><font face="Segoe UI" size="2">Code</font></b></p><pre><span style="color: blue; font-family: Segoe UI;"><font size="2">public</font></span><span style="font-family: Segoe UI;"><font size="2">&nbsp;<span style="color: blue;">class</span>&nbsp;</font><span style="color: rgb(43, 145, 175);"><font size="2">Remote
+</font></span><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(43, 145, 175);">IRemote</span>&nbsp;_remote;</font></span></pre> <p style="margin-bottom: 0pt;" class="MsoNormal"><span style="font-family: Segoe UI;"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: blue;">public</span>&nbsp;Remote(<span style="color: rgb(43, 145, 175);">IRemote</span>&nbsp;remote)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_remote = remote;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: blue;">public</span>&nbsp;<span style="color: blue;">void</span>&nbsp;Run()<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_remote.Run();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}</font></span></p>&nbsp;
+<p class="Section"><font face="Segoe UI" size="2"><span lang="YO"><b>Usage<br><br></b></span></font><b><span style="font-family: Segoe UI;"><span style="color: blue;"><font size="2">class</font></span><font size="2">&nbsp;</font><span style="color: rgb(43, 145, 175);"><font size="2">Program<br></font></span></span></b><span style="font-family: Segoe UI;"><font size="2">{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: blue;">static</span>&nbsp;<span style="color: blue;">void</span>&nbsp;Main(<span style="color: blue;">string</span>[] args)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</font></span></p> <p style="margin-bottom: 0pt;" class="MsoNormal"><span style="font-family: Segoe UI;"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(43, 145, 175);">Remote</span>&nbsp;remote =&nbsp;<span style="color: blue;">new</span>&nbsp;<span style="color: rgb(43, 145, 175);">Remote</span>(<span style="color: rgb(43, 145, 175);">Television</span>.Instance);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remote.Run();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(43, 145, 175);">Console</span>.Read();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br><br></font></span><b><font face="Segoe UI" size="2"><span lang="YO">Advantages</span></font></b></p> <p class="Body"><font face="Segoe UI" size="2"><span lang="YO">It
+ will save you a lot of time for any project that isn't trivially small,
+ where I define trivially small as less than a couple thousand lines of 
+code (depending on the language). The reason is that once you get past 
+super small projects, each change or update gets harder the more tightly
+ coupled it is. Being loosely coupled enables you to keep moving 
+forward, adding features, fixing bugs, etc.</span></font></p> <p class="Body"><font face="Segoe UI" size="2"><span lang="YO">At
+ a certain point I think any program becomes a nightmare to maintain, 
+update and add on to. The more loosely coupled the design is, the 
+further that point is delayed. If it's tightly coupled, maybe after 
+about 10,000 lines of code it becomes unmaintainable; adding features 
+becomes impossible without essentially rewriting from scratch.</span></font></p> <p class="Body"><font face="Segoe UI"><span lang="YO"><font size="2">Being
+ loosely coupled allows it to grow to 1,000,000 - 10,000,000 lines of 
+code while still being able to make changes and add new features within a
+ reasonable amount of time. These numbers aren't meant to be taken 
+literally as they're just made up, but to provide a sense of where it 
+becomes helpful. If you never need to update the program and it's fairly
+ simple then sure, it's fine to be tightly coupled. It's even okay to 
+start that way but understand that when it's time to separate stuff out,
+ but you still need experience writing loosely coupled code to know at 
+what point it becomes beneficial.;</font></span></font><span style="font-family: Segoe UI;"><font size="2">&nbsp; (From Stackoverflow-Davy8)</font></span></p> <ul> <li> <p style="text-indent: -18pt; margin-left: 36pt;" class="Body"><font face="Segoe UI" size="2"><span lang="YO">It improves testability.</span></font></p></li> <li> <p style="text-indent: -18pt; margin-left: 36pt;" class="Body"><font face="Segoe UI" size="2"><span lang="YO">It helps you follow the GOF principle of Program to Interfaces, not implementations.</span></font></p></li> <li> <p style="text-indent: -18pt; margin-left: 36pt;" class="Body"><font face="Segoe UI" size="2"><span lang="YO">The
+ benefit is that it's much easier to swap other pieces of 
+code/modules/objects/components when the pieces aren't dependent on one 
+another.</span></font></p></li> <li> <p style="text-indent: -18pt; margin-left: 36pt;" class="Body"><font face="Segoe UI" size="2"><span lang="YO">It's highly changeable. One module does not break other modules in unpredictable ways</span></font></p></li></ul> <p class="Section"><font face="Segoe UI" size="2"><span lang="YO"><b>Summary&nbsp;&nbsp;&nbsp; </b></span></font></p> <p class="Body"><font face="Segoe UI" size="2"><span lang="YO">As
+ with all OO design, there are trade-offs you have to make; is it more 
+important for you to have highly modular code that is easy to swap in 
+and out? Or is it more important to have easily understandable code that
+ is simpler? You'll have to decide that.</span></font></p> <p class="Body"><b><font face="Segoe UI" size="2"><span lang="YO">References</span></font></b></p> <p class="Body"><font face="Segoe UI" size="2"><span lang="YO"><a href="http://stackoverflow.com/questions/2832017/what-is-the-difference-between-loose-coupling-and-tight-coupling-in-object-orien">http://stackoverflow.com/questions/2832017/what-is-the-difference-between-loose-coupling-and-tight-coupling-in-object-orien</a></span></font></p> <p class="Body"><font face="Segoe UI" size="2"><a href="http://stackoverflow.com/questions/2868627/why-should-a-web-architecture-be-loosely-coupled">http://stackoverflow.com/questions/2868627/why-should-a-web-architecture-be-loosely-coupled</a></font></p> <p></p></div> <div class="clear"> </div> <div style="border: gray 1px dashed; background-color: #f2f2f2; padding: 5px;"> <a id="ctl00_DisplayExtensions1_LoginView1_LinkButtonLogin" title="Click Here for Login" class="LinkNormalBlue" href="javascript:__doPostBack('ctl00$DisplayExtensions1$LoginView1$LinkButtonLogin','')">Login</a> <span class="IdeaDetailGray">to add your contents and source code to this article</span> </div> <div id="ctl00_DisplayExtensions1_divArticleExtension"> <div class="HeadingBold" style="padding: 0px;">
+Article Extensions</div> <div style="width: 100%; float: left;">
+Contents added by
+<a id="ctl00_DisplayExtensions1_RepeaterArticleExtensions_ctl00_HyperlinkUserName" class="LinkBlack" href="http://www.c-sharpcorner.com/authors/yusufkaratoprak/yusuf-karatoprak.aspx">Yusuf Karatoprak</a>
+on
+<span id="ctl00_DisplayExtensions1_RepeaterArticleExtensions_ctl00_LabelCreatedDate">Dec 19, 2012</span> </div> <div id="ctl00_DisplayExtensions1_RepeaterArticleExtensions_ctl00_tdDownloadFiles" style="margin-top: 5px; margin-bottom: 5px;"> <span id="ctl00_DisplayExtensions1_RepeaterArticleExtensions_ctl00_DownloadFiles" style="color:Green;font-size:13px;font-weight:bold;">Download File: </span> <a id="ctl00_DisplayExtensions1_RepeaterArticleExtensions_ctl00_LinkButtonDownloadFile" class="LinkBoldStyle" href="javascript:__doPostBack('ctl00$DisplayExtensions1$RepeaterArticleExtensions$ctl00$LinkButtonDownloadFile','')">LooseCoupling.TightCouplingSource.zip</a> </div> <div style="color: #333333; text-align: justify;"> </div> </div> <div class="clear"> </div> <div class="postHeader" style="height: 38px; background-color:#ffffff; border-color:#d3d3d3;"> <table style="height: 33px;" cellpadding="0" cellspacing="0" width="100%"> <tbody> <tr> <td style="vertical-align: top; width: 174px;"> <span class="post_CFooter">This Feature is Sponsored By</span> </td> <td style="vertical-align: middle; text-align: left;"> <a href="http://www.c-sharpcorner.com/AdRedirector.aspx?AdId=82&amp;target=http://www.nevron.com/Campaign?key=CSharpCorner_13_6_Diagram_75x90&amp;url=http://www.nevron.com/" id="ctl00_PremiumSponsorFooterAd1_anchorSponsor" rel="nofollow" class="LinkNormalGray" style="font-size:12px;">.NET Diagramming framework designed for creating advanced solutions</a> </td> </tr> </tbody> </table> </div> <div class="clear"> </div> <div id="ctl00_updatePanelArticleSlider"> <div class="slideBox"> <ul> <li id="ctl00_liPrevious" class="left"> <div class="userPic"> <a href="http://www.c-sharpcorner.com/authors/085b35/jonas-gauffin.aspx" id="ctl00_AnchorPreviousAuthor"> <img id="ctl00_imgPreviousAuthor" title="Jonas Gauffin" class="image50" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/085b35.jpg" style="border-width:0px;"></a><br> <input name="ctl00$ImageButtonPrevious" id="ctl00_ImageButtonPrevious" class="prev" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/prevBtn.gif" style="border-width:0px;" type="image"> </div> <div class="userDetail" contenteditable="inherit"> <p> <a id="ctl00_HyperlinkPrevious" class="LinkNormalGray" href="http://www.c-sharpcorner.com/UploadFile/085b35/writing-decoupled-and-scalable-applications/">Writing Decoupled and Scalable Applications</a><br> </p><div id="ctl00_divPreviousTagLink"><span style="color:Black;" font-weight:bold;="">Tags: </span><a class="LinkNormalGrayLight" href="http://www.c-sharpcorner.com/tags/Csharp">C#</a>, <a class="LinkNormalGrayLight" href="http://www.c-sharpcorner.com/tags/cqs">cqs</a>, <a class="LinkNormalGrayLight" href="http://www.c-sharpcorner.com/tags/ddd">ddd</a>, <a class="LinkNormalGrayLight" href="http://www.c-sharpcorner.com/tags/Decoupled-Applications">Decoupled Applications</a>, <a class="LinkNormalGrayLight" href="http://www.c-sharpcorner.com/tags/domaindrivendesign">domaindrivendesign</a>, <a class="LinkNormalGrayLight" href="http://www.c-sharpcorner.com/tags/Scalable-Applications">Scalable Applications</a></div> </div> </li> <li id="ctl00_liNext" class="right"> <div class="userDetail" style="float: left"> <p> <a id="ctl00_HyperlinkNext" class="LinkNormalGray" href="http://www.c-sharpcorner.com/UploadFile/84c85b/logging-application-block-enterprise-library-5-0-with-C-Sharp/">Logging Application Block (Enterprise Library 5.0) With C#</a><br> </p><div id="ctl00_divNextTagLink"><span style="color:Black;" font-weight:bold;="">Tags: </span><a class="LinkNormalGrayLight" href="http://www.c-sharpcorner.com/tags/.NET-library">.NET library</a>, <a class="LinkNormalGrayLight" href="http://www.c-sharpcorner.com/tags/Csharp">C#</a>, <a class="LinkNormalGrayLight" href="http://www.c-sharpcorner.com/tags/Enterprise-Library-5.0">Enterprise Library 5.0</a>, <a class="LinkNormalGrayLight" href="http://www.c-sharpcorner.com/tags/Logging-Application-Block">Logging Application Block</a></div> </div> <div class="userPic" style="float: right"> <a href="http://www.c-sharpcorner.com/authors/84c85b/vidya-vrat-agarwal.aspx" id="ctl00_AnchorNextAuthor"> <img id="ctl00_imgNextAuthor" title="Vidya Vrat Agarwal" class="image50" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/84c85b.jpg" style="border-width:0px;"> </a> <br> <input name="ctl00$ImageButtonNext" id="ctl00_ImageButtonNext" class="next" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/nextBtn.gif" style="border-width:0px;" type="image"> </div> </li> </ul> </div> </div> <div id="ctl00_RelatedArticles" class="relatedArticle"> <h3>
+Related Articles</h3> <ul> <li> <a id="ctl00_RepeaterSimilarArticles_ctl00_HyperLinkTitle" href="http://www.c-sharpcorner.com/uploadfile/questpond/design-pattern-inversion-of-control-and-dependency-injection/default.aspx">Design pattern -Inversion of control and Dependency injection</a> </li> <li> <a id="ctl00_RepeaterSimilarArticles_ctl01_HyperLinkTitle" href="http://www.c-sharpcorner.com/uploadfile/shivprasadk/di-using-unity-application-blocks/default.aspx">DI using Unity Application Blocks</a> </li> <li> <a id="ctl00_RepeaterSimilarArticles_ctl02_HyperLinkTitle" href="http://www.c-sharpcorner.com/UploadFile/deepakvraghavan/AjaxProgressBars09082006171908PM/AjaxProgressBars.aspx">Asynchronous Callbacks and Ajax based UI Experience in Web Applications</a> </li> <li> <a id="ctl00_RepeaterSimilarArticles_ctl03_HyperLinkTitle" href="http://www.c-sharpcorner.com/UploadFile/rmcochran/functional-programming-with-C-Sharp-composition/">Functional Programming with C# - Composition</a> </li> <li> <a id="ctl00_RepeaterSimilarArticles_ctl04_HyperLinkTitle" href="http://www.c-sharpcorner.com/uploadfile/satisharveti/introduction-to-loosely-coupled-collections/default.aspx">Introduction to Loosely Coupled Collections</a> </li> <li> <a id="ctl00_RepeaterSimilarArticles_ctl05_HyperLinkTitle" href="http://www.c-sharpcorner.com/UploadFile/shivprasadk/di-and-ioc/">DI and IOC</a> </li> <li> <a id="ctl00_RepeaterSimilarArticles_ctl06_HyperLinkTitle" href="http://www.c-sharpcorner.com/UploadFile/akkiraju/s-o-l-i-d-design-principles-explained-part-1/">S.O.L.I.D Design Principles Explained : Part 1</a> </li> <li> <a id="ctl00_RepeaterSimilarArticles_ctl07_HyperLinkTitle" href="http://www.c-sharpcorner.com/UploadFile/dhananjaycoder/inversion-of-control/">Inversion of Control </a> </li> <li> <a id="ctl00_RepeaterSimilarArticles_ctl08_HyperLinkTitle" href="http://www.c-sharpcorner.com/UploadFile/sivakumarb/implement-concrete-factory-design-pattern-using-reflection-i/">Implement Concrete Factory Design Pattern using Reflection in VB.NET</a> </li> <li> <a id="ctl00_RepeaterSimilarArticles_ctl09_HyperLinkTitle" href="http://www.c-sharpcorner.com/UploadFile/rmcochran/instantiationFactory06232007153242PM/instantiationFactory.aspx">Object Instantiation in C#. Part II Factory Methods</a> </li> </ul> </div> <script>
+var pageSize = 10;
+//    var regex = /(<([^>]+)>)/ig;
+$j(document).ready(function() {
+$j.ajaxSetup({ cache: false });
+if ('True' == 'False') {
+$j('#RootPostComment').remove();
+}
+GetComments(0);
+$j('#ViewPreviousComments').click(function() {
+var pageNumber = $j('#PageNumber').val();
+var totalComment = $j('#TotalComments').text();
+if (parseFloat(totalComment) > (parseFloat(pageNumber) * pageSize)) {
+$j('#PageNumber').val(parseFloat(pageNumber) + 1);
+}
+else {
+$j('#RootComments').text('');
+$j('#PageNumber').val('1');
+}
+GetComments(0);
+});
+});
+function GetComments(parent_id) {
+var pageNumber = $j('#PageNumber').val();
+var rootComments = $j('#RootComments');
+var items = 0;
+$j.ajax({
+type: "POST",
+contentType: "application/json; charset=utf-8",
+url: "/WebServices/Comments.asmx/GetComments",
+data: "{'id':'90e745bb-2742-4ea5-b8c7-cd252e2c4fc0','type':'article','pageNumber':'" + pageNumber + "', 'pageSize':'" + pageSize + "', 'parentId':" + parent_id + "}",
+beforeSend: function() {
+$j('#mainLoader').show();
+},
+success: function(data) {
+$j.each(data, function(index) {
+data[index].CommentId;
+rootComments.prepend(BuildComment(data[index])); //Prepend root comments
+if (pageNumber == 1 && index == 0) {
+$j('#TotalComments').text(data[index].TotalComments); //set total comments only once.
+$j('#spanComments').text($j('#TotalComments').text()); //Manages Header Comment Count
+}
+items = parseFloat(items) + 1; //track for number of comments to show
+ManageAlternateColor();
+});
+//Manage paging
+{
+items = (parseFloat(pageNumber) - 1) * parseFloat(pageSize) + parseFloat(items);
+if (items != 0) {
+$j('#CommentCount').text(items);
+}
+else {
+$j('#Paging').hide();
+}
+if (parseFloat(items) >= parseFloat($j('#TotalComments').text()) || items == 0)
+$j('#ViewPreviousComments').hide();
+else
+$j('#ViewPreviousComments').show();
+}
+$j('#mainLoader').hide();
+}
+});
+}
+function BuildComment(obj) {
+var authorUrl = obj.AuthorUrl;
+var commentHtml;
+commentHtml = '<div id="comment_' + obj.CommentId + '" class="pulsecomment">';
+if ('' == obj.UserId || '' == 'E')
+commentHtml += '<div class="pulseDelete"><img onclick="DeleteComment(' + obj.CommentId + ',' + obj.ParentId + ')" alt="" src="/images/csharp/pulseCommentDelete.png"></div>';
+commentHtml += '<div class="image level0"><a href="' + authorUrl + '"><img alt="" src="' + obj.PhotoUrl + '" /></a></div>';
+commentHtml += '<div class="commentcontent">'; //Start of CommentContent div
+commentHtml += '<a class="LinkNormalBlue" href="' + authorUrl + '">' + obj.FullName + '</a>';
+commentHtml += '<div>' + unescape(obj.Description) + '</div>';
+commentHtml += '<div>';
+commentHtml += '<span class="floatRight"  style="font-size: 11px;"><span class="watchICon"></span>' + obj.CreatedDate + '</span>';
+commentHtml += '<a class="commnetLinkSecondStep" onclick="LikeComment(' + obj.CommentId + ')"><span id="Likes_' + obj.CommentId + '">' + obj.Likes + '</span> Like</a><a class="commnetLinkSecondStep" onclick="ShowReplies(' + obj.CommentId + ')"><span id="Replies_' + obj.CommentId + '">' + obj.Replies + '</span> Reply</a>';
+commentHtml += '<img id="ajaxLoader_' + obj.CommentId + '" src=\'/Images/csharp/ajax-loader_12x9.gif\' style="margin:4px 0px 0px 5px; display:none;" />';
+commentHtml += '</div>';
+commentHtml += '<div class="clear"></div>';
+commentHtml += '<div id="CommentReplies_' + obj.CommentId + '" style="display:none;"></div>'; //This div contains child comments
+commentHtml += '</div>'; //End of CommentContent div
+commentHtml += '</div>';
+return commentHtml;
+}
+function BulildCommentReply(obj) {
+var authorUrl = obj.AuthorUrl;
+var commentHtml = '<div id="comment_' + obj.CommentId + '" class="ReplyComment" style="width:612px;">';
+if ('' == obj.UserId || '' == 'E')
+commentHtml += '<div class="pulseDeleteReply"><img onclick="DeleteComment(' + obj.CommentId + ',' + obj.ParentId + ')" src="/images/csharp/pulseCommentDelete.png" alt=""></div>';
+commentHtml += '<div class="image level1"><a href="' + authorUrl + '"><img src="' + obj.PhotoUrl + '" alt="" /></a></div>\
+<div class="commentcontent"><a href="' + authorUrl + '" class="LinkNormalBlue">' + obj.FullName + '</a>\
+<div>' + unescape(obj.Description) + '</div>\
+<div><span class="floatRight"  style="font-size: 11px;"><span class="watchICon"></span>' + obj.CreatedDate + '</span><a onclick="LikeComment(' + obj.CommentId + ')" class="commnetLinkSecondStep"> <span id="Likes_' + obj.CommentId + '">' + obj.Likes + '</span> Like</a>\
+<img id="ajaxLoader_' + obj.CommentId + '" src=\'/Images/csharp/ajax-loader_12x9.gif\' style="margin:4px 0px 0px 5px; display:none;" />\
+</div>\
+</div>\
+</div>';
+return commentHtml;
+}
+function LikeComment(id) {
+VerifyUser();
+var status;
+$j.ajax({
+url: "/Handlers/CommentsHandler.ashx?method=like_comment&id=" + id + "&type=article",
+type: "POST",
+async: false,
+beforeSend: function() {
+$j('#ajaxLoader_' + id).show(); //Show Ajax Loader
+},
+success: function(response) {
+status = response;
+$j('#ajaxLoader_' + id).hide(); //Hide Ajax Loader
+},
+Error: ShowError
+});
+if (status == '1') {
+var likes = $j('#Likes_' + id).text();
+$j('#Likes_' + id).text(parseFloat(likes) + 1);
+}
+else if (status == '2') {
+}
+}
+function DeleteComment(id, parent_id) {
+VerifyUser();
+var status;
+$j.ajax({
+url: "/Handlers/CommentsHandler.ashx?method=delte_comment&id=" + id + "&type=article",
+type: "POST",
+async: false,
+success: function(response) {
+status = response;
+},
+Error: ShowError
+});
+if (status == '1') {
+$j('#comment_' + id).remove();
+if (parent_id == 0) {
+if (ManageAlternateColor() == 0) {
+$j('#PageNumber').val('1');
+GetComments(0);
+}
+ManagePaging('d');
+}
+else {
+var replies = $j('#Replies_' + parent_id).text();
+$j('#Replies_' + parent_id).text(parseFloat(replies) - 1);
+}
+}
+}
+function ManageAlternateColor() {
+var count = 0;
+$j('#RootComments > div').each(function() {
+$j('#' + this.id).removeClass("BackgroundWhite");
+if (count % 2 != 0)
+$j('#' + this.id).addClass("BackgroundWhite");
+count = count + 1;
+});
+return count;
+}
+function PostComment(parent_id) {
+var rootComments = $j('#RootComments');
+var totalComments = $j('#TotalComments');
+var commentCount = $j('#CommentCount');
+//        var comment = escape(($j.trim($j('#InputCommentText_' + parent_id).val())).replace(regex, ''));
+var comment = escape(($j.trim($j('#InputCommentText_' + parent_id).val())).replace('<', '&lt;').replace('>', '&gt;'));
+if (comment != '') {
+VerifyUser();
+$j.ajax({
+url: "/WebServices/Comments.asmx/InsertComment",
+data: "{'user_id':'','content_id':'90e745bb-2742-4ea5-b8c7-cd252e2c4fc0','type':'article','parent_id':'" + parent_id + "', 'description':'" + comment + "'}",
+type: "POST",
+contentType: "application/json; charset=utf-8",
+async: false,
+beforeSend: function() {
+$j('#PostLoader').show(); //Show Ajax Loader
+},
+success: function(response) {
+var data = response[0];
+rootComments.append(BuildComment(data));
+$j('#InputCommentText_' + parent_id).val('');
+if (!(parseFloat(totalComments.text()) == parseFloat(commentCount.text()) && parseFloat($j('#PageNumber').val()) > 1))
+if (parseFloat(ManageAlternateColor()) > parseFloat(pageSize))
+rootComments.find('div').first().remove();
+ManagePaging('i');
+SendMail(comment, '0', data.ParentUserId);
+$j('#PostLoader').hide(); //Hide Ajax Loader
+},
+Error: ShowError
+});
+}
+}
+function SendMail(comment, is_child_comment, parent_user_id) {
+$j('#ctl00_Comments1_HiddenFieldEmailComment').val(unescape(comment));
+$j('#ctl00_Comments1_HiddenFieldIsChildComment').val(is_child_comment);
+$j('#ctl00_Comments1_HiddenFieldParentUserId').val(parent_user_id);
+$j('#ctl00_Comments1_ButtonSendEmail').click();
+}
+function VerifyUser() {
+var data;
+$j.ajax({
+url: "/Handlers/CommentsHandler.ashx?method=current_user",
+type: "GET",
+async: false,
+success: function(response) {
+data = $j.parseJSON(response)[0].user_name;
+}
+});
+if (data == null || data == '') {
+var url = 'http://www.c-sharpcorner.com/UserRegistration/Logincheck.aspx?ReturnURL=/UploadFile/yusufkaratoprak/difference-between-loose-coupling-and-tight-coupling/Default.aspx';
+window.location = url;
+}
+}
+function ManagePaging(action) {
+var totalComments = $j('#TotalComments');
+var commentCount = $j('#CommentCount');
+var previousComments = $j('#ViewPreviousComments');
+var total_comments = $j.trim(totalComments.text());
+switch (action) {
+case 'i': //increase
+if (total_comments == '') {
+totalComments.text('1');
+commentCount.text('1');
+}
+else {
+if (parseFloat(commentCount.text()) < pageSize || (parseFloat(totalComments.text()) == parseFloat(commentCount.text()) && parseFloat($j('#PageNumber').val()) > 1))
+commentCount.text(parseFloat(commentCount.text()) + 1);
+totalComments.text(parseFloat(total_comments) + 1);
+}
+$j('#Paging').show();
+if (parseFloat(totalComments.text()) > pageSize && parseFloat($j('#PageNumber').val()) == 1) {
+previousComments.show();
+}
+else if (parseFloat(totalComments.text()) == parseFloat(commentCount.text()))
+previousComments.hide();
+break;
+case 'd': //decrease
+if (parseFloat(total_comments) <= 0) {
+totalComments.text('');
+commentCount.text('');
+$j('#Paging').hide();
+}
+else {
+totalComments.text(parseFloat(total_comments) - 1);
+commentCount.text(parseFloat(commentCount.text()) - 1);
+}
+break;
+}
+$j('#spanComments').text($j('#TotalComments').text()); //Manages Header Comment Count
+}
+function ShowError() {
+alert('There is some error processing your request');
+}
+function ShowReplies(id) {
+var element = $j('#CommentReplies_' + id);
+element.toggle();
+if (element.is(":visible") && element.html() == '') {
+var pageSize = 50;
+if ($j('#Replies_' + id).text() != '0') {
+$j.ajax({
+type: "POST",
+contentType: "application/json; charset=utf-8",
+url: "/WebServices/Comments.asmx/GetComments",
+data: "{'id':'90e745bb-2742-4ea5-b8c7-cd252e2c4fc0','type':'article','pageNumber':'1', 'pageSize':'" + pageSize + "', 'parentId':" + id + "}",
+beforeSend: function() {
+$j('#ajaxLoader_' + id).show(); //Show Ajax Loader
+},
+success: function(data) {
+$j.each(data, function(index) {
+data[index].CommentId;
+element.prepend(BulildCommentReply(data[index])); //Prepend root comments
+});
+$j('#ajaxLoader_' + id).hide(); //Hide Ajax Loader
+}
+});
+}
+if ('True' == 'True') {
+var postReply = '<div id="ReplyContainer_' + id + '" class="ReplyComment borderNone" style="padding-bottom:0px; width:614px;">\
+<div class="image level1"><img src="http://www.c-sharpcorner.com/UploadFile/AuthorImage/DefaultAuthorImage.gif" alt=""></div>\
+<div class="commentcontent">\
+<input id="ReplyComment_' + id + '" onkeypress="PostCommentReply(' + id + ',event);" type="text" class="inputText" value=" Type your comment here and press Enter Key.... " onfocus="if(this.value==this.defaultValue)this.value=\'\';" onblur="if(this.value==\'\')this.value=this.defaultValue;" style="width:97%; padding:5px; font-size:12px;" spellcheck="true">\
+</div>\
+<img id="PostLoader_' + id + '" src="/Images/csharp/ajax-loader_12x9.gif"\
+style="margin: 5px 7px 0px 0px; clear:both; float:right; display:none;" />\
+</div>';
+element.append(postReply);
+}
+}
+if ('True' == 'True') {
+$j('#ReplyComment_' + id).focus();
+}
+}
+function PostCommentReply(parent_id, e) {
+if (e.keyCode == 13) {
+var replyContainer = $j('#ReplyContainer_' + parent_id);
+//            var comment = escape($j.trim($j('#ReplyComment_' + parent_id).val()).replace(regex, ''));
+var comment = escape($j.trim($j('#ReplyComment_' + parent_id).val()).replace('<', '&lt;').replace('>', '&gt;'));
+if (comment != '') {
+VerifyUser();
+$j.ajax({
+url: "/WebServices/Comments.asmx/InsertComment",
+data: "{'user_id':'','content_id':'90e745bb-2742-4ea5-b8c7-cd252e2c4fc0','type':'article','parent_id':'" + parent_id + "', 'description':'" + comment + "'}",
+type: "POST",
+contentType: "application/json; charset=utf-8",
+async: false,
+beforeSend: function() {
+$j('#PostLoader_' + parent_id).show(); //Show Ajax Loader
+},
+success: function(response) {
+var data = response[0];
+replyContainer.before(BulildCommentReply(data));
+$j('#ReplyComment_' + parent_id).val('');
+var replies = $j('#Replies_' + parent_id).text();
+$j('#Replies_' + parent_id).text(parseFloat(replies) + 1);
+SendMail(comment, '1', data.ParentUserId); //SendMail(comment, is_child_comment, parent_user_id)
+$j('#PostLoader_' + parent_id).hide(); //Hide Ajax Loader
+},
+Error: ShowError
+});
+}
+}
+}
+</script> <div class="clear"> </div> <div style="position: relative;"> <a name="ReadAndPostComment"></a> <div class="postHeader"> <span class="post_C">comments</span> </div> <div class="clear"> </div> <img id="mainLoader" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ajax-loader_12x9.gif" style="position: absolute; left: 315px; top: 54px; display: none;"> <div class="clear"> </div> <div id="Paging" style="padding-top: 10px;"> <a id="ViewPreviousComments" class="previousComments" style="">View Previous
+Comments</a> <label id="TotalComments" class="floatRight" style="margin-right: 3px;">12</label> <label class="floatRight" style="margin-right: 3px;">
+of
+</label> <label id="CommentCount" class="floatRight" style="margin-right: 3px;">10</label> <input id="PageNumber" value="1" type="hidden"> </div> <div class="clear"> </div> <div id="ctl00_Comments1_Panel1" class="pulseMainComment" onkeypress="javascript:return WebForm_FireDefaultButton(event, 'ctl00_Comments1_Button1')"> <div class="pulseCommentSectionMain" style="width: 674px; padding: 0px;"> <div class="pulseCommentSection"> <div id="RootComments"><div id="comment_32669" class="pulsecomment"><div class="image level0"><a href="http://www.c-sharpcorner.com/authors/dbeniwal321/dinesh-beniwal.aspx"><img alt="" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/dbeniwal321.jpg"></a></div><div class="commentcontent"><a class="LinkNormalBlue" href="http://www.c-sharpcorner.com/authors/dbeniwal321/dinesh-beniwal.aspx">Dinesh Beniwal</a><div>Good Start Yusuf.</div><div><span class="floatRight" style="font-size: 11px;"><span class="watchICon"></span>Dec 19, 2012</span><a class="commnetLinkSecondStep" onclick="LikeComment(32669)"><span id="Likes_32669">0</span> Like</a><a class="commnetLinkSecondStep" onclick="ShowReplies(32669)"><span id="Replies_32669">0</span> Reply</a><img id="ajaxLoader_32669" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ajax-loader_12x9.gif" style="margin:4px 0px 0px 5px; display:none;"></div><div class="clear"></div><div id="CommentReplies_32669" style="display:none;"></div></div></div><div id="comment_32670" class="pulsecomment BackgroundWhite"><div class="image level0"><a href="http://www.c-sharpcorner.com/authors/yusufkaratoprak/yusuf-karatoprak.aspx"><img alt="" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/yusufkaratoprak.png"></a></div><div class="commentcontent"><a class="LinkNormalBlue" href="http://www.c-sharpcorner.com/authors/yusufkaratoprak/yusuf-karatoprak.aspx">Yusuf Karatoprak</a><div>You are encouraging me to write new one. Thanks alot again...</div><div><span class="floatRight" style="font-size: 11px;"><span class="watchICon"></span>Dec 19, 2012</span><a class="commnetLinkSecondStep" onclick="LikeComment(32670)"><span id="Likes_32670">0</span> Like</a><a class="commnetLinkSecondStep" onclick="ShowReplies(32670)"><span id="Replies_32670">0</span> Reply</a><img id="ajaxLoader_32670" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ajax-loader_12x9.gif" style="margin:4px 0px 0px 5px; display:none;"></div><div class="clear"></div><div id="CommentReplies_32670" style="display:none;"></div></div></div><div id="comment_32673" class="pulsecomment"><div class="image level0"><a href="http://www.c-sharpcorner.com/authors/SamTomato/sam-hobbs.aspx"><img alt="" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/SamTomato.jpg"></a></div><div class="commentcontent"><a class="LinkNormalBlue" href="http://www.c-sharpcorner.com/authors/SamTomato/sam-hobbs.aspx">Sam Hobbs</a><div>Thank
+ you, Yusuf. I agree with everything. I hope this helps many people. I 
+think you will agree that a disadvantage of loose coupling is that it 
+requires more work. That can be a problem for small projects that grow 
+into large ones. It happens, correct? I think you almost make the point 
+that when a small project grows into a large project tight coupling can 
+become very expensive and that is why it helps to invest the extra time 
+in using loose coupling even for small projects. And I think it helps 
+for management to understand that the investment can save money. 
+Mamagement needs to understand that developers that use loose coupling 
+from the beginning are usually more cost effective than developers that 
+throw something together real fast.</div><div><span class="floatRight" style="font-size: 11px;"><span class="watchICon"></span>Dec 19, 2012</span><a class="commnetLinkSecondStep" onclick="LikeComment(32673)"><span id="Likes_32673">0</span> Like</a><a class="commnetLinkSecondStep" onclick="ShowReplies(32673)"><span id="Replies_32673">0</span> Reply</a><img id="ajaxLoader_32673" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ajax-loader_12x9.gif" style="margin:4px 0px 0px 5px; display:none;"></div><div class="clear"></div><div id="CommentReplies_32673" style="display:none;"></div></div></div><div id="comment_32678" class="pulsecomment BackgroundWhite"><div class="image level0"><a href="http://www.c-sharpcorner.com/authors/rohatash/rohatash-kumar.aspx"><img alt="" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/rohatash.jpg"></a></div><div class="commentcontent"><a class="LinkNormalBlue" href="http://www.c-sharpcorner.com/authors/rohatash/rohatash-kumar.aspx">Rohatash Kumar</a><div>Thank you.Yusuf</div><div><span class="floatRight" style="font-size: 11px;"><span class="watchICon"></span>Dec 19, 2012</span><a class="commnetLinkSecondStep" onclick="LikeComment(32678)"><span id="Likes_32678">0</span> Like</a><a class="commnetLinkSecondStep" onclick="ShowReplies(32678)"><span id="Replies_32678">0</span> Reply</a><img id="ajaxLoader_32678" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ajax-loader_12x9.gif" style="margin:4px 0px 0px 5px; display:none;"></div><div class="clear"></div><div id="CommentReplies_32678" style="display:none;"></div></div></div><div id="comment_32684" class="pulsecomment"><div class="image level0"><a href="http://www.c-sharpcorner.com/authors/yusufkaratoprak/yusuf-karatoprak.aspx"><img alt="" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/yusufkaratoprak.png"></a></div><div class="commentcontent"><a class="LinkNormalBlue" href="http://www.c-sharpcorner.com/authors/yusufkaratoprak/yusuf-karatoprak.aspx">Yusuf Karatoprak</a><div>Thanks
+ Sam; i agree with your opinion about disadvantages of loose coupling. 
+But it is a kind of habit to use loose coupling. if a programmer uses 
+loose coupling , you will have a good habit. Also i guess all small 
+projects can be grow with unpredictable. However, it is your choose. if 
+you have small one, you will use tight coupling. But you must imagine 
+this project can be discovered by a new customer who want to add new 
+features...</div><div><span class="floatRight" style="font-size: 11px;"><span class="watchICon"></span>Dec 20, 2012</span><a class="commnetLinkSecondStep" onclick="LikeComment(32684)"><span id="Likes_32684">0</span> Like</a><a class="commnetLinkSecondStep" onclick="ShowReplies(32684)"><span id="Replies_32684">0</span> Reply</a><img id="ajaxLoader_32684" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ajax-loader_12x9.gif" style="margin:4px 0px 0px 5px; display:none;"></div><div class="clear"></div><div id="CommentReplies_32684" style="display:none;"></div></div></div><div id="comment_32716" class="pulsecomment BackgroundWhite"><div class="image level0"><a href="http://www.c-sharpcorner.com/authors/0c1bb2/vithal-wadje.aspx"><img alt="" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/0c1bb2.jpg"></a></div><div class="commentcontent"><a class="LinkNormalBlue" href="http://www.c-sharpcorner.com/authors/0c1bb2/vithal-wadje.aspx">Vithal Wadje</a><div>good one</div><div><span class="floatRight" style="font-size: 11px;"><span class="watchICon"></span>Dec 21, 2012</span><a class="commnetLinkSecondStep" onclick="LikeComment(32716)"><span id="Likes_32716">0</span> Like</a><a class="commnetLinkSecondStep" onclick="ShowReplies(32716)"><span id="Replies_32716">0</span> Reply</a><img id="ajaxLoader_32716" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ajax-loader_12x9.gif" style="margin:4px 0px 0px 5px; display:none;"></div><div class="clear"></div><div id="CommentReplies_32716" style="display:none;"></div></div></div><div id="comment_32720" class="pulsecomment"><div class="image level0"><a href="http://www.c-sharpcorner.com/authors/mahesh/mahesh-chand.aspx"><img alt="" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/mahesh.png"></a></div><div class="commentcontent"><a class="LinkNormalBlue" href="http://www.c-sharpcorner.com/authors/mahesh/mahesh-chand.aspx">Mahesh Chand</a><div>To
+ add Sam's point, one of the major disadvantages of loose coupling is, a
+ coder must be experienced and project must follow design standards. If 
+coder does not understand the concept, they will end up breaking things.
+ The coder must see the big picture and entire architecture and how 
+various classes / components are glued (loosely) together.</div><div><span class="floatRight" style="font-size: 11px;"><span class="watchICon"></span>Dec 21, 2012</span><a class="commnetLinkSecondStep" onclick="LikeComment(32720)"><span id="Likes_32720">0</span> Like</a><a class="commnetLinkSecondStep" onclick="ShowReplies(32720)"><span id="Replies_32720">0</span> Reply</a><img id="ajaxLoader_32720" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ajax-loader_12x9.gif" style="margin:4px 0px 0px 5px; display:none;"></div><div class="clear"></div><div id="CommentReplies_32720" style="display:none;"></div></div></div><div id="comment_32742" class="pulsecomment BackgroundWhite"><div class="image level0"><a href="http://www.c-sharpcorner.com/authors/yusufkaratoprak/yusuf-karatoprak.aspx"><img alt="" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/yusufkaratoprak.png"></a></div><div class="commentcontent"><a class="LinkNormalBlue" href="http://www.c-sharpcorner.com/authors/yusufkaratoprak/yusuf-karatoprak.aspx">Yusuf Karatoprak</a><div>Mahesh
+ said that:" The coder must see the big picture and entire architecture 
+and how various classes / components are glued (loosely) together" it 
+must be a result of my article. whole project needs to good start point 
+which are seeing big picture, entire architecture etc. Thanks any best 
+regards...</div><div><span class="floatRight" style="font-size: 11px;"><span class="watchICon"></span>Dec 24, 2012</span><a class="commnetLinkSecondStep" onclick="LikeComment(32742)"><span id="Likes_32742">0</span> Like</a><a class="commnetLinkSecondStep" onclick="ShowReplies(32742)"><span id="Replies_32742">0</span> Reply</a><img id="ajaxLoader_32742" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ajax-loader_12x9.gif" style="margin:4px 0px 0px 5px; display:none;"></div><div class="clear"></div><div id="CommentReplies_32742" style="display:none;"></div></div></div><div id="comment_33225" class="pulsecomment"><div class="image level0"><a href="http://www.c-sharpcorner.com/authors/16e7be/shiven-dave.aspx"><img alt="" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/16e7be.jpg"></a></div><div class="commentcontent"><a class="LinkNormalBlue" href="http://www.c-sharpcorner.com/authors/16e7be/shiven-dave.aspx">shiven dave</a><div>good nice article </div><div><span class="floatRight" style="font-size: 11px;"><span class="watchICon"></span>Jan 18, 2013</span><a class="commnetLinkSecondStep" onclick="LikeComment(33225)"><span id="Likes_33225">0</span> Like</a><a class="commnetLinkSecondStep" onclick="ShowReplies(33225)"><span id="Replies_33225">0</span> Reply</a><img id="ajaxLoader_33225" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ajax-loader_12x9.gif" style="margin:4px 0px 0px 5px; display:none;"></div><div class="clear"></div><div id="CommentReplies_33225" style="display:none;"></div></div></div><div id="comment_33226" class="pulsecomment BackgroundWhite"><div class="image level0"><a href="http://www.c-sharpcorner.com/authors/16e7be/shiven-dave.aspx"><img alt="" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/16e7be.jpg"></a></div><div class="commentcontent"><a class="LinkNormalBlue" href="http://www.c-sharpcorner.com/authors/16e7be/shiven-dave.aspx">shiven dave</a><div>good nice article </div><div><span class="floatRight" style="font-size: 11px;"><span class="watchICon"></span>Jan 18, 2013</span><a class="commnetLinkSecondStep" onclick="LikeComment(33226)"><span id="Likes_33226">0</span> Like</a><a class="commnetLinkSecondStep" onclick="ShowReplies(33226)"><span id="Replies_33226">0</span> Reply</a><img id="ajaxLoader_33226" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ajax-loader_12x9.gif" style="margin:4px 0px 0px 5px; display:none;"></div><div class="clear"></div><div id="CommentReplies_33226" style="display:none;"></div></div></div> </div> <div class="pulsecomment borderNone" id="RootPostComment"> <div class="image level0"> <img src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/DefaultAuthorImage.gif" alt=""> </div> <div id="ctl00_Comments1_PanelPostComment" class="commentcontent" onkeypress="javascript:return WebForm_FireDefaultButton(event, 'ctl00_Comments1_ButtonPost')"> <input id="InputCommentText_0" class="inputText" value=" Type your comment here and press Enter Key.... " onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" style="width: 97%; font-size: 12px;" spellcheck="true" type="text"> <input name="ctl00$Comments1$ButtonPost" value="" onclick="PostComment(0); return false;" id="ctl00_Comments1_ButtonPost" style="display: none;" type="submit"> </div> <img id="PostLoader" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/ajax-loader_12x9.gif" style="clear: both; margin: 10px 5px 0px 0px; float: right; display: none;"> </div> </div> </div> <input name="ctl00$Comments1$Button1" value="" onclick="return false;" id="ctl00_Comments1_Button1" style="display: none;" type="submit"> <div id="ctl00_Comments1_UpdatePanelEmail"> <input name="ctl00$Comments1$HiddenFieldEmailComment" id="ctl00_Comments1_HiddenFieldEmailComment" type="hidden"> <input name="ctl00$Comments1$HiddenFieldIsChildComment" id="ctl00_Comments1_HiddenFieldIsChildComment" type="hidden"> <input name="ctl00$Comments1$HiddenFieldParentUserId" id="ctl00_Comments1_HiddenFieldParentUserId" type="hidden"> <input name="ctl00$Comments1$ButtonSendEmail" value="" id="ctl00_Comments1_ButtonSendEmail" style="display: none;" type="submit"> </div> </div> <div class="clear"> </div> <div class="headerGray marginTop"> <span class="HeaderSpanFirstBlue"></span><span class="HeaderSpanSecond">COMMENT USING
+</span> <img style="margin: 3px 0px 0px 18px;" alt="" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/facebook_Icon.png"> </div> <div fb-xfbml-state="parsed" class="fb-comments fb_iframe_widget_loader fb_iframe_widget" data-href="http://www.c-sharpcorner.com/UploadFile/yusufkaratoprak/difference-between-loose-coupling-and-tight-coupling/Default.aspx" data-width="675" data-num-posts="5"><span style="height: 160px; width: 675px;"><iframe src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/comments.xht" class="fb_ltr" title="Facebook Social Plugin" style="border: medium none; overflow: hidden; height: 160px; width: 675px;" name="f245329fb6b7a92" id="f51815b0a6eb66" scrolling="no"></iframe></span></div> </div> </div> <div class="rightCntr"> <div class="clear"> </div> <div class="outerBox"> <div class="headerGray"> <span class="HeaderSpanFirstBlue"></span><span class="HeaderSpanSecond">PREMIUM SPONSORS</span> <span style="margin-left: 71px; margin-top: 1px; margin-right: 0px;"></span><span style="float: right; margin-top: 3px; margin-right: 5px;"></span> </div> <div style="width: 336px; color: #e4e4e4; margin-bottom: 5px;"> <div style="width: 326px; height: auto; position: relative; float: left; margin-left: 10px;"> <div style="position: relative; float: left; top: 0px; left: 0px; width: 100px; height: 110px;
+margin-top: 8px;"> <a id="ctl00_PremiumSponsors1_LogoUrl" href="http://www.infragistics.com/igntieuigrid-download/?utm_source=c-sharpcorner.com&amp;utm_medium=cpc&amp;utm_content=TextAdwImage&amp;utm_campaign=jquery" target="_blank"><img id="ctl00_PremiumSponsors1_Logo" class="image90" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/010120AM.jpg" style="border-width:0px;padding: 5px; border-width: 1px;"></a> </div> <div style="position: relative; margin-left: 5px; float: left; top: 0px; right: 0px;
+width: 221px; height: auto;"> <div style="margin-top: 5px; margin-left: 5px;"> <a id="ctl00_PremiumSponsors1_Name" class="MemberoftheMonth" href="http://www.infragistics.com/igntieuigrid-download/?utm_source=c-sharpcorner.com&amp;utm_medium=cpc&amp;utm_content=TextAdwImage&amp;utm_campaign=jquery" target="_blank">Infragistics</a> </div> <div style="width: 215px; height: 1px; background-color: #d7d7d7; margin-top: 5px;
+margin-left: 5px; margin-bottom: 5px;"> </div> <div id="ctl00_PremiumSponsors1_Description" style="width: 215px; margin-top: 5px; margin-left: 5px;
+color: #787878;">Infragistics is experts in technology and design, and 
+passionate about helping you build highly performant and stylish 
+applications that solve problems, deliver inspiration, and maximize 
+results. </div> </div> </div> </div> </div> <div class="clear"> </div> <div style="width: 336px; margin-bottom: 10px;"> <a id="ctl00_RightBar_ArticleDetailRightBar1_NewsArticleAd1_AdRotatorArticle" href="http://www.c-sharpcorner.com/AdRedirector.aspx?BannerId=702&amp;target=http://www.nevron.com/Campaign?key=CSharpCorner_13_6_Chart_336x280&amp;url=http://www.nevron.com/" target="_blank"><img src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/Chart_336x280.png" alt="Nevron Chart" style="border-width:0px;"></a> </div> <div class="outerBox"> <div class="headerGray"> <span class="HeaderSpanFirstBlue"></span><span class="HeaderSpanSecond">TRENDING UP</span> <span id="ctl00_RightBar_ArticleDetailRightBar1_TrendingUp1_OnOffEnabledImageButton"></span><a href="http://www.c-sharpcorner.com/RSS/TopArticles.aspx" id="ctl00_RightBar_ArticleDetailRightBar1_TrendingUp1_RssEnabledImageButton" class="headerRss"></a> </div> <ul class="treading"> <li> <a href="http://www.c-sharpcorner.com/UploadFile/29d7e0/locate-mobile-number-of-india-using-javascript-in-Asp-Net/" class="LinkNormalStyle">
+Locate Mobile Number Using JavaScript in ASP.Net</a>  <a href="http://www.c-sharpcorner.com/UploadFile/e881fb/learn-oop-interface-using-C-Sharp/" class="LinkNormalStyle">
+Learn OOP Interface Using C#</a>  <a href="http://www.c-sharpcorner.com/UploadFile/fd0172/working-of-url-and-urlconnection-class-in-java/" class="LinkNormalStyle">
+How the URL and URLConnection Classes Work In Java</a>  <a href="http://www.c-sharpcorner.com/UploadFile/cd7c2e/how-to-add-an-alias-cname-resource-record-to-a-zone/" class="LinkNormalStyle">
+How to Add an Alias (CNAME) Resource Record to a Zone</a>  <a href="http://www.c-sharpcorner.com/UploadFile/yusufkaratoprak/jsaction-with-t4-template/" class="LinkNormalStyle">
+JsAction with T4 Template</a>  <a href="http://www.c-sharpcorner.com/UploadFile/cb88b2/logging-using-log4net-in-compact-framework-2-0-in-visual-stu/" class="LinkNormalStyle">
+Logging Using Log4net in Compact Framework 2.0 in Visual Studio 2008</a>  <a href="http://www.c-sharpcorner.com/UploadFile/afenster/how-to-find-a-doctor-near-your-home-in-sql-server/" class="LinkNormalStyle">
+How To Find A Doctor Near Your Home in SQL Server</a>  <a href="http://www.c-sharpcorner.com/UploadFile/vendettamit/rhino-mockrepository-concrete-vs-static-usage/" class="LinkNormalStyle">
+Rhino MockRepository Concrete vs Static Usage</a>  <a href="http://www.c-sharpcorner.com/UploadFile/1e5156/how-to-set-image-in-a-image-view-on-click/" class="LinkNormalStyle">
+How to Set Image in a Image View on Click in Android Studio</a>  <a href="http://www.c-sharpcorner.com/UploadFile/c63ec5/xml-parser-function-in-php-part-3/" class="LinkNormalStyle">
+XML Parser Function in PHP: Part 3</a>  </li> </ul> <div class="FooterLineForArticlesJobs"> <div style="padding-top: 10px;"> <span style="margin-left: 3px;"> <a id="ctl00_RightBar_ArticleDetailRightBar1_TrendingUp1_HyperLinkFooter" class="LinkNormalStyleOrange ViewAll" href="http://www.c-sharpcorner.com/Articles/TopArticles.aspx" style="float: right; margin-right: 10px;">View All</a></span></div> </div> </div> <div class="outerBox"> <div class="headerGray"> <span class="HeaderSpanFirst"></span><span class="HeaderSpanSecond">MOST LIKED ARTICLE</span> <span id="ctl00_RightBar_ArticleDetailRightBar1_ArticleMostLiked1_OnOffEnabledImageButton"></span> </div> <ul class="treading"> <li> <a href="http://www.c-sharpcorner.com/UploadFile/db2972/wcf-introduction-and-contracts-day-1/" class="LinkNormalStyle">
+WCF Introduction and Contracts - Day 1
+</a> <a href="http://www.c-sharpcorner.com/UploadFile/db2972/create-ssrs-report-using-report-wizard/" class="LinkNormalStyle">
+Create SSRS Report Using Report Wizard
+</a> <a href="http://www.c-sharpcorner.com/UploadFile/db2972/create-read-update-and-delete-crud-operation-using-linq-to/" class="LinkNormalStyle">
+CREATE READ UPDATE and DELETE - CRUD Operation Using LINQ to SQL
+</a> <a href="http://www.c-sharpcorner.com/UploadFile/db2972/wcf-data-contract-day-4/" class="LinkNormalStyle">
+WCF - Data Contract - Day 4
+</a> <a href="http://www.c-sharpcorner.com/UploadFile/db2972/factory-design-pattern/" class="LinkNormalStyle">
+Factory Design Pattern
+</a> </li> </ul> </div> <script type="text/javascript" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/widgets.htm" async="true"></script> <div style="padding-bottom: 10px;"> <a href="https://twitter.com/csharpcorner" class="twitter-follow-button" data-show-count="true" data-lang="en" show_screen_name="true" data-width="100%">Follow @twitterapi</a> </div> <div id="fb-root"> </div> <script type="text/javascript">    (function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+fjs.parentNode.insertBefore(js, fjs);
+} (document, 'script', 'facebook-jssdk'));</script> <div fb-xfbml-state="rendered" class="fb-like-box fb_iframe_widget" data-href="https://www.facebook.com/pages/C-Corner/194086953935286" data-width="336px" data-show-faces="true" data-stream="false" data-header="true" data-border-color="#c6c6c6" data-max-rows="2" style="padding-bottom: 10px;
+border: none 0px" async="false"><span style="vertical-align: bottom; width: 336px; height: 271px;"><iframe class="" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/like_box.htm" style="border: medium none; visibility: visible; width: 336px; height: 271px;" title="fb:like_box Facebook Social Plugin" allowtransparency="true" name="f19f1ad176e713a" frameborder="0" height="1000px" scrolling="no" width="336px"></iframe></span></div> <div class="outerBox"> <div class="headerGray" style="width: 334px; top: 3px; margin-bottom: 5px;"> <span class="HeaderSpanFirst"></span><span class="HeaderSpanSecond">HOT KEYWORDS</span> </div> <div style="margin: 0px 0px 5px 10px"> <a href="http://www.c-sharpcorner.com/tags/adapter" class="HeaderTagCloud" style="font-size:small;color:#A9A9A9;">adapter</a> <a href="http://www.c-sharpcorner.com/tags/Adapter-Pattern" class="HeaderTagCloud" style="font-size:small;color:#D3D3D3;">Adapter Pattern</a> <a href="http://www.c-sharpcorner.com/tags/business-logic-layer" class="HeaderTagCloud" style="font-size:medium;color:#696969;">business logic layer</a> <a href="http://www.c-sharpcorner.com/tags/concrete-classes" class="HeaderTagCloud" style="font-size:small;color:#A9A9A9;">concrete classes</a> <a href="http://www.c-sharpcorner.com/tags/Creational-Pattern" class="HeaderTagCloud" style="font-size:small;color:Gray;">Creational Pattern</a> <a href="http://www.c-sharpcorner.com/tags/Creational-Patterns" class="HeaderTagCloud" style="font-size:small;color:Gray;">Creational Patterns</a> <a href="http://www.c-sharpcorner.com/tags/custom-file-types" class="HeaderTagCloud" style="font-size:small;color:#808080;">custom file types</a> <a href="http://www.c-sharpcorner.com/tags/decorator" class="HeaderTagCloud" style="font-size:small;color:#A9A9A9;">decorator</a> <a href="http://www.c-sharpcorner.com/tags/deserialization" class="HeaderTagCloud" style="font-size:small;color:#A9A9A9;">deserialization</a> <a href="http://www.c-sharpcorner.com/tags/design-patterns" class="HeaderTagCloud" style="font-size:xx-large;color:#A9A9A9;">design patterns</a> <a href="http://www.c-sharpcorner.com/tags/Factory-class" class="HeaderTagCloud" style="font-size:small;color:#696969;">Factory class</a> <a href="http://www.c-sharpcorner.com/tags/factory-design-pattern" class="HeaderTagCloud" style="font-size:small;color:#D3D3D3;">factory design pattern</a> <a href="http://www.c-sharpcorner.com/tags/gof" class="HeaderTagCloud" style="font-size:small;color:Gray;">gof</a> <a href="http://www.c-sharpcorner.com/tags/IEnumerator" class="HeaderTagCloud" style="font-size:large;color:#D3D3D3;">IEnumerator</a> <a href="http://www.c-sharpcorner.com/tags/IOC" class="HeaderTagCloud" style="font-size:medium;color:#D3D3D3;">IOC</a> <a href="http://www.c-sharpcorner.com/tags/MVP" class="HeaderTagCloud" style="font-size:large;color:Gray;">MVP</a> <a href="http://www.c-sharpcorner.com/tags/Observer" class="HeaderTagCloud" style="font-size:small;color:#D3D3D3;">Observer</a> <a href="http://www.c-sharpcorner.com/tags/Observer-Pattern" class="HeaderTagCloud" style="font-size:medium;color:Gray;">Observer Pattern</a> <a href="http://www.c-sharpcorner.com/tags/Pattern" class="HeaderTagCloud" style="font-size:medium;color:#A9A9A9;">Pattern</a> <a href="http://www.c-sharpcorner.com/tags/property-grid-control" class="HeaderTagCloud" style="font-size:large;color:#A9A9A9;">property grid control</a> <a href="http://www.c-sharpcorner.com/tags/Prototype-Pattern" class="HeaderTagCloud" style="font-size:small;color:Gray;">Prototype Pattern</a> <a href="http://www.c-sharpcorner.com/tags/Proxy-Pattern" class="HeaderTagCloud" style="font-size:small;color:Gray;">Proxy Pattern</a> <a href="http://www.c-sharpcorner.com/tags/Singleton-Pattern" class="HeaderTagCloud" style="font-size:medium;color:#A9A9A9;">Singleton Pattern</a> <a href="http://www.c-sharpcorner.com/tags/Unit-testing" class="HeaderTagCloud" style="font-size:large;color:Gray;">Unit testing</a> <a href="http://www.c-sharpcorner.com/tags/Wrapper-Pattern" class="HeaderTagCloud" style="font-size:large;color:#696969;">Wrapper Pattern</a> </div> <div class="FooterLineForArticlesJobs"> <div style="padding-top: 10px;"> </div> </div> </div> <div id="ctl00_RightBar_ArticleDetailRightBar1_PremiumSponsorsTextAd1_UpdatePanelSponsorWithImage"> <div id="ctl00_RightBar_ArticleDetailRightBar1_PremiumSponsorsTextAd1_SponsorAdWithImage" class="outerBox"> <div class="headerGray"> <span class="HeaderSpanFirst Blue"></span><span class="HeaderSpanSecond">SPONSORED BY</span> <span style="margin-left: 71px; margin-top: 1px; margin-right: 0px;"></span><span style="float: right; margin-top: 3px; margin-right: 5px;"></span> </div> <ul class="treadingnew" style="margin-left: 12px;"> <li class="marginTop"> <div style="float: left; margin: 0px 5px 5px 0px;"> <a href="http://www.c-sharpcorner.com/AdRedirector.aspx?AdId=81&amp;target=http://www.infragistics.com/igntieuigrid-download/?utm_source=c-sharpcorner.com&amp;utm_medium=cpc&amp;utm_content=TextAdwImage&amp;utm_campaign=jquery" id="ctl00_RightBar_ArticleDetailRightBar1_PremiumSponsorsTextAd1_HrefSponsorLinkImage" rel="nofollow" target="_blank"> <img src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/010925AM.jpg" id="ctl00_RightBar_ArticleDetailRightBar1_PremiumSponsorsTextAd1_imgSponsor" height="90" width="75"> </a> </div> <div style="width: 238px; font-weight: bold; font-size: 14px; color: Black; margin-bottom: 0px;
+float: left;"> <a href="http://www.c-sharpcorner.com/AdRedirector.aspx?AdId=81&amp;target=http://www.infragistics.com/igntieuigrid-download/?utm_source=c-sharpcorner.com&amp;utm_medium=cpc&amp;utm_content=TextAdwImage&amp;utm_campaign=jquery" id="ctl00_RightBar_ArticleDetailRightBar1_PremiumSponsorsTextAd1_HrefSponsorLink" target="_blank">Download Your Free HTML5/jQuery Grid Now!</a> </div> <div id="ctl00_RightBar_ArticleDetailRightBar1_PremiumSponsorsTextAd1_divSponsorDetail" style="margin-top: 5;
+float: left; width: 238px; margin-bottom: 10">Make Your Data Do More 
+with the Ignite UI Grid.  Launch eye-popping, performance-driven HTML5 
+apps w/ Ignite UI's free jQuery Grid.</div> </li> </ul> </div> </div> <div id="FacebookFriendsControl" class="outerBox" style="display: none;"> <div class="headerGray"> <span class="HeaderSpanFirstBlue"></span><span class="HeaderSpanSecond">My Facebook
+Friends </span> </div> <div id="facebookFriends"> </div> </div> <div class="clear"> </div> <div style="width: 336px; margin-bottom: 10px;"> <a id="ctl00_RightBar_ArticleDetailRightBar1_NewsArticleAdMiddle1_AdRotatorArticle" href="http://www.c-sharpcorner.com/AdRedirector.aspx?BannerId=702&amp;target=http://www.nevron.com/Campaign?key=CSharpCorner_13_6_Chart_336x280&amp;url=http://www.nevron.com/" target="_blank"><img src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/Chart_336x280.png" alt="Nevron Chart" style="border-width:0px;"></a> </div> <div class="outerBox"> <div class="headerGray"> <span class="HeaderSpanFirstBlue"></span><span class="HeaderSpanSecond">WHITEPAPERS
+AND BOOKS</span> <a id="RssEnabledImageButton" href="http://www.c-sharpcorner.com/RSS/FreeBook.aspx" class="headerRss"></a> </div> <ul class="treading"> <li> <a href="http://www.c-sharpcorner.com/ebooks/free/69/interview-questions-on-sharepoint-2013.aspx" class="LinkNormalStyle">
+Interview Questions on SharePoint 2013</a> <a href="http://www.c-sharpcorner.com/ebooks/free/68/sharepoint-2010-administration-development.aspx" class="LinkNormalStyle">
+SharePoint 2010 Administration &amp; Development</a> <a href="http://www.c-sharpcorner.com/ebooks/free/67/getting-started-with-managed-metadata-service-in-sharepoint.aspx" class="LinkNormalStyle">
+Getting Started with Managed Metadata Service in SharePoint 2010</a> <a href="http://www.c-sharpcorner.com/ebooks/free/66/windows-phone-7-hileleri.aspx" class="LinkNormalStyle">
+Windows Phone 7 Hileleri</a> <a href="http://www.c-sharpcorner.com/ebooks/free/65/windows-phone-development-step-by-step-tutorial.aspx" class="LinkNormalStyle">
+Windows Phone Development Step by Step Tutorial</a> <a href="http://www.c-sharpcorner.com/ebooks/free/64/essentials-of-sharepoint-2010-business-intelligence-capabil.aspx" class="LinkNormalStyle">
+Essentials of SharePoint 2010: Business Intelligence Capabilities</a> <a href="http://www.c-sharpcorner.com/ebooks/free/63/working-with-directories-in-C-Sharp.aspx" class="LinkNormalStyle">
+Working with Directories in C#</a> <a href="http://www.c-sharpcorner.com/ebooks/free/62/fileinfo-in-C-Sharp.aspx" class="LinkNormalStyle">
+FileInfo in C#</a> <a href="http://www.c-sharpcorner.com/ebooks/free/61/programming-list-with-C-Sharp.aspx" class="LinkNormalStyle">
+Programming List with C#</a> <a href="http://www.c-sharpcorner.com/ebooks/free/60/source-code-graphics-programming-with-gdi.aspx" class="LinkNormalStyle">
+Source Code: Graphics Programming with GDI+</a> </li> </ul> <div class="FooterLineForArticlesJobs"> <div style="padding-top: 10px;"> <span style="margin-left: 3px;"><a href="http://www.c-sharpcorner.com/FreeBook/Default.aspx" class="LinkNormalStyleOrange ViewAll" style="float: right; margin-right: 10px;">View All
+</a></span> </div> </div> </div> <div class="clear"> </div> <script type="text/javascript" language="Javascript">
+function show_confirm() {
+window.location = document.getElementById('ctl00_PollForHome1_HiddenField1').value;
+}
+</script> <div id="ctl00_PollForHome1_Updatepanel1"> <div id="ctl00_PollForHome1_TabContainerSection" class="PollTheme ajax__tab_container ajax__tab_default" style="width: 100%; visibility: visible;"> <div class="ajax__tab_header" id="ctl00_PollForHome1_TabContainerSection_header"> <span class="ajax__tab_active" id="ctl00_PollForHome1_TabContainerSection_TabPanelInProgress_tab"><span class="ajax__tab_outer"><span class="ajax__tab_inner"><span class="ajax__tab_tab" id="__tab_ctl00_PollForHome1_TabContainerSection_TabPanelInProgress"> Poll </span></span></span></span><span id="ctl00_PollForHome1_TabContainerSection_TabPanelSection_tab"><span class="ajax__tab_outer"><span class="ajax__tab_inner"><span class="ajax__tab_tab" id="__tab_ctl00_PollForHome1_TabContainerSection_TabPanelSection"> Result </span></span></span></span><span id="ctl00_PollForHome1_TabContainerSection_TabPanel1_tab"><span class="ajax__tab_outer"><span class="ajax__tab_inner"><span class="ajax__tab_tab" id="__tab_ctl00_PollForHome1_TabContainerSection_TabPanel1">All Polls</span></span></span></span> </div><div class="ajax__tab_body" id="ctl00_PollForHome1_TabContainerSection_body"> <div style="visibility: visible;" class="ajax__tab_panel" id="ctl00_PollForHome1_TabContainerSection_TabPanelInProgress"> <table id="ctl00_PollForHome1_TabContainerSection_TabPanelInProgress_TablePollContainer" border="0" cellpadding="0" cellspacing="0" width="318"> <tbody><tr> <td colspan="2"> </td> </tr> <tr> <td colspan="2"> <a id="ctl00_PollForHome1_TabContainerSection_TabPanelInProgress_HyperlinkTItle" class="PollTitle" href="http://www.c-sharpcorner.com/Polls/Default.aspx?pollid=360" style="display:inline-block;text-decoration:none;width:100%;">Speed of C# Corner</a> </td> </tr> <tr> <td colspan="2"> </td> </tr> <tr> <td class="PollQuestion" colspan="2"> <span id="ctl00_PollForHome1_TabContainerSection_TabPanelInProgress_LabelPollQuestion">How do you find speed of C# Corner when visiting the site?</span> </td> </tr> <tr> <td colspan="2"> </td> </tr> <tr> <td colspan="2" style="color: #7F8080;"> <table id="ctl00_PollForHome1_TabContainerSection_TabPanelInProgress_RadioButtonListPolls" border="0"> <tbody><tr> <td><input id="ctl00_PollForHome1_TabContainerSection_TabPanelInProgress_RadioButtonListPolls_0" name="ctl00$PollForHome1$TabContainerSection$TabPanelInProgress$RadioButtonListPolls" value="1516" type="radio"><label for="ctl00_PollForHome1_TabContainerSection_TabPanelInProgress_RadioButtonListPolls_0">Very Fast</label></td> </tr><tr> <td><input id="ctl00_PollForHome1_TabContainerSection_TabPanelInProgress_RadioButtonListPolls_1" name="ctl00$PollForHome1$TabContainerSection$TabPanelInProgress$RadioButtonListPolls" value="1517" type="radio"><label for="ctl00_PollForHome1_TabContainerSection_TabPanelInProgress_RadioButtonListPolls_1">OK</label></td> </tr><tr> <td><input id="ctl00_PollForHome1_TabContainerSection_TabPanelInProgress_RadioButtonListPolls_2" name="ctl00$PollForHome1$TabContainerSection$TabPanelInProgress$RadioButtonListPolls" value="1518" type="radio"><label for="ctl00_PollForHome1_TabContainerSection_TabPanelInProgress_RadioButtonListPolls_2">Slow</label></td> </tr><tr> <td><input id="ctl00_PollForHome1_TabContainerSection_TabPanelInProgress_RadioButtonListPolls_3" name="ctl00$PollForHome1$TabContainerSection$TabPanelInProgress$RadioButtonListPolls" value="1519" type="radio"><label for="ctl00_PollForHome1_TabContainerSection_TabPanelInProgress_RadioButtonListPolls_3">Very Slow</label></td> </tr> </tbody></table> </td> </tr> <tr> <td> </td> <td align="right"> <input name="ctl00$PollForHome1$TabContainerSection$TabPanelInProgress$ButtonVote" value="Vote" id="ctl00_PollForHome1_TabContainerSection_TabPanelInProgress_ButtonVote" class="CommonButtonStyle" style="width:90px;" type="submit">&nbsp;
+</td> </tr> <tr class="Separator"> <td colspan="2"> </td> </tr> <tr> <td align="left"> <input name="ctl00$PollForHome1$TabContainerSection$TabPanelInProgress$imageButtonPrevious" id="ctl00_PollForHome1_TabContainerSection_TabPanelInProgress_imageButtonPrevious" disabled="disabled" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/prevBtn.gif" style="border-width:0px;height: 16px" type="image"> </td> <td align="right"> <input name="ctl00$PollForHome1$TabContainerSection$TabPanelInProgress$imageButtonNext" id="ctl00_PollForHome1_TabContainerSection_TabPanelInProgress_imageButtonNext" src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/nextBtn.gif" style="border-width:0px;" type="image"> </td> </tr> </tbody></table> </div><div class="ajax__tab_panel" id="ctl00_PollForHome1_TabContainerSection_TabPanelSection" style="display:none;visibility:hidden;"> <div id="Table2" class="PollQuestion" style="width: 100%; margin-top: 2px;"> <span id="ctl00_PollForHome1_TabContainerSection_TabPanelSection_LabelPollQuestion1">How do you find speed of C# Corner when visiting the site?</span> <table class="TablePollResult" style="color:#7F8080;" border="0" cellpadding="3" cellspacing="0" width="100%"><tbody><tr class="TablePollResultHead"><td width="50%">&nbsp;Options</td><td class="PollCenterAllignmentWithWidth"> Votes </td><td class="PollCenterAllignmentWithWidth"> % </td></tr><tr><td>&nbsp;Very Fast</td><td class="PollRightAllignment">60</td><td class="PollRightAllignmentWithFont">26.79</td></tr><tr><td>&nbsp;OK</td><td class="PollRightAllignment">129</td><td class="PollRightAllignmentWithFont">57.59</td></tr><tr><td>&nbsp;Slow</td><td class="PollRightAllignment">20</td><td class="PollRightAllignmentWithFont">8.93</td></tr><tr><td>&nbsp;Very Slow</td><td class="PollRightAllignment">15</td><td class="PollRightAllignmentWithFont">6.70</td></tr><tr class="TablePollResultFoot"><td>&nbsp;Total</td><td class="PollRightAllignment">224</td><td class="PollRightAllignment">100%</td></tr></tbody></table> </div> </div><div class="ajax__tab_panel" id="ctl00_PollForHome1_TabContainerSection_TabPanel1" style="display:none;visibility:hidden;"> <img src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/Loading.GIF"> </div> </div> </div> </div> <input name="ctl00$PollForHome1$HiddenField1" id="ctl00_PollForHome1_HiddenField1" value="http://www.c-sharpcorner.com/Polls" type="hidden"> </div> </div> </div> <div class="footer"> <div class="menuStripGray"> <div class="page"> <span class="menuLinkGray" style="float: right;"><span class="menuLinkTextGray" style="font-size: 14px;">
+Hosted By <a href="http://www.cbeyond.net/" target="_blank"><span style="color: #982929">
+CBeyond Cloud Services</span></a></span></span> <a href="http://www.c-sharpcorner.com/Members/mvps/" class="menuLinkGray"><span class="menuFirstGray"><span class="menuLinkTextGray">MVPs
+</span></span></a><a href="http://www.c-sharpcorner.com/Articles/mostviewed.aspx" class="menuLinkGray"><span class="menuCommonGray"><span class="menuLinkTextGray">MOST
+VIEWED</span></span></a><a href="http://www.c-sharpcorner.com/Members/legend/" class="menuLinkGray"><span class="menuCommonGray"><span class="menuLinkTextGray">LEGENDS</span></span></a><a href="http://www.c-sharpcorner.com/articles/" class="menuLinkGray"><span class="menuCommonGray"><span class="menuLinkTextGray">NOW</span></span></a><a href="http://www.c-sharpcorner.com/prizes/" class="menuLinkGray"><span class="menuCommonGray"><span class="menuLinkTextGray"> PRIZES</span></span></a><a href="http://www.c-sharpcorner.com/prizes/" class="menuLinkGray"><span class="menuCommonGray"><span class="menuLinkTextGray">AWARDS</span></span></a><a href="http://www.c-sharpcorner.com/reviews/?type=book" class="menuLinkGray"><span class="menuCommonGray"><span class="menuLinkTextGray">REVIEWS</span></span></a><a href="http://www.c-sharpcorner.com/survey/" class="menuLinkGray"><span class="menuCommonGray"><span class="menuLinkTextGray">SURVEY</span></span></a><a href="http://www.c-sharpcorner.com/exam/" class="menuLinkGray"><span class="menuCommonGray"><span class="menuLinkTextGray">CERTIFICATIONS</span></span></a><a href="http://www.c-sharpcorner.com/downloads/" class="menuLinkGray"><span class="menuLastGray"><span class="menuLinkTextGray">DOWNLOADS</span></span></a> </div> </div> <div class="menuStripBlue" style="z-index: 0;"> <div class="page"> <div class="menu footerMenu"> <ul> <li class="first"><a href="http://www.c-sharpcorner.com/photos/">
+PHOTOS</a></li> <li><a href="http://www.c-sharpcorner.com/tips/">TIPS</a> </li> <li><a href="http://www.c-sharpcorner.com/consulting/">CONSULTING</a> </li> <li><a href="http://www.c-sharpcorner.com/training/">TRAINING</a> </li> <li><a href="http://www.c-sharpcorner.com/beginners/">STUDENTS</a> </li> <li><a href="http://www.c-sharpcorner.com/Members/">MEMBERS</a> </li> <li><a href="http://www.c-sharpcorner.com/media/ContactUs.aspx">MEDIA KIT</a> </li> <li><a href="http://www.c-sharpcorner.com/ideas/">SUGGEST AN IDEA</a> </li> </ul> </div> </div> </div> <div class="footerBottom"> <div class="page"> <div style="float: left; margin-left: 7px;"> <span style="float: left; margin-left: 2px; width: 510px; padding: 20px 0px 0px;"><a href="http://www.c-sharpcorner.com/privacypolicy.aspx"><span class="whiteLink">
+PRIVACY POLICY</span></a> <span style="color: #424242">|</span> <a href="http://www.c-sharpcorner.com/termsconditions.aspx"> <span class="whiteLink">TERMS &amp; CONDITIONS</span></a> <span style="color: #424242">|</span> <a href="http://www.c-sharpcorner.com/sitemap/"><span class="whiteLink">SITEMAP</span></a> <span style="color: #424242">|</span> <a href="http://www.c-sharpcorner.com/contactus.aspx"> <span class="whiteLink">CONTACT US</span></a> <span style="color: #424242">|</span> <a href="http://www.c-sharpcorner.com/resources/aboutus.aspx"><span class="whiteLink">
+ABOUT US</span></a> <span style="color: #424242">|</span> <a href="http://www.c-sharpcorner.com/contactus.aspx?Type=6"> <span class="whiteLink">REPORT ABUSE</span></a> </span> <div style="float: right; color: Gray; margin-top: 5px; width: 500px;"> <div class="socialBox"> <ul> <li><a target="_blank" href="http://www.facebook.com/pages/C-Corner/194086953935286"> <img src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/facebook.png" alt=""></a></li> <li><a target="_blank" href="http://twitter.com/csharpcorner"> <img src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/twitter.png"></a></li> <li><a target="_blank" href="https://plus.google.com/u/0/114221266846457741050/posts"> <img src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/google.png"> </a></li> <li><a target="_blank" href="http://www.youtube.com/user/CsharpCornerVideos/videos"> <img src="Difference%20Between%20Loose%20Coupling%20and%20Tight%20Coupling_files/youTubeChannel.png"></a> </li> </ul> </div> <div style="width: 100%; float: left; text-align: right;">
+©2013 C# Corner.&nbsp;All contents are copyright of their authors.&nbsp;&nbsp;</div> </div> </div> </div> </div> </div> </div> <input name="ctl00$hiddenFieldNext" id="ctl00_hiddenFieldNext" value="0564181d-8945-40a9-8a79-94cf049c0608" type="hidden"> <input name="ctl00$hiddenFieldPrevious" id="ctl00_hiddenFieldPrevious" value="63aff614-ab0e-46bb-8931-86b760271227" type="hidden"> <script type="text/javascript">
+//<![CDATA[
+var Page_Validators =  new Array(document.getElementById("ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorUserId"), document.getElementById("ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorPassword"));
+//]]> </script> <script type="text/javascript">
+//<![CDATA[
+var ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorUserId = document.all ? document.all["ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorUserId"] : document.getElementById("ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorUserId");
+ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorUserId.controltovalidate = "ctl00_HeaderNewDesign1_Login1_TextBoxUserId";
+ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorUserId.focusOnError = "t";
+ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorUserId.errormessage = "*";
+ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorUserId.display = "Dynamic";
+ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorUserId.validationGroup = "LeftLogin";
+ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorUserId.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorUserId.initialvalue = "";
+var ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorPassword = document.all ? document.all["ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorPassword"] : document.getElementById("ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorPassword");
+ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorPassword.controltovalidate = "ctl00_HeaderNewDesign1_Login1_TextBoxPassword";
+ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorPassword.focusOnError = "t";
+ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorPassword.errormessage = "*";
+ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorPassword.display = "Dynamic";
+ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorPassword.validationGroup = "LeftLogin";
+ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorPassword.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorPassword.initialvalue = "";
+//]]> </script> <div> <input name="__SCROLLPOSITIONX" id="__SCROLLPOSITIONX" value="0" type="hidden"> <input name="__SCROLLPOSITIONY" id="__SCROLLPOSITIONY" value="0" type="hidden"> <input name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWKgKbhoPQDgKr5b/RCAKu4/PIAgLH/pHNDAKLiqGwAgLq5a/JDwL8lbizDgLW9cryDQKl/JHhAwLh6vOqDwKLjb6QDwLa+pH8DQK7iZ6MDALP0rqtBAKTxvebBQL6mL6/DQLnjZPFDwK6mby0DQKM08bkCAKyvo/zAQK/zYnfBQKtjsrbBwKnu47HBAKhlc2JCQLdz83JCgLpwuC/CwLrua7/DwKsyaD8BwLdoKjrDQKmldaNCQLei4GMDwKgqbb8AwKgqaKbCwKgqZ7wCQKgqYqfAQLkvumFBgKB2rW1BwLP0qXTBwKKuJmPCgKNv/LRAwKc3rDeDAKayJrtBY5u7OANROioz/jiZLfBEbeJKclA" type="hidden"> </div> <script type="text/javascript">
+//<![CDATA[
+var Page_ValidationActive = false;
+if (typeof(ValidatorOnLoad) == "function") {
+ValidatorOnLoad();
+}
+function ValidatorOnSubmit() {
+if (Page_ValidationActive) {
+return ValidatorCommonOnSubmit();
+}
+else {
+return true;
+}
+}
+theForm.oldSubmit = theForm.submit;
+theForm.submit = WebForm_SaveScrollPositionSubmit;
+theForm.oldOnSubmit = theForm.onsubmit;
+theForm.onsubmit = WebForm_SaveScrollPositionOnSubmit;
+WebForm_AutoFocus('ctl00_HeaderNewDesign1_Login1_TextBoxUserId');Sys.Application.initialize();
+document.getElementById('ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorUserId').dispose = function() {
+Array.remove(Page_Validators, document.getElementById('ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorUserId'));
+}
+Sys.Application.add_init(function() {
+$create(AjaxControlToolkit.TextBoxWatermarkBehavior, {"ClientStateFieldID":"ctl00_HeaderNewDesign1_Login1_TBWEUserID_ClientState","WatermarkText":"Enter User ID or Email","id":"ctl00_HeaderNewDesign1_Login1_TBWEUserID"}, null, null, $get("ctl00_HeaderNewDesign1_Login1_TextBoxUserId"));
+});
+document.getElementById('ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorPassword').dispose = function() {
+Array.remove(Page_Validators, document.getElementById('ctl00_HeaderNewDesign1_Login1_RequiredFieldValidatorPassword'));
+}
+Sys.Application.add_init(function() {
+$create(AjaxControlToolkit.TextBoxWatermarkBehavior, {"ClientStateFieldID":"ctl00_HeaderNewDesign1_Login1_TBWEPassword_ClientState","WatermarkText":"**************","id":"ctl00_HeaderNewDesign1_Login1_TBWEPassword"}, null, null, $get("ctl00_HeaderNewDesign1_Login1_TextBoxPassword"));
+});
+Sys.Application.add_init(function() {
+$create(Sys.UI._UpdateProgress, {"associatedUpdatePanelId":null,"displayAfter":10,"dynamicLayout":true}, null, null, $get("ctl00_HeaderNewDesign1_UpdateProgress1"));
+});
+Sys.Application.add_init(function() {
+$create(AjaxControlToolkit.AlwaysVisibleControlBehavior, {"HorizontalOffset":60,"HorizontalSide":2,"id":"ctl00_HeaderNewDesign1_AlwaysVisibleLoading"}, null, null, $get("ctl00_HeaderNewDesign1_UpdateProgress1"));
+});
+Sys.Application.add_init(function() {
+$create(AjaxControlToolkit.TextBoxWatermarkBehavior, {"ClientStateFieldID":"ctl00_TrendingNow1_TBWESearch_ClientState","WatermarkText":"C# Corner Search","id":"ctl00_TrendingNow1_TBWESearch"}, null, null, $get("ctl00_TrendingNow1_searchTextBox"));
+});
+Sys.Application.add_init(function() {
+$create(AjaxControlToolkit.TabPanel, {"headerTab":$get("__tab_ctl00_PollForHome1_TabContainerSection_TabPanelInProgress")}, null, {"owner":"ctl00_PollForHome1_TabContainerSection"}, $get("ctl00_PollForHome1_TabContainerSection_TabPanelInProgress"));
+});
+Sys.Application.add_init(function() {
+$create(AjaxControlToolkit.TabPanel, {"headerTab":$get("__tab_ctl00_PollForHome1_TabContainerSection_TabPanelSection")}, null, {"owner":"ctl00_PollForHome1_TabContainerSection"}, $get("ctl00_PollForHome1_TabContainerSection_TabPanelSection"));
+});
+Sys.Application.add_init(function() {
+$create(AjaxControlToolkit.TabPanel, {"headerTab":$get("__tab_ctl00_PollForHome1_TabContainerSection_TabPanel1")}, {"click":show_confirm}, {"owner":"ctl00_PollForHome1_TabContainerSection"}, $get("ctl00_PollForHome1_TabContainerSection_TabPanel1"));
+});
+Sys.Application.add_init(function() {
+$create(AjaxControlToolkit.TabContainer, {"activeTabIndex":0,"clientStateField":$get("ctl00_PollForHome1_TabContainerSection_ClientState")}, null, null, $get("ctl00_PollForHome1_TabContainerSection"));
+});
+//]]> </script> </form>  </body></html>

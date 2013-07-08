@@ -1,0 +1,1442 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Cache-control" content="no-cache">
+<title>Five common PHP design patterns</title>
+<meta http-equiv="PICS-Label" content="(PICS-1.1 &quot;http://www.icra.org/ratingsv02.html&quot; l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) &quot;http://www.rsac.org/ratingsv01.html&quot; l gen true r (n 0 s 0 v 0 l 0) &quot;http://www.classify.org/safesurf/&quot; l gen true r (SS~~000 1))">
+<link rel="schema.DC" href="http://purl.org/DC/elements/1.0/">
+<link rel="SHORTCUT ICON" href="http://www.ibm.com/favicon.ico">
+<meta name="Owner" content="developerWorks Content/Raleigh/IBM">
+<meta name="DC.Language" scheme="rfc1766" content="en">
+<meta name="IBM.Country" content="ZZ">
+<meta name="Security" content="Public">
+<meta name="IBM.SpecialPurpose" content="SP001">
+<meta name="IBM.PageAttributes" content="sid=1003,1004">
+<meta name="Source" content="v16 Template Generator">
+<meta name="Robots" content="index,follow">
+<meta name="Abstract" content="Design patterns are just for Java architects -- at least that's what you may have been led to believe. In fact, design patterns are useful for everyone. If these tools aren't exclusive to architecture astronauts, what are they, and why are they useful in PHP applications? This article explains.">
+<meta name="Description" content="Design patterns are just for Java architects -- at least that's what you may have been led to believe. In fact, design patterns are useful for everyone. If these tools aren't exclusive to architecture astronauts, what are they, and why are they useful in PHP applications? This article explains.">
+<meta name="Keywords" content="Jack Herrington, PHP, design pattern, strategy, observer, factory, singleton, chain of command, open source, tttosca">
+<meta name="DC.Date" scheme="iso8601" content="2006-07-18">
+<meta name="DC.Type" scheme="IBM_ContentClassTaxonomy" content="CT316">
+<meta name="DC.Subject" scheme="IBM_SubjectTaxonomy" content="TT400">
+<meta scheme="IBM_WTMCategory" name="IBM.WTMCategory" content="SOFDCOSRZZ">
+<meta name="DC.Rights" content="© Copyright&nbsp;IBM Corporation&nbsp;2006">
+<meta name="IBM.Effective" scheme="W3CDTF" content="2006-07-18">
+<meta name="title" content="Five common PHP design patterns">
+
+<!-- HEADER_SCRIPTS_AND_CSS_INCLUDE -->
+<link href="Five%20common%20PHP%20design%20patterns_files/all.css" media="all" rel="stylesheet" title="www" type="text/css">
+<link href="Five%20common%20PHP%20design%20patterns_files/screen.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="Five%20common%20PHP%20design%20patterns_files/screen-uas.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="Five%20common%20PHP%20design%20patterns_files/screen-fonts.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="Five%20common%20PHP%20design%20patterns_files/handheld.css" media="handheld" rel="stylesheet" title="www" type="text/css">
+<link href="Five%20common%20PHP%20design%20patterns_files/print.css" media="print" rel="stylesheet" title="www" type="text/css">
+<link href="Five%20common%20PHP%20design%20patterns_files/overlay.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<!-- dW-specific CSS -->
+<link href="Five%20common%20PHP%20design%20patterns_files/dw-screen.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="Five%20common%20PHP%20design%20patterns_files/dw-screen-comments-ratings-signin.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="Five%20common%20PHP%20design%20patterns_files/jquery.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<!-- xM Masthead/Footer -->
+<link href="Five%20common%20PHP%20design%20patterns_files/dw-mf2013-N.css" rel="stylesheet" title="www" type="text/css">
+<script src="Five%20common%20PHP%20design%20patterns_files/ibmcommon.js" type="text/javascript">//</script><link title="IBM Search" href="http://www.ibm.com/search/opensearch/description.xml" type="application/opensearchdescription+xml" rel="search">
+<script src="Five%20common%20PHP%20design%20patterns_files/dynamicnav.js" type="text/javascript">//</script>
+<!-- dW functional JS -->
+<script language="JavaScript" src="Five%20common%20PHP%20design%20patterns_files/urltactic.js" type="text/javascript"></script>
+<!-- Rating_START -->
+<script language="JavaScript" src="Five%20common%20PHP%20design%20patterns_files/showrating.js" type="text/javascript"></script>
+<style type="text/css">
+.metavalue {
+  display: none;
+}
+</style>
+<!-- Rating_END --><!-- RESERVED_HEADER_INCLUDE -->
+<script language="javascript" src="Five%20common%20PHP%20design%20patterns_files/ajax1.js" type="text/javascript"></script>
+<script language="javascript" src="Five%20common%20PHP%20design%20patterns_files/search_counter-maverick.js" type="text/javascript"></script>
+<script language="javascript" src="Five%20common%20PHP%20design%20patterns_files/request_referer_capture-maverick.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+ <!--
+ setDefaultQuery('');
+ //-->
+</script>
+<script language="JavaScript" type="text/javascript">
+ <!--
+ function openNewWindow(url,tar,arg){window.open(url,tar,arg);}
+ //-->
+</script>
+<!-- Include file support -->
+<script language="JavaScript" type="text/javascript">
+(function($) {
+	jQuery.extend({
+		getInc: function(u,d){
+			if(u==null)return;
+			jQuery.ajax({
+	    		type: "GET",
+			url: u,
+			dataType: "text",
+	        	success: function(t) {
+				jQuery(d).html(t);
+				ibmCommon.initShowHide(jQuery(d).children()[0]);			
+			},
+			async: true
+			});
+		}
+	});
+})(jQuery);
+</script>
+<script charset="UTF-8" src="Five%20common%20PHP%20design%20patterns_files/flash-detect_002.js" type="text/javascript" id="flashdetect"></script><script charset="UTF-8" src="Five%20common%20PHP%20design%20patterns_files/usen-utf8.js" type="text/javascript" id="mhMenu"></script><script charset="UTF-8" src="Five%20common%20PHP%20design%20patterns_files/Controller" type="text/javascript" id="wiBundle"></script></head>
+
+<body id="ibm-com">
+<div id="ibm-top" class="ibm-landing-page">
+
+<!-- MASTHEAD_BEGIN -->
+<!-- MASTHEAD_BEGIN -->
+<div class="ibm-access"><a href="#ibm-content">Skip to main content</a></div>
+<div id="ibm-masthead-dw">
+  
+    <!-- TOP ROW -->    
+    <div id="dw-masthead-top-row">
+        <ul id="ibm-mast-options-dw">
+			<li id="dw-mast-top-4">
+				<a href="http://www.ibm.com/developerworks/"><img src="Five%20common%20PHP%20design%20patterns_files/dwn-dw-badge.png" alt="dW" aria-label="dW" height="22" width="43"></a>
+			</li>
+		    <li id="dw-mast-top-0" class="navtab">
+				<a class="" href="http://www.ibm.com/developerworks/dwwi/DWAuthRouter?m=loginpage&amp;lang=en&amp;d=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Flibrary%2Fos-php-designptrns%2F" title="">Sign in (or register)</a>
+			</li>
+		    <li id="dw-mast-top-1" class="navtab">
+				<a href="#SELECTLANG">English</a>
+			</li>
+			<li id="dw-mast-top-2" class="navtab dw-mf-hide">
+				<a href="#">[userid]</a>
+			</li>
+			<li id="dw-mast-top-3" class="navtab">
+				<a href="#">IBM</a>
+			</li>
+		</ul>
+	</div>
+    
+    <!-- TOP ROW SLIDER -->
+    <div id="ibm-my-menu-dw">    
+        <div class="ibm-ribbon-pane-dw">
+            <div class="ibm-ribbon-section-dw">
+                <!-- Sign-in -->
+				<div class="dw-mast-columns">                
+					<div class="dw-mast-col-1-1">
+						<div id="dw-mast-sso">
+							<div id="signin_error_mf" class="no-display"></div>
+							<div id="dw-mast-sso-form">
+								<form id="sForm_mf" action="" method="post" name="sForm_name_mf" onsubmit="return false;">
+									<div id="dw-mast-sso-id" class="dw-mast-sso-id-en">
+										<label for="ibmid_mf">IBM ID:</label>
+										<input class="" id="ibmid_mf" name="ibmid_name_mf" maxlength="100" onkeypress="handleEP(event,this.form,'mf');" type="text">
+									</div>
+									<div id="dw-mast-sso-pw" class="dw-mast-sso-pw-en">
+										<label for="pw_mf">Password:</label>
+										<input class="" id="pw_mf" value="" name="pw_name_mf" maxlength="100" onkeypress="handleEP(event,this.form,'mf');" type="password">
+									</div>
+									<div id="dw-mast-sso-target" class="dw-mast-sso-target-en">
+										<p class="dw-mf-perm-box">
+											<input id="perm_mf" name="perm_name_mf" type="checkbox"><label for="perm_mf"> Keep me signed in.</label>
+										</p>
+									</div>					
+									<div id="dw-mast-sso-terms">
+										<p class="dw-mast-sso-terms-en">By clicking <strong>Submit</strong>, you agree to the <a href="https://www.ibm.com/developerworks/community/terms/">developerWorks terms of use</a>.</p>
+									</div>
+									<div>
+										<input class="dw-mf-submit-btn" name="ibm_submit_name_mf" value="Submit" onclick="signin('mf');return false;" type="submit">
+									</div>
+								</form>
+							</div>
+							<div id="dw-mast-sso-update">
+								<div id="dw-mast-sso-update-id">
+									<ul>
+										<li><a class="ibm-forward-link" href="#" onclick="(function () {window.location='/developerworks/dwwi/DWAuthRouter?m=reg&amp;lang=en&amp;d='+encodeURIComponent(location.href);})();">Need an IBM ID?</a></li>
+										<li><a class="ibm-forward-link" href="http://www.ibm.com/developerworks/dwwi/jsp/WSHelp.jsp?lang=en_US">Forgot your IBM ID?</a></li>
+									</ul>
+								</div>
+								<div id="dw-mast-sso-update-pw">
+									<ul class="dw-mf-pwupdate">
+										<li><a class="ibm-forward-link" href="#" onclick="(function () {window.location='https://www.ibm.com/account/profile?page=forgot&amp;lang=en_US&amp;appname=ibm&amp;required=null&amp;d='+encodeURIComponent(getAuthUrl())+'%3Fm%3Dloginpage%26lang%3Den_US%26d%3D'+encodeURIComponent(location.href);})();">Forgot your password?</a></li>
+										<li><a class="ibm-forward-link" href="#" onclick="(function () {window.location='https://www.ibm.com/account/profile?page=chpw&amp;lang=en_US&amp;appname=ibm&amp;required=null&amp;d='+encodeURIComponent(location.href);})();">Change your password</a></li>
+									</ul>
+								</div>
+							</div>
+							<div id="dw-mast-sso-text">
+						<p>The first time you sign into developerWorks, a profile is created for you.  <strong>Select
+ information in your profile (name, country/region, and company) is 
+displayed to the public and will accompany any content you post</strong>.  You may update your IBM account at any time.</p>
+								<p class="dw-mf-secure">All information submitted is secure.</p>
+							</div>
+							<div class="dw-mast-close">
+								<ul>
+									<li><div class="dw-mast-close-sign"><a href="#"><img src="Five%20common%20PHP%20design%20patterns_files/c_002.gif" alt="Close [x]" border="0" height="10" width="20"></a></div></li>
+								</ul>
+							</div>							
+						</div>                    
+						<div id="dw-mast-dname" class="dw-mf-hide">
+							<p>The first time you sign in to developerWorks, a profile is 
+created for you, so you need to choose a display name.  Your display 
+name accompanies the content you post on developerworks.</p><p><strong>Please choose a display name between 3-31 characters</strong>.  Your display name must be unique in the developerWorks community and should not be your email address for privacy reasons.</p>
+							<div id="signin_dname_error_mf" class="no-display"></div>
+							<div id="dw-mast-dname-form">
+								<form id="dForm_mf" action="" method="post" name="dForm_name_mf" onsubmit="return false;">
+									<div id="dw-mast-dname-mf">
+										<label for="dname_mf">Display name:</label>
+										<input id="dname_mf" name="dname_name_mf" maxlength="31" size="25" onkeypress="handleEP(event,this.form,'mf');" type="text">
+									</div>
+									<div id="dw-mast-dname-terms">
+										<p>By clicking <strong>Submit</strong>, you agree to the <a href="https://www.ibm.com/developerworks/community/terms/">developerWorks terms of use</a>.</p>
+									</div>
+									<div>
+										<input class="dw-mf-submit-btn" name="dname_submit_name_mf" value="Submit" onclick="signin('mf');return false;" type="submit">
+									</div>
+								</form>								
+							</div>
+							<div id="dw-mast-dname-secure">
+								<p class="dw-mf-secure">All information submitted is secure.</p>
+							</div>
+							<div class="dw-mast-close">
+								<ul>
+									<li><div class="dw-mast-close-sign"><a href="#"><img src="Five%20common%20PHP%20design%20patterns_files/c_002.gif" alt="Close [x]" border="0" height="10" width="20"></a></div></li>
+								</ul>
+							</div>							
+						</div>
+						<div id="dw-mast-auth" class="dw-mf-hide">
+							<div>
+								<h2>My developerWorks:</h2>
+								<ul>
+									<li><a id="dw-mast-top-0-0" href="http://www.ibm.com/developerworks/community/homepage/web/updates/?lang=en">My home</a></li>
+									<li><a href="http://www.ibm.com/developerworks/community/profiles/html/myProfileView.do?lang=en">My profile</a></li>
+									<li><a href="http://www.ibm.com/developerworks/community/groups/service/html/mycommunities?lang=en">My communities</a></li>
+									<li><a href="http://www.ibm.com/developerworks/community/news">Settings</a></li>
+								</ul>     
+							</div>
+							<div id="dw-mast-notify" class="dw-mf-hide">
+								<h2>My notifications:</h2>
+								<ul>
+									<li><a id="new_notify" href="http://www.ibm.com/developerworks/community/homepage?lang=en">{[num_notify] new notifications}([num_notify] new notification)</a></li>
+									<li><a id="new_invite" href="http://www.ibm.com/developerworks/community/profiles/html/wc.do?action=in&amp;requireAuth=true&amp;widgetId=friends&amp;lang=[lang]">{[num_invite] network requests}([num_invite] network request)</a></li>  
+								</ul>
+							</div>
+							<div class="dw-mast-more">
+								<ul class="ibm-link-list">
+									<li><a class="dw-more-link" href="#" onclick="signOut(); return false;"><strong>Sign out</strong></a></li>
+								</ul>
+							</div>		
+							<div class="dw-mast-close">
+								<ul>
+									<li><div class="dw-mast-close-sign"><a href="#"><img src="Five%20common%20PHP%20design%20patterns_files/c_002.gif" alt="Close [x]" border="0" height="10" width="20"></a></div></li>
+								</ul>
+							</div>							
+						</div>						
+					</div>                   
+                </div>
+                <!-- Language selector --> 
+				<div class="dw-mast-columns">
+					<div class="dw-mast-col-2-1">
+						<h2>Select a language:</h2>
+						<ul>
+							<li><a id="dw-mast-top-1-0" href="http://www.ibm.com/developerworks/">English</a></li>
+							<li><a href="http://www.ibm.com/developerworks/cn/">中文</a></li>
+							<li><a href="http://www.ibm.com/developerworks/jp/">日本語</a></li>
+							<li><a href="http://www.ibm.com/developerworks/ru/">Русский</a></li>
+						</ul>
+					</div>
+					<div class="dw-mast-col-2-2">
+						<ul>
+							<li><a href="http://www.ibm.com/developerworks/br/">Português (Brasil)</a></li>
+							<li><a href="http://www.ibm.com/developerworks/ssa/">Español</a></li>
+							<li><a href="http://www.ibm.com/developerworks/vn/">Việt</a></li>
+						</ul>
+					</div>
+					<div class="dw-mast-close">
+						<ul>
+							<li><div class="dw-mast-close-lang"><a href="#"><img src="Five%20common%20PHP%20design%20patterns_files/c_002.gif" alt="Close [x]" border="0" height="10" width="20"></a></div></li>
+						</ul>
+                    </div>
+                </div>                
+                <div class="dw-mast-columns"><!-- Authenticated --></div>
+                <!-- IBM -->
+				<div class="dw-mast-columns">
+					<div class="dw-mast-col-2-1">
+						<ul>
+							<li><a id="dw-mast-top-3-0" href="http://www.ibm.com/">IBM home</a></li>
+							<li><a href="http://www.ibm.com/solutions/">Industries &amp; solutions</a></li>
+							<li><a href="http://www.ibm.com/technologyservices/">Services</a></li>
+							<li><a href="http://www.ibm.com/products/">Products</a></li>
+							<li><a href="http://www.ibm.com/support/">Support &amp; downloads</a></li>
+						</ul>
+					</div>
+					<div class="dw-mast-col-2-2 dw-mast-ibm">
+						<ul>
+							<li><a href="http://www.ibm.com/support/publications/us/library/index.shtml">Product information</a></li>
+							<li><a href="http://www.ibm.com/redbooks/">Redbooks</a></li>
+							<li><a href="http://www.ibm.com/software/">Software</a></li>
+							<li><a href="http://www.ibm.com/software/sw-services/">Software services</a></li>
+						</ul>
+					</div>
+					<div class="dw-mast-close">
+						<ul>
+							<li><div class="dw-mast-close-ibm"><a href="#"><img src="Five%20common%20PHP%20design%20patterns_files/c_002.gif" alt="Close [x]" border="0" height="10" width="20"></a></div></li>
+						</ul>
+                    </div>
+				</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTTOM ROW -->
+    <div id="ibm-universal-nav-dw">
+        <ul id="ibm-unav-links-dw">
+            <li id="ibm-unav-home-dwlogo">
+				<a href="http://www.ibm.com/developerworks/"><img src="Five%20common%20PHP%20design%20patterns_files/dwn-dw-wordmark.png" alt="developerWorks®" height="28" width="225"></a>
+            </li>
+        </ul>
+        <ul id="ibm-menu-links-dw">
+            <li id="dw-mast-nav-0"><a href="http://www.ibm.com/developerworks/topics/">Technical topics</a></li>
+            <li id="dw-mast-nav-1"><a href="http://www.ibm.com/developerworks/downloads/">Evaluation software</a></li>
+            <li id="dw-mast-nav-2"><a href="http://www.ibm.com/developerworks/community/index.html">Community</a></li>
+            <li id="dw-mast-nav-3"><a href="http://www.ibm.com/developerworks/events/">Events</a></li>
+        </ul>
+			<form id="ibm-search-form-dw" action="//www.ibm.com/search/csass/search/" method="get" name="form1">
+				<p>
+				<label for="q"><span class="ibm-access">Search developerWorks</span></label>
+				<input id="q" name="q" value="Search developerWorks" maxlength="100" type="text">
+				<input name="sn" value="dw" type="hidden">
+				<input name="lang" value="en" type="hidden">
+				<input name="cc" value="US" type="hidden">
+				<input name="en" value="utf" type="hidden">
+				<input name="hpp" value="20" type="hidden">
+				<input name="dws" value="dw" type="hidden">
+				<input id="ibm-search-dw" class="ibm-btn-search-dw" value="Search" type="submit">
+				</p>
+			</form>
+    </div>
+    
+    <!-- BOTTOM ROW SLIDER -->
+    <div id="ibm-common-menu-dw">
+        <div class="ibm-ribbon-pane-dw dw-ribbon-pane-en">
+            <div class="ibm-ribbon-section-dw">
+				<!-- Technical topics category -->
+                <div class="dw-mast-columns">
+					<div class="dw-mast-col-5-1">
+						<h2><a id="dw-mast-nav-0-0" href="http://www.ibm.com/developerworks/topics/">Technical topics</a></h2>
+						<ul>
+							<li><a href="http://www.ibm.com/developerworks/agile/">Agile transformation</a></li>
+							<li><a href="http://www.ibm.com/developerworks/aix/">AIX and UNIX</a></li>
+							<li><a href="http://www.ibm.com/developerworks/bigdata/">Big data</a></li>
+							<li><a href="http://www.ibm.com/developerworks/analytics/">Business analytics</a></li>
+							<li><a href="http://www.ibm.com/developerworks/bpm/">Business process management</a></li>
+						</ul>     
+                    </div>
+					<div class="dw-mast-col-5-2">
+						<ul>
+							<li><a href="http://www.ibm.com/developerworks/cloud/">Cloud computing</a></li>
+							<li><a href="http://www.ibm.com/developerworks/commerce/">Commerce</a></li>
+							<li><a href="http://www.ibm.com/developerworks/ibmi/">IBM i</a></li>    
+							<li><a href="http://www.ibm.com/developerworks/industry/">Industries</a></li>
+							<li><a href="http://www.ibm.com/developerworks/data/">Information management</a></li>
+						</ul>
+                    </div>
+					<div class="dw-mast-col-5-3">
+						<ul>
+							<li><a href="http://www.ibm.com/developerworks/java/">Java technology</a></li>
+							<li><a href="http://www.ibm.com/developerworks/linux/">Linux</a></li>
+							<li><a href="http://www.ibm.com/developerworks/lotus/">Lotus (collaboration)</a></li>
+							<li><a href="http://www.ibm.com/developerworks/mobile/">Mobile development</a></li>
+							<li><a href="http://www.ibm.com/developerworks/opensource/">Open source</a></li>
+						</ul>     
+                    </div>
+                    <div class="dw-mast-col-5-4">
+						<ul>
+							<li><a href="http://www.ibm.com/developerworks/rational/">Rational</a></li>
+							<li><a href="http://www.ibm.com/developerworks/security/">Security</a></li>
+							<li><a href="http://www.ibm.com/developerworks/servicemanagement/">Tivoli (service management)</a></li>
+							<li><a href="http://www.ibm.com/developerworks/web/">Web development</a></li>
+							<li><a href="http://www.ibm.com/developerworks/websphere/">WebSphere</a></li>
+						</ul> 
+                    </div>
+                    <div class="dw-mast-col-5-5">
+						<ul>
+							<li><a href="http://www.ibm.com/developerworks/library/"><strong>Technical library</strong></a></li>
+							<li><a href="http://www.ibm.com/developerworks/products/"><strong>Products A to Z</strong></a></li>
+						</ul>
+                    </div>
+                    <div class="dw-mast-close">
+						<ul>
+							<li><div class="dw-mast-close-tech"><a href="#"><img src="Five%20common%20PHP%20design%20patterns_files/c_002.gif" alt="Close [x]" border="0" height="10" width="20"></a></div></li>
+						</ul>
+                    </div>
+				</div>
+				<!-- Evaluation software category -->
+                <div class="dw-mast-columns">
+					<div class="dw-mast-col-2-1">
+						<h2><a id="dw-mast-nav-1-0" href="http://www.ibm.com/developerworks/downloads/">Evaluation software</a></h2>
+						<ul>
+							<li><a href="http://www.ibm.com/developerworks/downloads/#ba">Business analytics</a></li>
+							<li><a href="http://www.ibm.com/developerworks/downloads/#data">Information management</a></li>
+							<li><a href="http://www.ibm.com/developerworks/downloads/#lotus">Lotus (collaboration)</a></li>
+							<li><a href="http://www.ibm.com/developerworks/downloads/#rational">Rational</a></li>
+						</ul>            
+                    </div>
+					<div class="dw-mast-col-2-2">
+						<ul>
+							<li><a href="http://www.ibm.com/developerworks/downloads/#tivoli">Tivoli (service management)</a></li>
+							<li><a href="http://www.ibm.com/developerworks/downloads/#websphere">WebSphere</a></li>
+							<li><a href="http://www.ibm.com/developerworks/downloads/#more">More IBM products (Mobile, PureSystems, Security...)</a></li>
+						</ul>            
+                    </div>
+                    <div class="dw-mast-close">
+						<ul>
+							<li><div class="dw-mast-close-eval"><a href="#"><img src="Five%20common%20PHP%20design%20patterns_files/c_002.gif" alt="Close [x]" border="0" height="10" width="20"></a></div></li>
+						</ul>
+                    </div>
+				</div>
+				<!-- Community category -->
+                <div class="dw-mast-columns">
+					<div class="dw-mast-col-3-1">
+						<h2><a id="dw-mast-nav-2-0" href="http://www.ibm.com/developerworks/community/index.html">Community</a></h2>
+						<ul>
+							<li><a href="http://www.ibm.com/developerworks/community/homepage/?lang=en">My home</a></li>
+							<li><a href="http://www.ibm.com/developerworks/community/profiles/?lang=en">Profiles</a></li>
+							<li><a href="http://www.ibm.com/developerworks/community/groups/?lang=en">Communities</a></li>
+						</ul>     
+                    </div>
+					<div class="dw-mast-col-3-2">
+						<ul>
+							<li><a href="http://www.ibm.com/developerworks/community/blogs/?lang=en">Blogs</a></li>
+							<li><a href="http://www.ibm.com/developerworks/community/forums/?lang=en">Forums</a></li>
+							<li><a href="http://www.ibm.com/developerworks/community/wikis/?lang=en">Wikis</a></li>
+						</ul>
+                    </div>
+					<div class="dw-mast-col-3-3 dw-mast-col-3-3-en">
+						<ul>
+							<li><a href="http://www.ibm.com/developerworks/community/activities/?lang=en">Activities</a></li>
+							<li><a href="https://www.ibm.com/developerworks/community/podcasts/?lang=en">Podcasts</a></li>    
+							<li><a href="http://www.ibm.com/developerworks/champion/">IBM Champion program</a></li>
+						</ul>
+                    </div>
+                    <div class="dw-mast-close">
+						<ul>
+							<li><div class="dw-mast-close-comm"><a href="#"><img src="Five%20common%20PHP%20design%20patterns_files/c_002.gif" alt="Close [x]" border="0" height="10" width="20"></a></div></li>
+						</ul>
+                    </div>
+				</div>
+				<!-- Events category -->
+                <div class="dw-mast-columns">
+					<div class="dw-mast-col-1-1">
+						<h2><a id="dw-mast-nav-3-0" href="http://www.ibm.com/developerworks/events/">Events</a></h2>
+						<ul>
+							<li><a href="http://www.ibm.com/developerworks/find/webcasts/">Webcasts</a></li>
+							<li><a href="http://www.ibm.com/developerworks/find/events/">Find events (webcasts, conferences...)</a></li>
+						</ul>            
+                    </div>
+                    <div class="dw-mast-close">
+						<ul>
+							<li><div class="dw-mast-close-event"><a href="#"><img src="Five%20common%20PHP%20design%20patterns_files/c_002.gif" alt="Close [x]" border="0" height="10" width="20"></a></div></li>
+						</ul>
+                    </div>
+				</div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<div id="fdiv" class="ibm-access"><embed type="application/x-shockwave-flash" src="Five%20common%20PHP%20design%20patterns_files/connect.swf" id="sflash" name="sflash" quality="high" menu="false" wmode="window" movie="https://www.ibm.com/developerworks/js/dw-mf/connect.swf" swliveconnect="true" allowscriptaccess="always" height="1" width="1"></div>
+<!-- MASTHEAD_END --><!-- MASTHEAD_END -->
+
+<div id="ibm-pcon">
+
+<!-- CONTENT_BEGIN -->
+<div id="ibm-content">
+
+<!-- Navigation_Trail_BEGIN -->
+<!-- &nbsp; -->
+        <div id="ibm-content-head"><ul id="ibm-navigation-trail"><li class="ibm-first"><a href="http://www.ibm.com/developerworks/">developerWorks</a></li><li><a href="http://www.ibm.com/developerworks/opensource/">Open source</a></li><li><a href="http://www.ibm.com/developerworks/views/opensource/library.jsp">Technical library</a></li></ul></div>
+<!-- Navigation_Trail_END -->
+
+<!-- dW_Summary Area_START -->
+<div id="dw-summary-article">
+
+<div class="dw-content-head">
+<h1>Five common PHP design patterns</h1><p>
+</p></div>
+
+<div class="ibm-container-body ibm-two-column">
+
+<div class="ibm-column ibm-first">
+<div class="author"><a class="dwauthor" rel="#authortip1" href="#author1">Jack D Herrington</a> (<a href="mailto:jherr@pobox.com?subject=Five%20common%20PHP%20design%20patterns&amp;cc=dwxed@us.ibm.com">jherr@pobox.com</a>), Senior Software Engineer, Leverage Software Inc.</div><div style="display: none;" id="authortip1" class="dwauthor-onload-state ibm-no-print">A senior software engineer with more than 20 years of experience, Jack Herrington is the author of three books: <i>Code Generation in Action</i>, <i>
+                    <a href="http://www.oreilly.com/catalog/podcastinghks/">Podcasting Hacks</a>
+                </i>, and <i>
+                    <a href="http://www.oreilly.com/catalog/phphks/">PHP Hacks</a>
+                </i>. He is also the author of more than 30 articles.</div>
+<p></p>
+<p><strong>Summary:</strong>&nbsp; Design patterns are just for Java™ architects -- at least
+    that's what you may have been led to believe.  In fact, design patterns are useful for
+    everyone. If these tools aren't exclusive  to architecture astronauts, what are they,
+    and why are they useful in PHP applications? This article  explains.</p>
+
+</div>
+
+<div class="ibm-column ibm-second">
+<p class="leading"><b>Date:</b>&nbsp; 18 Jul  2006
+<br><b>Level: </b>&nbsp;Intermediate
+
+<br><strong>Also available in:&nbsp;</strong>
+
+
+
+&nbsp;<a href="http://www.ibm.com/developerworks/jp/opensource/library/os-php-designptrns/">Japanese</a> 
+
+
+
+<br>
+<br><strong>Activity:</strong>&nbsp; 415622 views
+<br><strong>Comments:</strong> &nbsp; <span id="nCmts">8&nbsp;(<a class="dw-view-comment" href="#icomments">View</a>&nbsp;|&nbsp;<a onclick="showSignIn();return false;" href="#">Add comment</a> - Sign in)</span>
+<!-- Rating_Area_Begin -->
+</p><div id="art-rating-summary"><img alt="Average rating 4 stars based on 803 votes" src="Five%20common%20PHP%20design%20patterns_files/stars120x20-4b.jpg" class="dw-avg-rating"> Average rating (803 votes)<br><a class="dw-view-comment" href="#iratings">Rate this article</a></div>
+<!-- Rating_Area_End -->
+<p></p>
+</div>
+
+</div>
+</div>
+<!-- dW_Summary_Area_END -->
+
+<!-- CONTENT_BODY -->
+<div id="ibm-content-body">
+
+<!-- MAIN_COLUMN_BEGIN -->
+<div id="ibm-content-main">
+
+<!-- Related_Searches_Area -->
+<!-- Related_Searches_Area_Begin -->
+<script type="text/javascript" language="javascript">
+	     capture_referrer();
+</script>
+
+<div id="dw-related-searches-article" style="display:none">
+<div class="ibm-container ibm-alternate-two">
+<div class="ibm-container-body">
+
+<!--  START : HTML FOR ARTICLE SEARCH -->
+  <div id="article_results" style="display:block"></div>
+<!--  END : HTML FOR ARTICLE SEARCH -->
+
+</div>
+</div>
+</div>
+<!-- Related_Searches_Area_End -->
+<!-- MAIN_COLUMN_CONTAINER_BEGIN -->
+<div class="ibm-container">
+
+<!-- MAIN_COLUMN_CONTENT_BEGIN -->
+<p>
+                <i>
+                    <b>Editor's note</b>: See the follow-up article "<a href="http://www.ibm.com/developerworks/opensource/library/os-php-designpatterns/">Five
+more PHP design patterns</a>" to learn about  five additional design patterns that you might find useful.</i>
+            </p>
+            <p>Design patterns were introduced to the software community in <i>Design Patterns</i>,
+ by Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides 
+(colloquially known as the "gang of four"). The core concept behind 
+design patterns, presented in the introduction, was simple. Over their 
+years of developing software, Gamma et al found certain patterns of 
+solid design emerging, just as architects designing houses and buildings
+ can develop templates for where a bathroom should be located or how a 
+kitchen should be configured. Having those templates, or <i>design patterns</i>, means they can design better buildings more quickly. The same applies to software.</p>
+            <p>Design patterns not only present useful ways for 
+developing robust software faster but also provide a way of 
+encapsulating large ideas in friendly terms. For example, you can say 
+you're writing a messaging system to provide for loose coupling, or you 
+can say you're writing an <i>observer</i>, which is the name of that pattern.</p>
+            <p>It's difficult to demonstrate the value of patterns using
+ small examples. They often look like overkill because they really come 
+into play in large code bases. This article can't show huge 
+applications, so you need to think about ways to apply the principles of
+ the example -- and not necessarily this exact code -- in your larger 
+applications. That's not to say that you shouldn't use patterns in small
+ applications. Most good applications start small and become big, so 
+there is no reason not to start with solid coding practices like these.</p>
+            <p>Now that you have a sense of what design patterns are and
+ why they're useful, it's time to jump into five common patterns for PHP
+ V5.</p>
+            <p><a name="N10076"><span class="atitle">The factory pattern</span></a></p>
+            <p>Many of the design patterns in the original <i>Design Patterns</i> book encourage <i>loose coupling</i>.
+ To understand this concept, it's easiest to talk about a struggle that 
+many developers go through in large systems. The problem occurs when you
+ change one piece of code and watch as a cascade of breakage happens in 
+other parts of the system -- parts you thought were completely 
+unrelated.</p>
+            <p>The problem is <i>tight coupling</i>. Functions and 
+classes in one part of the system rely too heavily on behaviors and 
+structures in other functions and classes in other parts of the system. 
+You need a set of patterns that lets these classes talk with each other,
+ but you don't want to tie them together so heavily that they become 
+interlocked.</p>
+
+            <p>In large systems, lots of code relies on a few key 
+classes. Difficulties can arise when you need to change those classes. 
+For example, suppose you have a <code>User</code> class that reads from a
+ file. You want to change it to a different class that reads from the 
+database, but all the code references the original class that reads from
+ a file. This is where the factory pattern comes in handy.</p>
+
+            <p>The <i>factory pattern</i> is a class that has some methods that create objects for you. Instead of using <code>new</code>
+ directly, you use the factory class to create objects. That way, if you
+ want to change the types of objects created, you can change just the 
+factory. All the code that uses the factory changes automatically.</p>
+            <p>Listing 1 shows an example of a factory class. The server
+ side of the equation comes in two pieces: the database, and a set of 
+PHP pages that let you add feeds, request the list of feeds, and get the
+ article associated with a particular feed.</p>
+            <br><a name="listing1"><b>Listing 1. Factory1.php</b></a><br><table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td class="code-outline"><pre class="displaycode">                
+&lt;?php
+interface IUser
+{
+  function getName();
+}
+
+class User implements IUser
+{
+  public function __construct( $id ) { }
+
+  public function getName()
+  {
+    return "Jack";
+  }
+}
+
+class UserFactory
+{
+  public static function Create( $id )
+  {
+    return new User( $id );
+  }
+}
+
+$uo = UserFactory::Create( 1 );
+echo( $uo-&gt;getName()."\n" );
+?&gt;
+</pre></td></tr></tbody></table><br>
+            <p>An interface called <code>IUser</code> defines what a user object should do. The implementation of <code>IUser</code> is called <code>User</code>, and a factory class called <code>UserFactory</code> creates <code>IUser</code> objects. This relationship is shown as UML in Figure 1.</p>
+            
+                <br><a name="fig1"><b>Figure 1. The factory class and its related IUser interface and user class</b></a><br>
+                <img alt="The factory class and its related IUser interface and user class" src="Five%20common%20PHP%20design%20patterns_files/factory1.gif" height="86" width="221">
+            <br>
+            <br>
+            <p>If you run this code on the command line using the <code>php</code> interpreter, you get this result:</p>
+            <table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td class="code-outline"><pre class="displaycode">% php factory1.php 
+Jack
+%
+</pre></td></tr></tbody></table><br>
+            <p>The test code asks the factory for a <code>User</code> object and prints the result of the <code>getName</code> method.</p>
+            <p>A variation of the factory pattern uses factory methods. 
+These public static methods in the class construct objects of that type.
+ This approach is useful when creating an object of this type is 
+nontrivial. For example, suppose you need to first create the object and
+ then set many attributes. This version of the factory pattern 
+encapsulates that process in a single location so that the complex 
+initialization code isn't copied and pasted all over the code base.</p>
+            <p>Listing 2 shows an example of using factory methods.</p>
+            <br><a name="listing2"><b>Listing 2. Factory2.php</b></a><br><table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td class="code-outline"><pre class="displaycode">                
+&lt;?php
+interface IUser
+{
+  function getName();
+}
+
+class User implements IUser
+{
+  public static function Load( $id ) 
+  {
+        return new User( $id );
+  }
+
+  public static function Create( ) 
+  {
+        return new User( null );
+  }
+
+  public function __construct( $id ) { }
+
+  public function getName()
+  {
+    return "Jack";
+  }
+}
+
+$uo = User::Load( 1 );
+echo( $uo-&gt;getName()."\n" );
+?&gt;
+</pre></td></tr></tbody></table><br>
+
+            <p>This code is much simpler. It has only one interface, <code>IUser</code>, and one class called <code>User</code> that implements the interface. The <code>User</code> class has two static methods that create the object. This relationship is shown in UML in Figure 2.</p>
+            
+                <br><a name="fig2"><b>Figure 2. The IUser interface and the user class with factory methods</b></a><br>
+                <img alt="The IUser interface and the user class with factory methods" src="Five%20common%20PHP%20design%20patterns_files/factory2.gif" height="113" width="95">
+            <br>
+            <br>
+            <p>Running the script on the command line yields the same result as the code in Listing 1, as shown here:</p>
+            <table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td class="code-outline"><pre class="displaycode">% php factory2.php 
+Jack
+%
+</pre></td></tr></tbody></table><br>
+            <p>As stated, sometimes such patterns can seem like overkill
+ in small situations. Nevertheless, it's still good to learn solid 
+coding forms like these for use in any size of project.</p>
+            <p><a name="N10124"><span class="atitle">The singleton pattern</span></a></p>
+            <p>Some application resources are <i>exclusive</i> in that 
+there is one and only one of this type of resource. For example, the 
+connection to a database through the database handle is exclusive. You 
+want to share the database handle in an application because it's an 
+overhead to keep opening and closing connections, particularly during a 
+single page fetch.</p>
+            <p>The singleton pattern covers this need. An object is a <i>singleton</i>
+ if the application can include one and only one of that object at a 
+time. The code in Listing 3 shows a database connection singleton in PHP
+ V5.</p>
+            <br><a name="listing3"><b>Listing 3. Singleton.php</b></a><br><table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td class="code-outline"><pre class="displaycode">                
+&lt;?php
+require_once("DB.php");
+
+class DatabaseConnection
+{
+  public static function get()
+  {
+    static $db = null;
+    if ( $db == null )
+      $db = new DatabaseConnection();
+    return $db;
+  }
+
+  private $_handle = null;
+
+  private function __construct()
+  {
+    $dsn = 'mysql://root:password@localhost/photos';
+    $this-&gt;_handle =&amp; DB::Connect( $dsn, array() );
+  }
+  
+  public function handle()
+  {
+    return $this-&gt;_handle;
+  }
+}
+
+print( "Handle = ".DatabaseConnection::get()-&gt;handle()."\n" );
+print( "Handle = ".DatabaseConnection::get()-&gt;handle()."\n" );
+?&gt;
+</pre></td></tr></tbody></table><br>
+            <p>This code shows a single class called <code>DatabaseConnection</code>. You can't create your own <code>DatabaseConnection</code> because the constructor is private. But you can get the one and only one <code>DatabaseConnection</code> object using the static <code>get</code> method. The UML for this code is shown in Figure 3.</p>
+            
+                <br><a name="fig3"><b>Figure 3. The database connection singleton</b></a><br>
+                <img alt="The database connection singleton" src="Five%20common%20PHP%20design%20patterns_files/singleton.gif" height="41" width="165">
+            <br>
+            <br>
+
+            <p>The proof in the pudding is that the database handle returned by the <code>handle</code> method is the same between two calls. You can see this by running the code on the command line.</p>
+            <table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td class="code-outline"><pre class="displaycode">% php singleton.php 
+Handle = Object id #3
+Handle = Object id #3
+%
+</pre></td></tr></tbody></table><br>
+            <p>The two handles returned are the same object. If you use 
+the database connection singleton across the application, you reuse the 
+same handle everywhere.</p>
+            <p>You could use a global variable to store the database 
+handle, but that approach only works for small applications. In larger 
+applications, avoid globals, and go with objects and methods to get 
+access to resources.</p>
+            <p><a name="N10177"><span class="atitle">The observer pattern</span></a></p>
+            <p>The observer pattern gives you another way to avoid tight
+ coupling between components. This pattern is simple: One object makes 
+itself observable by adding a method that allows another object, the <i>observer</i>,
+ to register itself. When the observable object changes, it sends a 
+message to the registered observers. What those observers do with that 
+information isn't relevant or important to the observable object. The 
+result is a way for objects to talk with each other without necessarily 
+understanding why.</p>
+            <p>A simple example is a list of users in a system. The code
+ in Listing 4 shows a user list that sends out a message when users are 
+added. This list is watched by a logging observer that puts out a 
+message when a user is added.</p>
+            <br><a name="listing4"><b>Listing 4. Observer.php</b></a><br><table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td class="code-outline"><pre class="displaycode">                
+&lt;?php
+interface IObserver
+{
+  function onChanged( $sender, $args );
+}
+
+interface IObservable
+{
+  function addObserver( $observer );
+}
+
+class UserList implements IObservable
+{
+  private $_observers = array();
+
+  public function addCustomer( $name )
+  {
+    foreach( $this-&gt;_observers as $obs )
+      $obs-&gt;onChanged( $this, $name );
+  }
+
+  public function addObserver( $observer )
+  {
+    $this-&gt;_observers []= $observer;
+  }
+}
+
+class UserListLogger implements IObserver
+{
+  public function onChanged( $sender, $args )
+  {
+    echo( "'$args' added to user list\n" );
+  }
+}
+
+$ul = new UserList();
+$ul-&gt;addObserver( new UserListLogger() );
+$ul-&gt;addCustomer( "Jack" );
+?&gt;
+</pre></td></tr></tbody></table><br>
+
+            <p>This code defines four elements: two interfaces and two classes. The <code>IObservable</code> interface defines an object that can be observed, and the <code>UserList</code> implements that interface to register itself as observable. The <code>IObserver</code> list defines what it takes to be an observer, and the <code>UserListLogger</code> implements that <code>IObserver</code> interface. This is shown in the UML in Figure 4.</p>
+            
+                <br><a name="fig4"><b>Figure 4. The observable user list and the user list event logger</b></a><br>
+                <img alt="The observable user list and the user list event logger" src="Five%20common%20PHP%20design%20patterns_files/observer.gif" height="99" width="414">
+            <br>
+            <br>
+            <p>If you run this on the command line, you see this output:</p>
+            <table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td class="code-outline"><pre class="displaycode">% php observer.php 
+'Jack' added to user list
+%
+</pre></td></tr></tbody></table><br>
+            <p>The test code creates a <code>UserList</code> and adds the <code>UserListLogger</code> observer to it. Then the code adds a customer, and the <code>UserListLogger</code> is notified of that change.</p>
+            <p>It's critical to realize that the <code>UserList</code> 
+doesn't know what the logger is going to do. There could be one or more 
+listeners that do other things. For example, you may have an observer 
+that sends a message to the new user, welcoming him to the system. The 
+value of this approach is that the <code>UserList</code> is ignorant of 
+all the objects depending on it; it focuses on its job of maintaining 
+the user list and sending out messages when the list changes.</p>
+            <p>This pattern isn't limited to objects in memory. It's the
+ underpinning of the database-driven message queuing systems used in 
+larger applications.</p>
+            <p><a name="N101DE"><span class="atitle">The chain-of-command pattern</span></a></p>
+            <p>Building on the loose-coupling theme, the <i>chain-of-command</i>
+ pattern routes a message, command, request, or whatever you like 
+through a set of handlers. Each handler decides for itself whether it 
+can handle the request. If it can, the request is handled, and the 
+process stops. You can add or remove handlers from the system without 
+influencing other handlers. Listing 5 shows an example of this pattern.</p>
+            <br><a name="listing5"><b>Listing 5. Chain.php</b></a><br><table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td class="code-outline"><pre class="displaycode">                
+&lt;?php
+interface ICommand
+{
+  function onCommand( $name, $args );
+}
+
+class CommandChain
+{
+  private $_commands = array();
+
+  public function addCommand( $cmd )
+  {
+    $this-&gt;_commands []= $cmd;
+  }
+
+  public function runCommand( $name, $args )
+  {
+    foreach( $this-&gt;_commands as $cmd )
+    {
+      if ( $cmd-&gt;onCommand( $name, $args ) )
+        return;
+    }
+  }
+}
+
+class UserCommand implements ICommand
+{
+  public function onCommand( $name, $args )
+  {
+    if ( $name != 'addUser' ) return false;
+    echo( "UserCommand handling 'addUser'\n" );
+    return true;
+  }
+}
+
+class MailCommand implements ICommand
+{
+  public function onCommand( $name, $args )
+  {
+    if ( $name != 'mail' ) return false;
+    echo( "MailCommand handling 'mail'\n" );
+    return true;
+  }
+}
+
+$cc = new CommandChain();
+$cc-&gt;addCommand( new UserCommand() );
+$cc-&gt;addCommand( new MailCommand() );
+$cc-&gt;runCommand( 'addUser', null );
+$cc-&gt;runCommand( 'mail', null );
+?&gt;
+</pre></td></tr></tbody></table><br>
+            <p>This code defines a <code>CommandChain</code> class that maintains a list of <code>ICommand</code> objects. Two classes implement the <code>ICommand</code> interface -- one that responds to requests for mail and another that responds to adding users. The UML is shows in Figure 5.</p>
+            
+                <br><a name="fig5"><b>Figure 5. The command chain and its related commands</b></a><br>
+                <img alt="The command chain and its related commands" src="Five%20common%20PHP%20design%20patterns_files/chain.gif" height="121" width="359">
+            <br>
+            <br>
+            <p>If you run the script, which contains some test code, you see the following output:</p>
+            <table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td class="code-outline"><pre class="displaycode">% php chain.php 
+UserCommand handling 'addUser'
+MailCommand handling 'mail'
+%
+</pre></td></tr></tbody></table><br>
+            <p>The code first creates a <code>CommandChain</code> object
+ and adds instances of the two command objects to it. It then runs two 
+commands to see who responds to those commands. If the name of the 
+command matches either <code>UserCommand</code> or <code>MailCommand</code>, the code falls through and nothing happens.</p>
+            <p>The chain-of-command pattern can be valuable in creating 
+an extensible architecture for processing requests, which can be applied
+ to many problems. </p>
+            <p><a name="N1022F"><span class="atitle">The strategy pattern</span></a></p>
+            <p>The last design pattern we will cover is the <i>strategy</i>
+ pattern. In this pattern, algorithms are extracted from complex classes
+ so they can be replaced easily. For example, the strategy pattern is an
+ option if you want to change the way pages are ranked in a search 
+engine. Think about a search engine in several parts -- one that 
+iterates through the pages, one that ranks each page, and another that 
+orders the results based on the rank. In a complex example, all those 
+parts would be in the same class. Using the strategy pattern, you take 
+the ranking portion and put it into another class so you can change how 
+pages are ranked without interfering with the rest of the search engine 
+code.</p>
+            <p>As a simpler example, Listing 6 shows a user list class 
+that provides a method for finding a set of users based on a 
+plug-and-play set of strategies. </p>
+            <br><a name="listing6"><b>Listing 6. Strategy.php</b></a><br><table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td class="code-outline"><pre class="displaycode">                
+&lt;?php
+interface IStrategy
+{
+  function filter( $record );
+}
+
+class FindAfterStrategy implements IStrategy
+{
+  private $_name;
+
+  public function __construct( $name )
+  {
+    $this-&gt;_name = $name;
+  }
+
+  public function filter( $record )
+  {
+    return strcmp( $this-&gt;_name, $record ) &lt;= 0;
+  }
+}
+
+class RandomStrategy implements IStrategy
+{
+  public function filter( $record )
+  {
+    return rand( 0, 1 ) &gt;= 0.5;
+  }
+}
+
+class UserList
+{
+  private $_list = array();
+
+  public function __construct( $names )
+  {
+    if ( $names != null )
+    {
+      foreach( $names as $name )
+      {
+        $this-&gt;_list []= $name;
+      }
+    }
+  }
+
+  public function add( $name )
+  {
+    $this-&gt;_list []= $name;
+  }
+
+  public function find( $filter )
+  {
+    $recs = array();
+    foreach( $this-&gt;_list as $user )
+    {
+      if ( $filter-&gt;filter( $user ) )
+        $recs []= $user;
+    }
+    return $recs;
+  }
+}
+
+$ul = new UserList( array( "Andy", "Jack", "Lori", "Megan" ) );
+$f1 = $ul-&gt;find( new FindAfterStrategy( "J" ) );
+print_r( $f1 );
+
+$f2 = $ul-&gt;find( new RandomStrategy() );
+print_r( $f2 );
+?&gt;
+</pre></td></tr></tbody></table><br>
+            <p>The UML for this code is shown in Figure 6.</p>
+            
+                <br><a name="fig6"><b>Figure 6. The user list and the strategies for selecting users</b></a><br>
+                <img alt="The user list and the strategies for selecting users" src="Five%20common%20PHP%20design%20patterns_files/strategy.gif" height="138" width="309">
+            <br>
+            <br>
+            <p>The <code>UserList</code> class is a wrapper around an array of names. It implements a <code>find</code> method that takes one of several strategies for selecting a subset of those names. Those strategies are defined by the <code>IStrategy</code>
+ interface, which has two implementations: One chooses users randomly 
+and the other chooses all the names after a specified name. When you run
+ the test code, you get the following output:</p>
+            <table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td class="code-outline"><pre class="displaycode">% php strategy.php 
+Array
+(
+    [0] =&gt; Jack
+    [1] =&gt; Lori
+    [2] =&gt; Megan
+)
+Array
+(
+    [0] =&gt; Andy
+    [1] =&gt; Megan
+)
+%
+</pre></td></tr></tbody></table><br>
+
+            <p>The test code runs the same user lists against two 
+strategies and shows the results. In the first case, the strategy looks 
+for any name that sorts after <code>J</code>, so you get Jack, Lori, and
+ Megan. The second strategy picks names randomly and yields different 
+results every time. In this case, the results are Andy and Megan.</p>
+            <p>The strategy pattern is great for complex data-management
+ systems or data-processing systems that need a lot of flexibility in 
+how data is filtered, searched, or processed.</p>
+            <p><a name="N1027B"><span class="atitle">Conclusions</span></a></p>
+            <p>These are just a few of the most common design patterns used in PHP applications. Many more are demonstrated in the <i>Design Patterns</i>
+ book. Don't be put off by the mystique of architecture. Patterns are 
+great ideas you can use in any programming language and at any skill 
+level.</p>
+        <!-- CMA ID: 136377 --> <!-- Site ID: 1 --><!--XSLT stylesheet used to transform this file: dw-document-html-6.0.xsl-->
+<br>
+<p><a name="resources"><span class="atitle">Resources</span></a></p><p><b>Learn</b></p><ul><li>
+Wikipedia has a <a href="http://en.wikipedia.org/wiki/Design_pattern_%28computer_science%29">good article</a> on design patterns.<br><br></li><li>
+The C2 Wiki is another good place to look for information about design patterns like <a href="http://c2.com/cgi/wiki?ObserverPattern">observer</a>, <a href="http://c2.com/cgi/wiki?SingletonPattern">singleton</a>, and more.
+<br><br></li><li>
+The original <a href="http://www.amazon.com/gp/product/0201633612">
+                    <i>Design Patterns</i>
+                </a> book is a must-read for any engineer.<br><br></li><li>
+O'Reilly's <a href="http://www.amazon.com/gp/product/0596007124">
+                    <i>Head First Design Patterns</i>
+                </a> is a lighter-weight way to get into design patterns.<br><br></li><li>
+The book <a href="http://www.amazon.com/gp/product/0596101392">
+                    <i>PHP Hacks</i>
+                </a> has several hacks for design patterns that extend beyond the examples shown here.<br><br></li><li>
+   See the developerWorks article "<a href="http://www.ibm.com/developerworks/opensource/library/os-php-designpatterns/" onmouseover="linkQueryAppend(this)">Five
+more  PHP design patterns</a>" to learn about  five additional design patterns that you might find useful.<br><br></li><li>
+                <a href="http://www.php.net/">PHP.net</a> is the central resource for PHP developers.<br><br></li><li>
+Check out the "<a href="http://www.ibm.com/developerworks/library/os-php-read" onmouseover="linkQueryAppend(this)">Recommended PHP reading list</a>." <br><br></li><li>
+Browse all the <a href="http://www.ibm.com/developerworks/views/opensource/libraryview.jsp?search_by=php">PHP content</a> on developerWorks.<br><br></li><li>
+Expand your PHP skills by checking out IBM developerWorks' <a href="http://www.ibm.com/developerworks/opensource/top-projects/php.html" onmouseover="linkQueryAppend(this)">PHP project resources</a>.<br><br></li><li>
+To listen to interesting interviews and discussions for software developers, check out <a href="http://www.ibm.com/developerworks/podcast/" onmouseover="linkQueryAppend(this)">developerWorks  podcasts</a>.<br><br></li><li>
+  Using a database with PHP? Check out the <a href="http://www-306.ibm.com/software/data/info/zendcore/">Zend Core for
+  IBM</a>, a seamless, out-of-the-box, easy-to-install PHP development and production environment that supports IBM DB2 V9.<br><br></li><li>
+Stay current with developerWorks' <a href="http://www.ibm.com/developerworks/offers/techbriefings/" onmouseover="linkQueryAppend(this)">Technical events and webcasts</a>.<br><br></li><li>
+Check out upcoming conferences, trade shows, webcasts, and other <a href="http://www.ibm.com/developerworks/views/opensource/events.jsp" onmouseover="linkQueryAppend(this)">Events</a> around the world that are of interest to IBM open source developers.<br><br></li><li>
+Visit the developerWorks <a href="http://www.ibm.com/developerworks/opensource" onmouseover="linkQueryAppend(this)">Open source zone</a>
+ for extensive how-to information, tools, and project updates to help 
+you develop with open source technologies and use them with IBM's 
+products.<br><br></li><li>
+Watch and learn about IBM and open source technologies and product functions with the no-cost <a href="http://www.ibm.com/developerworks/offers/lp/demos/" onmouseover="linkQueryAppend(this)">developerWorks On demand demos</a>.<br><br></li></ul><p><b>Get products and technologies</b></p><ul><li>
+Innovate your next open source development project with <a href="http://www.ibm.com/developerworks/downloads/" onmouseover="linkQueryAppend(this)">IBM trial software</a>, available for download or on DVD.<br><br></li><li>
+Download <a href="http://www.ibm.com/developerworks/downloads/" onmouseover="linkQueryAppend(this)">IBM product evaluation versions</a>,
+ and get your hands on application development tools and middleware 
+products from DB2®, Lotus®, Rational®, Tivoli®, and WebSphere®.<br><br></li></ul><p><b>Discuss</b></p><ul><li>
+Participate in <a href="http://www.ibm.com/developerworks/blogs" onmouseover="linkQueryAppend(this)">developerWorks blogs</a> and get involved in the developerWorks community.<br><br></li><li>
+Participate in the developerWorks <a href="http://www.ibm.com/developerworks/forums/dw_forum.jsp?forum=992&amp;cat=51" onmouseover="linkQueryAppend(this)">PHP Forum: Developing PHP applications with IBM Information Management products (DB2, IDS)</a>.<br><br></li></ul>
+<p><a name="author"><span class="atitle">About the author</span></a></p><div class="ibm-container ibm-portrait-module ibm-alternate-two"><div class="ibm-container-body"><p><a name="author1"></a>A senior software engineer with more than 20 years of experience, Jack Herrington is the author of three books: <i>Code Generation in Action</i>, <i>
+                    <a href="http://www.oreilly.com/catalog/podcastinghks/">Podcasting Hacks</a>
+                </i>, and <i>
+                    <a href="http://www.oreilly.com/catalog/phphks/">PHP Hacks</a>
+                </i>. He is also the author of more than 30 articles.</p></div></div>
+<!-- MAIN_COLUMN_CONTENT_END -->
+
+<!-- OVERLAYS_START -->
+<!-- Report_Abuse_Start -->
+<div class="ibm-common-overlay ibm-no-print" id="reportabuseoverlay">
+   <div class="ibm-head"><p><a class="ibm-common-overlay-close" href="#">Close [x]</a></p></div>
+   <div class="ibm-body">
+      <div class="ibm-main">
+         <a class="ibm-access" name="reportabuseoverlay">Report abuse help</a>   
+         <div class="ibm-title"><h1>Report abuse</h1></div>
+         <div class="ibm-container ibm-alternate">
+            <p><strong>Thank you.</strong>  This entry has been flagged for moderator attention.</p>
+            <div class="ibm-overlay-rule"><hr></div>
+            <div class="ibm-buttons-row">
+               <input onclick="ibmCommon.Overlays.hide('reportabuseoverlay');return false;" class="ibm-btn-cancel-sec dw-btn-cancel-sec" name="ibm-cancel" value="Close" type="button">
+            </div>
+         </div>
+      </div> 
+   </div>
+<div class="ibm-footer"></div>
+</div>
+<!-- Report_Abuse_Error_Start -->
+<div class="ibm-common-overlay ibm-no-print" id="reportabuseoverlayerror">
+   <div class="ibm-head"><p><a class="ibm-common-overlay-close" href="#">Close [x]</a></p></div>
+   <div class="ibm-body">
+      <div class="ibm-main">
+         <a class="ibm-access" name="reportabuseoverlayerror">Report abuse help</a>   
+         <div class="ibm-title"><h1>Report abuse</h1></div>
+         <div class="ibm-container ibm-alternate">
+            <p class="ibm-ind-error"><strong>Report abuse submission failed.  Please try again later.</strong></p>
+            <div class="ibm-overlay-rule"><hr></div>
+            <div class="ibm-buttons-row">
+               <input onclick="ibmCommon.Overlays.hide('reportabuseoverlayerror');return false;" class="ibm-btn-cancel-sec dw-btn-cancel-sec" name="ibm-cancel" value="Close" type="button">
+            </div>
+         </div>
+      </div> 
+   </div>
+<div class="ibm-footer"></div>
+</div>
+<!-- Sign in OVERLAY STARTS HERE --> 
+<div class="ibm-common-overlay" id="signin_overlay">
+<div class="ibm-head">
+<p><a class="ibm-common-overlay-close" href="#" onclick="clearForm();">Close [x]</a></p>
+</div>
+<div class="ibm-body">
+<div class="ibm-main">
+<div class="ibm-title ibm-subtitle">
+<h1>developerWorks: Sign in</h1>
+<div id="ibm-overlay-error-signin" class="no-display"></div>
+</div>
+
+<div class="ibm-container ibm-alternate ibm-buttons-last">
+<div class="ibm-container-body">
+<form class="ibm-column-form" id="sFormId" action="" method="post" name="sForm" onsubmit="return false;">
+<p><label for="ibmid">IBM ID:</label><span><input name="ibm-id" id="ibmid" size="25" class="required" onkeypress="handleEP(event,this.form);" type="text"><br><a class="ibm-forward-link" href="#" onclick="(function () {window.location='/developerworks/dwwi/DWAuthRouter?m=reg&amp;d='+encodeURIComponent(location.href);})();">Need an IBM ID?</a><br><a class="ibm-forward-link" href="http://www.ibm.com/developerworks/dwwi/jsp/WSHelp.jsp?lang=en_US">Forgot your IBM ID?</a>   
+</span></p> 
+<p><label for="password">Password:</label><span><input name="password" id="password" size="25" value="" class="required" onkeypress="handleEP(event,this.form);" type="password"><br><a class="ibm-forward-link" href="#" onclick="(function () {window.location='https://www.ibm.com/account/profile?page=forgot&amp;lang=en_US&amp;appname=ibm&amp;required=null&amp;d='+encodeURIComponent(getAuthUrl())+'%3Fm%3Dloginpage%26lang%3Den_US%26d%3D'+encodeURIComponent(location.href);})();">Forgot your password?</a><br><a class="ibm-forward-link" href="#" onclick="(function () {window.location='https://www.ibm.com/account/profile?page=chpw&amp;lang=en_US&amp;appname=ibm&amp;required=null&amp;d='+encodeURIComponent(location.href);})();">Change your password</a></span></p>
+ 
+<p class="dw-perm-box">
+	<span><input id="perm" name="perm_name" type="checkbox"><label for="perm"> Keep me signed in.</label></span>
+</p>
+<p>By clicking <strong>Submit</strong>, you agree to the <a href="https://www.ibm.com/developerworks/community/terms/">developerWorks terms of use</a>.</p>
+<div class="ibm-buttons-row">
+   <p><input class="ibm-btn-arrow-pri" name="ibm-submit" value="Submit" onclick="signin();return false;" type="submit"><span class="ibm-sep">&nbsp;</span>
+<input value="Cancel" name="ibm-cancel" class="ibm-btn-cancel-sec" onclick="clearForm();ibmCommon.Overlays.hide('signin_overlay');return false;" type="button"></p>
+</div>
+</form>
+<div class="ibm-overlay-rule"><hr></div>
+<p>The first time you sign into developerWorks, a profile is created for you.  <strong>Select
+ information in your profile (name, country/region, and company) is 
+displayed to the public and will accompany any content you post</strong>.  You may update your IBM account at any time.</p>
+<div class="dw-overlay-legal"><p>All information submitted is secure.</p></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ibm-footer"></div>
+</div>
+<!-- Sign in OVERLAY ENDS HERE --> 
+ 
+
+<!-- Display name OVERLAY STARTS HERE --> 
+<div class="ibm-common-overlay" id="displayname_overlay">
+<div class="ibm-head">
+<p><a class="ibm-common-overlay-close" href="#" onclick="clearForm();">Close [x]</a></p>
+</div>
+<div class="ibm-body">
+<div class="ibm-main">
+<div class="ibm-title ibm-subtitle">
+<h1>Choose your display name</h1>
+<div id="ibm-overlay-error-dname" class="no-display"></div>
+</div>
+<div class="ibm-container ibm-alternate ibm-buttons-last">
+<div class="ibm-container-body">
+<p class="ibm-overlay-intro">The first time you sign in to 
+developerWorks, a profile is created for you, so you need to choose a 
+display name.  Your display name accompanies the content you post on 
+developerWorks.</p>
+<p><strong>Please choose a display name between 3-31 characters</strong>. Your display name must be unique in the developerWorks community and should not be your email address for privacy reasons.</p>
+<form id="dFormId" method="post" action="" name="dForm" onsubmit="return false;" class="ibm-column-form">
+<p><label for="displayname">Display name:</label><span><input name="displayname" id="displayname" size="25" onkeypress="handleEP(event,this.form);" type="text"></span><span class="ibm-form-note">(Must be between 3 – 31 characters.)</span>
+</p>
+<p>By clicking <strong>Submit</strong>, you agree to the <a href="https://www.ibm.com/developerworks/community/terms/">developerWorks terms of use</a>.</p>
+<div class="ibm-buttons-row">
+   <p><input class="ibm-btn-arrow-pri" name="ibm-submit" value="Submit" onclick="signin();return false;" type="submit"><span class="ibm-sep">&nbsp;</span>
+<input value="Cancel" name="ibm-cancel" class="ibm-btn-cancel-sec" onclick="clearForm();ibmCommon.Overlays.hide('displayname_overlay');return false;" type="button"></p>
+</div>
+</form>
+<div class="ibm-overlay-rule"><hr></div>
+<div class="dw-overlay-legal"><p>All information submitted is secure.</p></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ibm-footer"></div>
+</div>
+<!-- Display name OVERLAY ENDS HERE -->
+<!-- OVERLAYS_END -->
+
+<!-- RATINGS START -->
+<p class="ibm-no-print"><span class="atitle"><a name="iratings">Rate this article</a></span></p>
+<input id="art-rating" name="ratinga" value="4" type="hidden"><div id="art-rating-module"><p id="submitErr" class="ibm-ind-error" style="display: none;"><strong>Error: Submission failed. Please try again.</strong></p><p><span id="ratingSectUI"><img alt="Average rating 4 stars based on 803 votes" src="Five%20common%20PHP%20design%20patterns_files/stars120x20-4gw.jpg" class="dw-avg-rating"> Average rating (803 votes)</span></p><div class="ibm-container" id="ratingForm"><div class="ibm-container-body dw-container-ratings"><form class="dw-ratings-form" onsubmit="artRating.submitRating(); return false;"><input name="ratingstars" id="rat-1" value="1" type="radio"><label class="rating-label" id="star1" for="rat-1">1 star</label><img id="rat-1-img" alt="1 star" title="1 star" src="Five%20common%20PHP%20design%20patterns_files/stars120x20-1w.jpg" class="rating-image"><span class="dw-rating-text">1 star</span><br><input name="ratingstars" id="rat-2" value="2" type="radio"><label class="rating-label" id="star2" for="rat-2">2 stars</label><img id="rat-2-img" alt="2 stars" title="2 stars" src="Five%20common%20PHP%20design%20patterns_files/stars120x20-2w.jpg" class="rating-image2"><span class="dw-rating-text">2 stars</span><br><input name="ratingstars" id="rat-3" value="3" type="radio"><label class="rating-label" id="star3" for="rat-3">3 stars</label><img id="rat-3-img" alt="3 stars" title="3 stars" src="Five%20common%20PHP%20design%20patterns_files/stars120x20-3w.jpg" class="rating-image2"><span class="dw-rating-text">3 stars</span><br><input name="ratingstars" id="rat-4" value="4" type="radio"><label class="rating-label" id="star4" for="rat-4">4 stars</label><img id="rat-4-img" alt="4 stars" title="4 stars" src="Five%20common%20PHP%20design%20patterns_files/stars120x20-4w.jpg" class="rating-image2"><span class="dw-rating-text">4 stars</span><br><input name="ratingstars" id="rat-5" value="5" type="radio"><label class="rating-label" id="star5" for="rat-5">5 stars</label><img id="rat-5-img" alt="5 stars" title="5 stars" src="Five%20common%20PHP%20design%20patterns_files/stars120x20-5w.jpg" class="rating-image2"><span class="dw-rating-text">5 stars</span><div class="ibm-buttons-row"><p class="ibm-first"><input value="Submit" name="ibm-submit" class="ibm-btn-arrow-pri dw-ratings-submit" type="submit"></p></div></form></div></div></div>
+<script language="JavaScript" type="text/javascript">
+// <![CDATA[
+   // widget div id and article id as args
+   window.artRating.init('art-rating-module','art-rating-summary');
+// ]]>
+</script>
+<!-- RATINGS END -->
+
+<!-- INLINE_COMMENTS_START -->
+<p class="ibm-no-print"><span class="atitle"><a name="icomments">Comments</a></span></p>
+<div id="threadShow"><div id="cmtTog" style=""><div class="ibm-container ibm-alternate-two dw-commentbox dw-noborder"><p id="cmtHead"><label for="newCmt"><strong>Add comment:</strong></label></p><div class="ibm-container-body dw-commentbox dw-noborder"><p id="signInSect"> <a onclick="showSignIn();return false;" href="#">Sign in</a> or <a href="http://www.ibm.com/developerworks/dwwi/DWAuthRouter?m=register&amp;lang=en&amp;d=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Flibrary%2Fos-php-designptrns%2F%23icomments">register</a>  to leave a comment.</p><p>Note: HTML elements are not supported within comments.</p><span id="infoCmt"></span><form focus="name" enctype="multipart/form-data" method="post" action="" name="form" class="ibm-column-form"><p><textarea disabled="disabled" cols="120" rows="5" name="newCmt" id="newCmt" class="dw-inoperable"></textarea><br></p><span class="ibm-input-group"><input value="1" name="comment_notification" id="comment_notification" disabled="disabled" type="checkbox"><label id="notifyText" class="ibm-form-note dw-btn-cancel-sec" for="comment_notification">Notify me when a comment is added</label></span><span class="ibm-form-note dw-btn-cancel-sec notifySection" id="maxCharsCount"><span id="charCount">1000</span> characters left</span><br><br><p></p><p class="ibm-buttons-row"><input disabled="disabled" value="Post" jquery1275054459750="11" name="postCmt" id="postCmt" class="ibm-btn-arrow-sec dw-btn-arrow-sec" alt="Post your comment" type="button"><br><br></p></form></div></div><div id="topControl" class="ibm-container ibm-alternate-two dw-comment-totals" style=""><div class="ibm-container-body"><form id="selectComments" method="get" action=""><p><span class="dw-comment-totals-label"><strong>Total comments (<span id="numCmts">8</span>)</strong></span><span><img src="Five%20common%20PHP%20design%20patterns_files/c_002.gif" alt="" height="10" width="100"></span><span class="dw-how-many-comments-label" style="" id="dropdownCmts"><label for="howManyComments">Show:</label>&nbsp;<select name="comments" id="howManyComments" class="dw-how-many-comments"><option selected="selected" value="recent">Most recent comments   </option><option value="all">All comments</option></select><input class="ibm-btn-go" name="ibm-go" value="Go" src="Five%20common%20PHP%20design%20patterns_files/short-btn.gif" alt="Go" type="image"><br></span></p></form></div></div><div id="cmtSect"><div class="comment"><div class="dw-icomment-container"><div class="dw-icomment-body dw-noborder"><div class="dw-icomment-body dw-noborder"><p>I
+ love how PHP was chosen for implementing these design patterns. The 
+only issue that is stopping me from sending people i talk to this way 
+for learning them is they are not shown in a "practical sense". I 
+attempted to cover the Factory Pattern the other day in a more practical
+ sense by using a Content Moderation Queue as the example. For those 
+wanting to see a more practical take on using the Factory Pattern you 
+can read it here: 
+http://www.coderprofile.com/coder/VBAssassin/blog/2/practical-use-of-the-factory-pattern-polymorphism-and-interfaces-in-php</p><p class="ibm-item-note-alternate dw-item-note-alternate-left">Posted by <strong><a href="https://www.ibm.com/developerworks/community/profiles/user/VBAssassin">VBAssassin</a></strong> on 19 December 2012</p><p class="ibm-ind-link ibm-item-note-alternate dw-item-note-alternate-right"><a class="ibm-caution-link dw-report-abuse" href="https://www.ibm.com/developerworks/community/report?lang=en&amp;referingURL=http://www.ibm.com/developerworks/library/os-php-designptrns/&amp;mymessage=Comment:%20I%20love%20how%20PHP%20was%20chosen%20for%20implementing%20these%20design%20patterns.%20The%20only%20issue%20that%20is%20stopping%20me%20from%20sending%20people%20i%20talk%20to%20this%20way%20for%20learning%20them%20is%20they%20are%20not%20shown%20in%20a%20%22practical%20sense%22.%20I%20attempted%20to%20cover%20the%20Factory%20Pattern%20the%20other%20day%20in%20a%20more%20practical%20sense%20by%20using%20a%20Content%20Moderation%20Queue%20as%20the%20example.%20For%20those%20wanting%20to%20see%20a%20more%20practical%20take%20on%20using%20the%20Factory%20Pattern%20you%20can%20read%20it%20here%3A%20http%3A%2F%2Fwww.coderprofile.com%2Fcoder%2FVBAssassin%2Fblog%2F2%2Fpractical-use-of-the-factory-pattern-polymorphism-and-interfaces-in-php%0DPosted%20by%20VBAssassin%20on%2019%20December%202012%0D%0D---%20Add%20any%20comments%20below%20this%20line%20---" target="_newtab">Report abuse</a></p><div class="dw-clear-both"></div></div></div></div></div><div class="comment"><div class="dw-icomment-container"><div class="dw-icomment-body dw-noborder"><div class="dw-icomment-body dw-noborder"><p>very useful</p><p class="ibm-item-note-alternate dw-item-note-alternate-left">Posted by <strong><a href="https://www.ibm.com/developerworks/community/profiles/user/selvam4win">selvam4win</a></strong> on 08 May 2012</p><p class="ibm-ind-link ibm-item-note-alternate dw-item-note-alternate-right"><a class="ibm-caution-link dw-report-abuse" href="https://www.ibm.com/developerworks/community/report?lang=en&amp;referingURL=http://www.ibm.com/developerworks/library/os-php-designptrns/&amp;mymessage=Comment:%20very%20useful%0DPosted%20by%20selvam4win%20on%2008%20May%202012%0D%0D---%20Add%20any%20comments%20below%20this%20line%20---" target="_newtab">Report abuse</a></p><div class="dw-clear-both"></div></div></div></div></div><div class="comment"><div class="dw-icomment-container"><div class="dw-icomment-body dw-noborder"><div class="dw-icomment-body dw-noborder"><p>Many thanks, a very useful introduction to design patterns!</p><p class="ibm-item-note-alternate dw-item-note-alternate-left">Posted by <strong><a href="https://www.ibm.com/developerworks/community/profiles/user/therejustis">therejustis</a></strong> on 25 January 2012</p><p class="ibm-ind-link ibm-item-note-alternate dw-item-note-alternate-right"><a class="ibm-caution-link dw-report-abuse" href="https://www.ibm.com/developerworks/community/report?lang=en&amp;referingURL=http://www.ibm.com/developerworks/library/os-php-designptrns/&amp;mymessage=Comment:%20Many%20thanks%2C%20a%20very%20useful%20introduction%20to%20design%20patterns%21%0DPosted%20by%20therejustis%20on%2025%20January%202012%0D%0D---%20Add%20any%20comments%20below%20this%20line%20---" target="_newtab">Report abuse</a></p><div class="dw-clear-both"></div></div></div></div></div><div class="comment"><div class="dw-icomment-container"><div class="dw-icomment-body dw-noborder"><div class="dw-icomment-body dw-noborder"><p>I
+ don't understand why in the factory example the User class implements 
+the IUser interface. If the factory class is the only one that creates 
+the object, and it can create different types of objects, then why do 
+the objects need to implement an interface?</p><p class="ibm-item-note-alternate dw-item-note-alternate-left">Posted by <strong><a href="https://www.ibm.com/developerworks/community/profiles/user/stamari">stamari</a></strong> on 18 January 2012</p><p class="ibm-ind-link ibm-item-note-alternate dw-item-note-alternate-right"><a class="ibm-caution-link dw-report-abuse" href="https://www.ibm.com/developerworks/community/report?lang=en&amp;referingURL=http://www.ibm.com/developerworks/library/os-php-designptrns/&amp;mymessage=Comment:%20I%20don%27t%20understand%20why%20in%20the%20factory%20example%20the%20User%20class%20implements%20the%20IUser%20interface.%20If%20the%20factory%20class%20is%20the%20only%20one%20that%20creates%20the%20object%2C%20and%20it%20can%20create%20different%20types%20of%20objects%2C%20then%20why%20do%20the%20objects%20need%20to%20implement%20an%20interface%3F%0DPosted%20by%20stamari%20on%2018%20January%202012%0D%0D---%20Add%20any%20comments%20below%20this%20line%20---" target="_newtab">Report abuse</a></p><div class="dw-clear-both"></div></div></div></div></div><div class="comment"><div class="dw-icomment-container"><div class="dw-icomment-body dw-noborder"><div class="dw-icomment-body dw-noborder"><p>This was such a well written article, thank you so much :)</p><p class="ibm-item-note-alternate dw-item-note-alternate-left">Posted by <strong><a href="https://www.ibm.com/developerworks/community/profiles/user/stamari">stamari</a></strong> on 18 January 2012</p><p class="ibm-ind-link ibm-item-note-alternate dw-item-note-alternate-right"><a class="ibm-caution-link dw-report-abuse" href="https://www.ibm.com/developerworks/community/report?lang=en&amp;referingURL=http://www.ibm.com/developerworks/library/os-php-designptrns/&amp;mymessage=Comment:%20This%20was%20such%20a%20well%20written%20article%2C%20thank%20you%20so%20much%20%3A%29%0DPosted%20by%20stamari%20on%2018%20January%202012%0D%0D---%20Add%20any%20comments%20below%20this%20line%20---" target="_newtab">Report abuse</a></p><div class="dw-clear-both"></div></div></div></div></div></div></div><div id="bottomControl" class="ibm-container ibm-alternate-two dw-comment-totals" style="display:none"><div class="ibm-container-body"><form id="selectComments2" method="get" action=""><p><span class="dw-comment-totals-label"><strong>Total comments (<span id="numCmts2">8</span>)</strong></span><span><img src="Five%20common%20PHP%20design%20patterns_files/c_002.gif" alt="" height="10" width="100"></span><span class="dw-how-many-comments-label" style="" id="dropdownCmts2"><label for="howManyComments2">Show:</label>&nbsp;<select name="comments" id="howManyComments2" class="dw-how-many-comments"><option selected="selected" value="recent">Most recent comments   </option><option value="all">All comments</option></select><input class="ibm-btn-go" name="ibm-go" value="Go" src="Five%20common%20PHP%20design%20patterns_files/short-btn.gif" alt="Go" type="image"><br></span></p></form></div></div></div>
+<!-- INLINE_COMMENTS_END -->
+
+<p class="ibm-ind-link ibm-back-to-top"><a class="ibm-anchor-up-link" href="#ibm-pcon">Back to top</a></p>
+
+<!-- Overlays -->
+
+</div>
+<!-- MAIN_COLUMN_CONTAINER_END -->
+
+<!-- Rating_Meta_BEGIN -->
+<!--Rating_Meta_BEGIN--><div class="metavalue">static.content.url=http://www.ibm.com/developerworks/js/artrating/</div><div class="metavalue">SITE_ID=1</div><div class="metavalue">Zone=Open source</div><div class="metavalue">ArticleID=136377</div><div class="metavalue">ArticleTitle=Five common PHP design patterns</div><div class="metavalue">publish-date=07182006</div><div class="metavalue">author1-email=jherr@pobox.com</div><div class="metavalue">author1-email-cc=dwxed@us.ibm.com</div><script language="javascript" type="text/javascript">document.write('<div class="metavalue">url='+location.href.replace(/</g, '%3C')+'</div>');</script><div class="metavalue">url=http://www.ibm.com/developerworks/library/os-php-designptrns/</div><!--Rating_Meta_END-->
+<!-- Rating_Meta_END -->
+
+</div>
+<!-- MAIN_COLUMN_END-->
+
+<!-- RIGHT_COLUMN_BEGIN -->
+<div id="ibm-content-sidebar">
+
+<!-- RIGHT_COLUMN_CONTENT_BEGIN --> 
+<div class="ibm-container"><h2>Table of contents</h2><div class="ibm-container-body"><img alt="" src="Five%20common%20PHP%20design%20patterns_files/c.gif" height="1" width="1"><ul class="ibm-bullet-list"><li><a class="ibm-feature-link" href="#N10076">The factory pattern</a></li><li><a class="ibm-feature-link" href="#N10124">The singleton pattern</a></li><li><a class="ibm-feature-link" href="#N10177">The observer pattern</a></li><li><a class="ibm-feature-link" href="#N101DE">The chain-of-command pattern</a></li><li><a class="ibm-feature-link" href="#N1022F">The strategy pattern</a></li><li><a class="ibm-feature-link" href="#N1027B">Conclusions</a></li><li><a class="ibm-feature-link" href="#resources">Resources</a></li><li><a class="ibm-feature-link" href="#author">About the author</a></li><li><a class="ibm-feature-link" href="#icomments">Comments</a></li></ul></div></div>
+<!--XSLT stylesheet used to transform this content: s-nextsteps.xsl--><div class="ibm-container"><h2>Next steps from IBM</h2><div class="ibm-container-body"><img alt="" src="Five%20common%20PHP%20design%20patterns_files/spot-nextsteps.jpg" border="0" height="58" width="188"><p>With the no-charge DB2 Express-C, Zend Core PHP, and Java you can develop advanced Web 2.0
+   applications quickly that matter.</p><div class="ibm-rule"><hr></div><ul class="ibm-bullet-list"><li><a href="http://www.ibm.com/developerworks/downloads/im/udbexp/index.html" class="ibm-feature-link">Try: Download a free trial version of DB2 Express-C, which includes Zend Core PHP and pureXML technology that is
+    ideally suited for managing both XML and relational data and powering a new breed of SOA and Web 2.0
+    solutions.</a></li><li><a href="http://www.redbooks.ibm.com/abstracts/SG247218.html?open" class="ibm-feature-link">Article: This IBM Redbook shows how to port PHP apps from MySQL to DB2, and includes code samples for creating Zend
+      Core PHP applications.</a></li><li><a href="http://www.ibm.com/developerworks/edu/r-dw-r-face3.html" class="ibm-feature-link">Tutorial: In this Mastering Facebook app development tutorial series, you will use Java and PHP in parallel to build a
+      Facebook interface for an online stock trading J2EE application using the Spring framework.</a></li><li><a href="http://www.ibm.com/software/dre/h2b/buildh2bpage.wss?synkey=I432401F08084L16" class="ibm-feature-link">Buy: DB2 9 for Linux, UNIX and Windows</a></li></ul></div></div>
+
+<!-- Dig_Deeper -->
+<div class="ibm-container"><h2>Dig deeper into Open source on developerWorks</h2><div class="ibm-container-body"><ul class="ibm-link-list"><li class="ibm-first"><a href="http://www.ibm.com/developerworks/opensource/" class="ibm-forward-link">Overview</a></li><li><a href="http://www.ibm.com/developerworks/opensource/newto/" class="ibm-forward-link">New to Open source</a></li><li><a href="http://www.ibm.com/developerworks/opensource/find/projects/" class="ibm-forward-link">Projects</a></li><li><a href="http://www.ibm.com/developerworks/opensource/library/" class="ibm-forward-link">Technical library (articles, tutorials, and more)</a></li><li><a href="http://www.ibm.com/developerworks/forums/dw_osforums.jsp" class="ibm-forward-link">Forums</a></li><li><a href="http://www.ibm.com/developerworks/opensource/find/events/" class="ibm-forward-link">Events</a></li></ul></div></div>
+<!-- High_Visibility_Offer -->
+<!--XSLT stylesheet used to transform this content: s-highvisibilityoffer.xsl--><div class="ibm-container"><h2>IBM SmartCloud trial. No charge.</h2><div class="ibm-container-body"><img alt="IBM PureSystems on a kaleideoscope background" src="Five%20common%20PHP%20design%20patterns_files/hivis-cloud.jpg" border="0" height="70" width="188"><p>Unleash the power of hybrid cloud computing today!</p><div class="ibm-rule"><hr></div><p class="ibm-ind-link"><a href="http://www.ibm.com/developerworks/cloud/try/?ca=dti-hivis-troy" class="ibm-forward-link">Public and private solutions in one trial.</a></p></div></div>
+<!-- Special_Offers -->
+<div class="ibm-container"><h2>Special offers</h2><div class="ibm-container-body"><p class="dw-special-offers"><a href="http://www.ibm.com/developerworks/demos/"><img src="Five%20common%20PHP%20design%20patterns_files/tile_v16_ondemanddemos.gif" alt="On demand demos: An easy way to watch and learn" border="0" height="50" width="158"></a></p><p class="dw-special-offers"><a href="http://www.ibm.com/developerworks/aboutdw/dwa/?ca=dti-dwarp"><img src="Five%20common%20PHP%20design%20patterns_files/tile_v16_dwaarp.gif" alt="Get recognized! W Author Program" border="0" height="50" width="158"></a></p><p class="dw-special-offers"><a href="https://www.ibm.com/developerworks/cloud/index.html?ca=dti-cloudzone"><img src="Five%20common%20PHP%20design%20patterns_files/tile_v16_cloudzoneA.gif" alt="Cloud Computing resources for IT professionals" border="0" height="50" width="158"></a></p><div class="ibm-rule"><hr></div><p class="ibm-ind-link"><a class="ibm-forward-link" href="http://www.ibm.com/developerworks/downloads/?ca=dti-tilemoreoffers">Trial software offers</a></p></div></div>
+<!-- RIGHT_COLUMN_CONTENT_END -->
+
+</div>
+<!-- RIGHT_COLUMN_END -->
+
+<!-- CONTENT_BODY_END -->
+</div>
+
+</div>
+<!-- CONTENT_END -->
+
+ <!-- END_IBM-PCON -->
+</div>
+
+<!-- FOOTER_BEGIN -->
+<div id="ibm-footer">
+<!-- IBM footer container; disabled -->
+</div>
+
+<div id="ibm-page-tools-dw">
+	<div id="dw-footer-top-row">
+		<ul id="dw-foot-options">
+			<li id="dw-print"><a class="ibm-print-link" href="#">Print this page</a></li>
+		</ul>
+		<ul id="ibm-foot-options-dw">
+			<li id="dw-foot-0"><a href="#">Share this page</a></li>
+			<li id="dw-foot-1"><a href="#">Follow developerWorks</a></li>
+		</ul>
+	</div>
+
+	<!-- TOP ROW SLIDER -->
+    <div id="dw-page-tools-menu">    
+        <div class="ibm-ribbon-pane-dw">
+            <div class="ibm-ribbon-section-dw">
+				<!-- Share this page -->			
+                <div class="dw-footer-columns">
+                    <div class="dw-footer-col-3-1">
+                        <h2>Share this page:</h2>                       
+						<ul class="ibm-link-list">
+							<li><a id="dw-foot-0-0" class="ibm-facebook-link" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Flibrary%2Fos-php-designptrns%2F&amp;t=Five%20common%20PHP%20design%20patterns">Facebook</a></li>
+							<li><a class="ibm-linkedin-link" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Flibrary%2Fos-php-designptrns%2F&amp;title=Five%20common%20PHP%20design%20patterns">LinkedIn</a></li>
+							<li><a class="ibm-twitter-link" href="http://twitter.com/home?status=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Flibrary%2Fos-php-designptrns%2F%20-%20Five%20common%20PHP%20design%20patterns">Twitter</a></li>
+						</ul>
+                    </div>
+                    <div class="dw-footer-col-3-2">
+						<ul class="ibm-link-list">
+							<li><a class="ibm-delicious-link" href="http://delicious.com/post?url=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Flibrary%2Fos-php-designptrns%2F&amp;title=Five%20common%20PHP%20design%20patterns">Delicious</a></li>
+							<li><a class="ibm-digg-link" href="http://digg.com/submit?phase=2&amp;url=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Flibrary%2Fos-php-designptrns%2F&amp;title=Five%20common%20PHP%20design%20patterns">Digg</a></li>
+							<li><a class="ibm-stumbleupon" href="http://www.stumbleupon.com/submit?url=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Flibrary%2Fos-php-designptrns%2F&amp;title=Five%20common%20PHP%20design%20patterns">StumbleUpon</a></li>
+						</ul>
+                    </div>
+                    <div class="dw-footer-col-3-3">
+						<ul class="ibm-link-list">
+							<li><a class="ibm-email-link" href="#">Email this page</a></li>
+						</ul>
+                    </div>
+                    <div class="dw-footer-close">
+						<ul>
+							<li><div class="dw-footer-close-share"><a href="#"><img src="Five%20common%20PHP%20design%20patterns_files/c_002.gif" alt="Close [x]" border="0" height="10" width="20"></a></div></li>
+						</ul>
+                    </div>
+                </div>
+                <!-- Follow developerWorks -->
+                <div class="dw-footer-columns">
+                    <div class="dw-footer-col-1-1">
+                        <h2>Follow developerWorks:</h2>
+						<ul class="ibm-link-list">
+							<li><a id="dw-foot-1-0" class="ibm-facebook-link" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Flibrary%2Fos-php-designptrns%2F&amp;t=Five%20common%20PHP%20design%20patterns">Facebook</a></li>
+							<li><a class="ibm-twitter-link" href="http://twitter.com/home?status=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Flibrary%2Fos-php-designptrns%2F%20-%20Five%20common%20PHP%20design%20patterns">Twitter</a></li>
+						</ul>
+                    </div>
+                    <div class="dw-footer-close">
+						<ul>
+							<li><div class="dw-footer-close-follow"><a href="#"><img src="Five%20common%20PHP%20design%20patterns_files/c_002.gif" alt="Close [x]" border="0" height="10" width="20"></a></div></li>
+						</ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ibm-footer-module-dw">
+	<div class="dw-footer-columns">
+		<div class="dw-footer-col-6-1">
+			<ul>
+				<li><a href="http://www.ibm.com/developerworks/aboutdw/">About</a></li>
+				<li><a href="https://www.ibm.com/developerworks/feedback">Help</a></li>
+				<li><a href="http://www.ibm.com/developerworks/aboutdw/contacts.html">Contact us</a></li>
+				<li><a href="https://www.ibm.com/developerworks/ideas">Submit content</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-2">
+			<ul>
+				<li><a href="http://www.ibm.com/developerworks/feeds/">Feeds</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-3">
+			<ul>
+				<li><a href="https://www.ibm.com/developerworks/community/report/">Report abuse</a></li>
+				<li><a href="https://www.ibm.com/developerworks/community/terms/">Terms of use</a></li>
+				<li><a href="http://www.ibm.com/privacy/">IBM privacy</a></li>
+				<li><a href="http://www.ibm.com/accessibility/">IBM accessibility</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-4">
+			<ul>
+				<li><a href="http://www.ibm.com/developerworks/university/academicinitiative/">Faculty</a></li>
+				<li><a href="http://www.ibm.com/developerworks/university/students/">Students</a></li>
+				<li><a href="http://www.ibm.com/isv/">Business Partners</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-5">
+		</div>
+		<div class="dw-footer-col-6-6">
+			<img src="Five%20common%20PHP%20design%20patterns_files/dwn-ibm-logo-v16.png" alt="IBM®" height="46" width="100">
+			<img class="dw-preload" src="Five%20common%20PHP%20design%20patterns_files/arrow-down-active.gif" alt="" height="1" width="1">
+		</div>
+	</div>
+	<!-- Language selector no-script -->
+	<noscript>
+	<div id="dw-footer-selectlang">
+		<h2><a name="SELECTLANG">Select a language:</a></h2>
+		<ul>
+			<li><a href="http://www.ibm.com/developerworks/">English</a></li>
+			<li><a href="http://www.ibm.com/developerworks/cn/">中文</a></li>
+			<li><a href="http://www.ibm.com/developerworks/jp/">日本語</a></li>
+			<li><a href="http://www.ibm.com/developerworks/ru/">Русский</a></li>
+			<li><a href="http://www.ibm.com/developerworks/br/">Português (Brasil)</a></li>
+			<li><a href="http://www.ibm.com/developerworks/ssa/">Español</a></li>
+			<li><a href="http://www.ibm.com/developerworks/vn/">Việt</a></li>
+		</ul>
+	</div>
+	</noscript>
+</div><!-- FOOTER_END -->
+
+ <!-- END_IBM-TOP -->
+<div id="ibm-overlay-top"></div></div>
+ 
+ <!-- SCRIPTS_INCLUDE_BEGIN -->
+<!-- JQuery start -->
+<script type="text/javascript" language="JavaScript" src="Five%20common%20PHP%20design%20patterns_files/jquery_004.js"></script>
+<script type="text/javascript" language="JavaScript" src="Five%20common%20PHP%20design%20patterns_files/jquery_002.js"></script>
+<!-- xM Masthead/Footer -->
+<script type="text/javascript" language="JavaScript" src="Five%20common%20PHP%20design%20patterns_files/jquery_003.js">//</script>
+<script type="text/javascript" language="JavaScript" src="Five%20common%20PHP%20design%20patterns_files/jquery.js">//</script>
+<script type="text/javascript" language="JavaScript" src="Five%20common%20PHP%20design%20patterns_files/dw_v16.js">//</script>
+<script type="text/javascript" language="JavaScript" src="Five%20common%20PHP%20design%20patterns_files/flash-detect.js">//</script>
+<script type="text/javascript" language="JavaScript" src="Five%20common%20PHP%20design%20patterns_files/dwsi.js">//</script>
+<script type="text/javascript" language="JavaScript" src="Five%20common%20PHP%20design%20patterns_files/showcomments.js">//</script>
+<script language="JavaScript" type="text/javascript">
+// <![CDATA[
+ jQuery('threadShow').showComments('95%',5,'nCmts','icomments');
+// ]]>
+</script>
+
+<script type="text/javascript" language="JavaScript">
+	jQuery.noConflict();     
+	// Put all your code in your document ready area
+	jQuery(document).ready(function(jQuery) {
+	// Do jQuery stuff using jQuery 
+	jQuery('a.dwauthor').cluetip({
+		local: true,
+		showTitle: false,
+		positionBy: 'bottomTop',
+		sticky: true,	
+		mouseOutClose: true,
+		closeText: '<img src="//dw1.s81c.com/developerworks/js/jquery/cluetip98/i/x.gif" alt="Close" />',
+		arrows: false,
+		dropShadow: true,
+		cluetipClass: 'dwbasic'
+		});
+
+		rBHash = {};
+		rBHash['viperLang'] = 'en';
+		rBHash['urlLang'] = 'en';
+
+		// si
+		initSI();
+	});
+ </script>
+ <!-- JQuery end -->
+ <!-- Overlay js -->
+<script language="JavaScript" src="Five%20common%20PHP%20design%20patterns_files/overlay.js" type="text/javascript"></script><!-- BEGIN: Use this section to set page specific variables for the Unica Page Tag -->
+<script language="JavaScript">var NTPT_PGEXTRA="ibmSkillLevel=3&ibmAdoptPhase=-&ibmRole=-&ibmCmaId=136377&ibmContentAreas=opensource";</script>
+<!--END --><!-- SCRIPTS_INCLUDE_END -->
+
+<div id="ibm-metrics">
+<script src="Five%20common%20PHP%20design%20patterns_files/stats.js" type="text/javascript">//</script>
+</div>
+
+
+<div style="position: absolute; z-index: 95; display: none;" id="cluetip-waitimage"></div><div style="z-index: 96; display: none; position: absolute;" id="cluetip"><div style="z-index: 95; opacity: 0.1; top: 1px; left: 1px; position: absolute; background-color: rgb(0, 0, 0);"></div><div style="z-index: 94; opacity: 0.1; top: 2px; left: 2px; position: absolute; background-color: rgb(0, 0, 0);"></div><div style="z-index: 93; opacity: 0.1; top: 3px; left: 3px; position: absolute; background-color: rgb(0, 0, 0);"></div><div style="z-index: 92; opacity: 0.1; top: 4px; left: 4px; position: absolute; background-color: rgb(0, 0, 0);"></div><div style="z-index: 91; opacity: 0.1; top: 5px; left: 5px; position: absolute; background-color: rgb(0, 0, 0);"></div><div style="z-index: 90; opacity: 0.1; top: 6px; left: 6px; position: absolute; background-color: rgb(0, 0, 0);"></div><div style="position: relative; z-index: 97;" id="cluetip-outer"><div id="cluetip-title"></div><div id="cluetip-inner"></div></div><div id="cluetip-extra"></div><div style="z-index: 97;" id="cluetip-arrows" class="cluetip-arrows"></div></div></body></html>

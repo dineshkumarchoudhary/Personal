@@ -1,0 +1,19 @@
+<?php
+$title = 'Contact Us';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title);?></h1>
+<br><br>
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('contact', array('action' => 'contact')));
+$form->prepare();
+echo $this->form()->openTag($form);
+echo $this->formRow($form->get('name'));
+echo $this->formRow($form->get('email'));
+echo $this->formRow($form->get('subject'));
+echo $this->formRow($form->get('message'));
+echo $this->formRow($form->get('captcha'));
+echo $this->formRow($form->get('submit'));
+echo $this->form()->closeTag();
+?>
